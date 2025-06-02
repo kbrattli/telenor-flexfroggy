@@ -24,41 +24,12 @@ const levels: Level[] = [
   {
     id: 1,
     title: "Center the Square",
-    description: "Move the blue square to the red target using justify-content",
+    description: "Move the blue square to the red target using justify-content and align-items",
     options: [
       {
-        label: ["justify-content: flex-start"],
-        value: "flex-start",
-        css: { display: "flex", justifyContent: "flex-start", alignItems: "center" },
-      },
-      {
-        label: ["justify-content: center"],
-        value: "center",
-        css: { display: "flex", justifyContent: "center", alignItems: "center" },
-      },
-      {
-        label: ["justify-content: flex-end"],
-        value: "flex-end",
-        css: { display: "flex", justifyContent: "flex-end", alignItems: "center" },
-      },
-      {
-        label: ["justify-content: space-between"],
-        value: "space-between",
-        css: { display: "flex", justifyContent: "space-between", alignItems: "center" },
-      },
-    ],
-    correctAnswer: 1,
-    correctCSS: { display: "flex", justifyContent: "center", alignItems: "center" },
-  },
-  {
-    id: 2,
-    title: "Center Both Ways",
-    description: "Move the blue square to the red target using both justify-content and align-items",
-    options: [
-      {
-        label: ["justify-content: center", "align-items: flex-start"],
-        value: "center-start",
-        css: { display: "flex", justifyContent: "center", alignItems: "flex-start" },
+        label: ["justify-content: flex-start", "align-items: flex-start"],
+        value: "start-start",
+        css: { display: "flex", justifyContent: "flex-start", alignItems: "flex-start" },
       },
       {
         label: ["justify-content: center", "align-items: center"],
@@ -66,18 +37,47 @@ const levels: Level[] = [
         css: { display: "flex", justifyContent: "center", alignItems: "center" },
       },
       {
-        label: ["justify-content: flex-start", "align-items: center"],
-        value: "start-center",
-        css: { display: "flex", justifyContent: "flex-start", alignItems: "center" },
+        label: ["justify-content: flex-end", "align-items: flex-start"],
+        value: "end-start",
+        css: { display: "flex", justifyContent: "flex-end", alignItems: "flex-start" },
+      },
+      {
+        label: ["justify-content: flex-start", "align-items: flex-end"],
+        value: "start-end",
+        css: { display: "flex", justifyContent: "flex-start", alignItems: "flex-end" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: { display: "flex", justifyContent: "center", alignItems: "center" },
+  },
+  {
+    id: 2,
+    title: "Move to Bottom Right",
+    description: "Move the blue square to the red target in the bottom right corner",
+    options: [
+      {
+        label: ["justify-content: center", "align-items: flex-start"],
+        value: "center-start",
+        css: { display: "flex", justifyContent: "center", alignItems: "flex-start" },
+      },
+      {
+        label: ["justify-content: flex-end", "align-items: center"],
+        value: "end-center",
+        css: { display: "flex", justifyContent: "flex-end", alignItems: "center" },
       },
       {
         label: ["justify-content: flex-end", "align-items: flex-end"],
         value: "end-end",
         css: { display: "flex", justifyContent: "flex-end", alignItems: "flex-end" },
       },
+      {
+        label: ["justify-content: flex-start", "align-items: flex-end"],
+        value: "start-end",
+        css: { display: "flex", justifyContent: "flex-start", alignItems: "flex-end" },
+      },
     ],
-    correctAnswer: 1,
-    correctCSS: { display: "flex", justifyContent: "center", alignItems: "center" },
+    correctAnswer: 2,
+    correctCSS: { display: "flex", justifyContent: "flex-end", alignItems: "flex-end" },
   },
 ]
 
@@ -247,7 +247,7 @@ export default function FlexboxGame() {
                 {/* Player container - applies the selected CSS with animation */}
                 <motion.div
                   className="absolute inset-0"
-                  style={appliedCSS}
+                  style={Object.keys(appliedCSS).length > 0 ? appliedCSS : {}}
                   initial={false}
                   animate={appliedCSS}
                   transition={{
@@ -287,12 +287,15 @@ export default function FlexboxGame() {
                   transition={{ delay: 0.2 }}
                 >
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Applied CSS:</h4>
-                  <code className="text-xs text-gray-600 block">
+                  <div className="text-xs text-gray-600 font-mono">
                     {Object.entries(appliedCSS)
-                      .filter(([key]) => key !== "display") // Hide display: flex as it's always there
-                      .map(([key, value]) => `${key}: ${value};`)
-                      .join("\n")}
-                  </code>
+                      .filter(([key]) => key !== "display")
+                      .map(([key, value], index) => (
+                        <div key={index}>
+                          {key}: {value};
+                        </div>
+                      ))}
+                  </div>
                 </motion.div>
               )}
             </CardContent>
