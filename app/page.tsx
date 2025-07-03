@@ -21,6 +21,15 @@ interface Level {
   itemCount?: number;
 }
 
+const initialCSS = {
+  display: "flex",
+  justifyContent: "flex-start",
+  alignItems: "flex-start",
+};
+
+const GAME_DURATION = 60; // Total game time in seconds
+
+// Add more levels to the existing ones
 const levels: Level[] = [
   {
     id: 1,
@@ -484,15 +493,178 @@ const levels: Level[] = [
       alignContent: "space-around",
     },
   },
+  {
+    id: 9,
+    title: "Column Alignment Challenge",
+    description: "Align items in a column layout using align-content",
+    itemCount: 5,
+    options: [
+      {
+        label: ["flex-direction: column", "align-content: flex-start"],
+        value: "column-start",
+        css: {
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "flex-start",
+        },
+      },
+      {
+        label: ["flex-direction: column", "align-content: center"],
+        value: "column-center",
+        css: {
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "center",
+        },
+      },
+      {
+        label: ["flex-direction: column", "align-content: space-between"],
+        value: "column-between",
+        css: {
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "space-between",
+        },
+      },
+      {
+        label: ["flex-direction: column", "align-content: space-around"],
+        value: "column-around",
+        css: {
+          display: "flex",
+          flexDirection: "column",
+          alignContent: "space-around",
+        },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      flexDirection: "column",
+      alignContent: "center",
+    },
+  },
+  {
+    id: 10,
+    title: "Space Distribution",
+    description: "Distribute space evenly between items using space-evenly",
+    itemCount: 6,
+    options: [
+      {
+        label: ["justify-content: space-between"],
+        value: "space-between",
+        css: {
+          display: "flex",
+          justifyContent: "space-between",
+        },
+      },
+      {
+        label: ["justify-content: space-around"],
+        value: "space-around",
+        css: {
+          display: "flex",
+          justifyContent: "space-around",
+        },
+      },
+      {
+        label: ["justify-content: space-evenly"],
+        value: "space-evenly",
+        css: {
+          display: "flex",
+          justifyContent: "space-evenly",
+        },
+      },
+      {
+        label: ["justify-content: center"],
+        value: "center",
+        css: {
+          display: "flex",
+          justifyContent: "center",
+        },
+      },
+    ],
+    correctAnswer: 2,
+    correctCSS: {
+      display: "flex",
+      justifyContent: "space-evenly",
+    },
+  },
+  {
+    id: 11,
+    title: "Advanced Wrap",
+    description: "Create a multi-line layout with specific alignment",
+    itemCount: 8,
+    options: [
+      {
+        label: [
+          "flex-wrap: wrap",
+          "justify-content: space-between",
+          "align-content: flex-start",
+        ],
+        value: "wrap-between-start",
+        css: {
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignContent: "flex-start",
+        },
+      },
+      {
+        label: [
+          "flex-wrap: wrap",
+          "justify-content: space-around",
+          "align-content: center",
+        ],
+        value: "wrap-around-center",
+        css: {
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+          alignContent: "center",
+        },
+      },
+      {
+        label: [
+          "flex-wrap: wrap",
+          "justify-content: center",
+          "align-content: space-between",
+        ],
+        value: "wrap-center-between",
+        css: {
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignContent: "space-between",
+        },
+      },
+      {
+        label: [
+          "flex-wrap: wrap",
+          "justify-content: space-evenly",
+          "align-content: flex-end",
+        ],
+        value: "wrap-evenly-end",
+        css: {
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          alignContent: "flex-end",
+        },
+      },
+    ],
+    correctAnswer: 2,
+    correctCSS: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      alignContent: "center",
+    },
+  },
 ];
 
-const initialCSS = {
-  display: "flex",
-  justifyContent: "flex-start",
-  alignItems: "flex-start",
+// Function to shuffle the levels array
+const shuffleLevels = (levels: Level[]) => {
+  return levels.sort(() => Math.random() - 0.5);
 };
-
-const GAME_DURATION = 60; // Total game time in seconds
 
 export default function FlexboxGame() {
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -507,7 +679,15 @@ export default function FlexboxGame() {
   const [appliedCSS, setAppliedCSS] =
     useState<Record<string, string>>(initialCSS);
 
-  const level = levels[currentLevel];
+  // Shuffle levels when component mounts
+  const [shuffledLevels, setShuffledLevels] = useState<Level[]>([]);
+
+  useEffect(() => {
+    const shuffled = shuffleLevels([...levels]);
+    setShuffledLevels(shuffled);
+  }, []);
+
+  const level = shuffledLevels[currentLevel];
 
   useEffect(() => {
     if (!gameStarted || gameCompleted) return;
@@ -549,7 +729,7 @@ export default function FlexboxGame() {
   };
 
   const handleNextLevel = () => {
-    if (currentLevel < levels.length - 1) {
+    if (currentLevel < shuffledLevels.length - 1) {
       setCurrentLevel(currentLevel + 1);
       resetLevelState();
     } else {
@@ -577,6 +757,8 @@ export default function FlexboxGame() {
     setGameCompleted(false);
     setTimeUp(false);
     resetLevelState();
+    const shuffled = shuffleLevels([...levels]);
+    setShuffledLevels(shuffled);
   };
 
   const renderBoxes = (count: number, isTarget: boolean = false) => {
@@ -652,7 +834,7 @@ export default function FlexboxGame() {
             <p className="mb-2 text-xl text-gray-700">
               You correctly solved{" "}
               <span className="font-bold text-blue-600">
-                {score} out of {levels.length}
+                {score} out of {shuffledLevels.length}
               </span>{" "}
               levels.
             </p>
@@ -820,7 +1002,7 @@ export default function FlexboxGame() {
                       size="lg"
                       className="mt-2"
                     >
-                      {currentLevel < levels.length - 1
+                      {currentLevel < shuffledLevels.length - 1
                         ? "Next Level"
                         : "Finish Game"}
                     </Button>
