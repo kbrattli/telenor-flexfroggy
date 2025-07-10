@@ -1,10 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle, Play, RotateCcw, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Level, initialCSS } from "@/lib/types";
 import { levels as allLevels } from "@/lib/levels";
@@ -13,6 +9,7 @@ import { shuffleLevels } from "@/lib/shuffleLevels";
 import GameStartScreen from "@/components/game/GameStartScreen";
 import GameEndScreen from "@/components/game/GameEndScreen";
 import GameArea from "@/components/game/GameArea";
+import OptionSelector from "@/components/game/OptionSelector";
 
 export default function FlexboxGame() {
 
@@ -35,6 +32,7 @@ export default function FlexboxGame() {
   const [appliedCSS, setAppliedCSS] =
     useState<Record<string, string>>(initialCSS);
 
+    // Shuffle
   useEffect(() => {
     const shuffled = shuffleLevels([...allLevels]);
     setShuffledLevels(shuffled);
@@ -42,6 +40,7 @@ export default function FlexboxGame() {
 
   const level = shuffledLevels[currentLevel];
 
+  // Timer
   useEffect(() => {
     if (!gameStarted || gameCompleted) return;
 
@@ -59,6 +58,17 @@ export default function FlexboxGame() {
 
     return () => clearInterval(timer);
   }, [gameStarted, gameCompleted]);
+
+  // Delay for feedback before new task/level
+  useEffect(() => {
+  if (showFeedback) {
+    const timer = setTimeout(() => {
+      handleNextLevel();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }
+}, [showFeedback]);
 
     const startGame = () => {
     setGameStarted(true);
@@ -157,102 +167,20 @@ export default function FlexboxGame() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* Game Area */ }
-          <GameArea appliedCSS={appliedCSS} correctCSS={level.correctCSS} itemCount={level.itemCount || 1} />
+          <GameArea 
+          appliedCSS={appliedCSS} 
+          correctCSS={level.correctCSS} 
+          itemCount={level.itemCount || 1} />
 
-          {/* Options */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="mb-4 text-lg font-semibold">
-                Choose the correct CSS:
-              </h3>
-              <div className="space-y-3">
-                {level.options.map((option, index) => (
-                  <Button
-                    key={index}
-                    variant={
-                      showFeedback
-                        ? index === level.correctAnswer
-                          ? "default"
-                          : selectedOption === index
-                          ? "destructive"
-                          : "outline"
-                        : selectedOption === index
-                        ? "default"
-                        : "outline"
-                    }
-                    className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 ${
-                      showFeedback && index === level.correctAnswer
-                        ? "border-green-600 bg-green-500 text-white hover:bg-green-600"
-                        : showFeedback &&
-                          selectedOption === index &&
-                          index !== level.correctAnswer
-                        ? "border-red-600 bg-red-500 text-white hover:bg-red-600"
-                        : ""
-                    }`}
-                    onClick={() => handleOptionSelect(index)}
-                    disabled={showFeedback}
-                  >
-                    <div className="flex flex-col items-start gap-1">
-                      {option.label.map((line, lineIndex) => (
-                        <code key={lineIndex} className="font-mono text-sm">
-                          {line}
-                        </code>
-                      ))}
-                    </div>
-                  </Button>
-                ))}
-              </div>
-
-              {/* Feedback */}
-              <AnimatePresence>
-                {showFeedback && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="mt-6 text-center"
-                  >
-                    {isCorrect ? (
-                      <motion.div
-                        className="mb-4 flex items-center justify-center gap-2 text-green-600"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", delay: 0.1 }}
-                      >
-                        <CheckCircle className="h-6 w-6" />
-                        <span className="text-lg font-semibold">
-                          {currentLevel >= 6 ? "Excellent!" : "Correct!"}
-                        </span>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        className="mb-4 flex items-center justify-center gap-2 text-red-600"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", delay: 0.1 }}
-                      >
-                        <XCircle className="h-6 w-6" />
-                        <span className="text-lg font-semibold">
-                          Not quite! See the correct layout above.
-                        </span>
-                      </motion.div>
-                    )}
-
-                    <Button
-                      onClick={handleNextLevel}
-                      size="lg"
-                      className="mt-2"
-                    >
-                      {currentLevel < shuffledLevels.length - 1
-                        ? "Next Level"
-                        : "Finish Game"}
-                    </Button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </CardContent>
-          </Card>
+          <OptionSelector   
+            level={level}
+            selectedOption={selectedOption}
+            showFeedback={showFeedback}
+            isCorrect={isCorrect}
+            currentLevel={currentLevel}
+            totalLevels={shuffledLevels.length}
+            onSelect={handleOptionSelect}
+            onNext={handleNextLevel} />
         </div>
       </div>
     </div>
