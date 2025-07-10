@@ -1,48 +1,25 @@
+// lib/levels.ts
 import { Level } from "./types";
 
-// Add more levels to the existing ones
 export const levels: Level[] = [
   {
     id: 1,
-    title: "Center the Square",
+    title: "Center an Item",
     description:
-      "Move the blue square to the red target using justify-content and align-items",
+      "The most common task: perfectly center the item in the container.",
+    itemCount: 1,
     options: [
       {
-        label: ["justify-content: flex-start", "align-items: flex-start"],
-        value: "start-start",
-        css: {
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-        },
+        label: ["justify-content: flex-start;", "align-items: flex-start;"],
+        css: { justifyContent: "flex-start", alignItems: "flex-start" },
       },
       {
-        label: ["justify-content: center", "align-items: center"],
-        value: "center-center",
-        css: {
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        },
+        label: ["justify-content: center;", "align-items: center;"],
+        css: { justifyContent: "center", alignItems: "center" },
       },
       {
-        label: ["justify-content: flex-end", "align-items: flex-start"],
-        value: "end-start",
-        css: {
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "flex-start",
-        },
-      },
-      {
-        label: ["justify-content: flex-start", "align-items: flex-end"],
-        value: "start-end",
-        css: {
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "flex-end",
-        },
+        label: ["justify-content: flex-end;", "align-items: flex-end;"],
+        css: { justifyContent: "flex-end", alignItems: "flex-end" },
       },
     ],
     correctAnswer: 1,
@@ -54,580 +31,243 @@ export const levels: Level[] = [
   },
   {
     id: 2,
-    title: "Move to Bottom Right",
+    title: "Build a Navigation Bar",
     description:
-      "Move the blue square to the red target in the bottom right corner",
+      "Space out nav links. The first should be on the far left, the last on the far right.",
+    itemCount: 3,
     options: [
       {
-        label: ["justify-content: center", "align-items: flex-start"],
-        value: "center-start",
-        css: {
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-        },
+        label: ["justify-content: flex-start;", "align-items: center;"],
+        css: { justifyContent: "flex-start", alignItems: "center" },
       },
       {
-        label: ["justify-content: flex-end", "align-items: center"],
-        value: "end-center",
-        css: {
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-        },
+        label: ["justify-content: space-around;", "align-items: center;"],
+        css: { justifyContent: "space-around", alignItems: "center" },
       },
       {
-        label: ["justify-content: flex-end", "align-items: flex-end"],
-        value: "end-end",
-        css: {
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-        },
-      },
-      {
-        label: ["justify-content: flex-start", "align-items: flex-end"],
-        value: "start-end",
-        css: {
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "flex-end",
-        },
+        label: ["justify-content: space-between;", "align-items: center;"],
+        css: { justifyContent: "space-between", alignItems: "center" },
       },
     ],
     correctAnswer: 2,
     correctCSS: {
       display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "flex-end",
+      justifyContent: "space-between",
+      alignItems: "center",
     },
   },
   {
     id: 3,
-    title: "Vertical Stack",
+    title: "Align Form Buttons",
     description:
-      "Stack the boxes vertically from top to bottom using flex-direction",
-    itemCount: 3,
+      "Group the buttons together and align them to the right, a common pattern in forms.",
+    itemCount: 2,
     options: [
       {
-        label: ["flex-direction: row", "align-items: flex-start"],
-        value: "row-start",
-        css: {
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-start",
-        },
+        label: ["justify-content: flex-end;", "align-items: center;"],
+        css: { justifyContent: "flex-end", alignItems: "center" },
       },
       {
-        label: ["flex-direction: column", "align-items: flex-start"],
-        value: "column-start",
-        css: {
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        },
+        label: ["justify-content: center;", "align-items: center;"],
+        css: { justifyContent: "center", alignItems: "center" },
       },
       {
-        label: ["flex-direction: column", "align-items: center"],
-        value: "column-center",
-        css: {
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        },
-      },
-      {
-        label: ["flex-direction: row", "justify-content: center"],
-        value: "row-center",
-        css: {
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        },
-      },
-    ],
-    correctAnswer: 1,
-    correctCSS: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-    },
-  },
-  {
-    id: 4,
-    title: "Equal Space Distribution",
-    description:
-      "Distribute the boxes with equal space around each one using space-around",
-    itemCount: 4,
-    options: [
-      {
-        label: ["justify-content: space-between"],
-        value: "space-between",
-        css: {
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-        },
-      },
-      {
-        label: ["justify-content: space-around"],
-        value: "space-around",
-        css: {
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "flex-start",
-        },
-      },
-      {
-        label: ["justify-content: space-evenly"],
-        value: "space-evenly",
-        css: {
-          display: "flex",
-          justifyContent: "space-evenly",
-          alignItems: "flex-start",
-        },
-      },
-      {
-        label: ["justify-content: center"],
-        value: "center",
-        css: {
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-        },
-      },
-    ],
-    correctAnswer: 1,
-    correctCSS: {
-      display: "flex",
-      justifyContent: "space-around",
-      alignItems: "flex-start",
-    },
-  },
-  {
-    id: 5,
-    title: "Wrap and Center Lines",
-    description:
-      "Wrap the boxes to multiple lines and center all lines vertically using align-content",
-    itemCount: 9,
-    options: [
-      {
-        label: ["flex-wrap: wrap", "align-items: center"],
-        value: "wrap-items-center",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "flex-start",
-        },
-      },
-      {
-        label: ["flex-wrap: wrap", "align-content: center"],
-        value: "wrap-content-center",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          alignContent: "center",
-          justifyContent: "flex-start",
-        },
-      },
-      {
-        label: ["flex-wrap: wrap", "justify-content: center"],
-        value: "wrap-justify-center",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignItems: "flex-start",
-        },
-      },
-      {
-        label: ["flex-wrap: nowrap", "align-content: center"],
-        value: "nowrap-content-center",
-        css: {
-          display: "flex",
-          flexWrap: "nowrap",
-          alignContent: "center",
-          justifyContent: "flex-start",
-        },
-      },
-    ],
-    correctAnswer: 1,
-    correctCSS: {
-      display: "flex",
-      flexWrap: "wrap",
-      alignContent: "center",
-      justifyContent: "flex-start",
-    },
-  },
-  {
-    id: 6,
-    title: "Reverse Column with End Alignment",
-    description:
-      "Stack boxes vertically from bottom to top and align them to the right",
-    itemCount: 4,
-    options: [
-      {
-        label: ["flex-direction: column", "align-items: flex-end"],
-        value: "column-end",
-        css: {
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-        },
-      },
-      {
-        label: ["flex-direction: column-reverse", "align-items: flex-start"],
-        value: "column-reverse-start",
-        css: {
-          display: "flex",
-          flexDirection: "column-reverse",
-          alignItems: "flex-start",
-        },
-      },
-      {
-        label: ["flex-direction: column-reverse", "align-items: flex-end"],
-        value: "column-reverse-end",
-        css: {
-          display: "flex",
-          flexDirection: "column-reverse",
-          alignItems: "flex-end",
-        },
-      },
-      {
-        label: ["flex-direction: row-reverse", "align-items: flex-end"],
-        value: "row-reverse-end",
-        css: {
-          display: "flex",
-          flexDirection: "row-reverse",
-          alignItems: "flex-end",
-        },
-      },
-    ],
-    correctAnswer: 2,
-    correctCSS: {
-      display: "flex",
-      flexDirection: "column-reverse",
-      alignItems: "flex-end",
-    },
-  },
-  {
-    id: 7,
-    title: "Complex Wrap Layout",
-    description:
-      "Wrap boxes to multiple lines, space them evenly on each line, and push all lines to the bottom",
-    itemCount: 11,
-    options: [
-      {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: space-evenly",
-          "align-content: flex-start",
-        ],
-        value: "wrap-evenly-start",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          alignContent: "flex-start",
-        },
-      },
-      {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: space-evenly",
-          "align-content: flex-end",
-        ],
-        value: "wrap-evenly-end",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          alignContent: "flex-end",
-        },
-      },
-      {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: space-between",
-          "align-content: flex-end",
-        ],
-        value: "wrap-between-end",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignContent: "flex-end",
-        },
-      },
-      {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: center",
-          "align-content: flex-end",
-        ],
-        value: "wrap-center-end",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignContent: "flex-end",
-        },
-      },
-    ],
-    correctAnswer: 1,
-    correctCSS: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-evenly",
-      alignContent: "flex-end",
-    },
-  },
-  {
-    id: 8,
-    title: "Master Challenge",
-    description:
-      "Create a reverse row layout where boxes wrap to new lines, each line is centered, and all lines are distributed with space around them",
-    itemCount: 13,
-    options: [
-      {
-        label: [
-          "flex-direction: row-reverse",
-          "flex-wrap: wrap",
-          "justify-content: center",
-          "align-content: space-around",
-        ],
-        value: "master-correct",
-        css: {
-          display: "flex",
-          flexDirection: "row-reverse",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignContent: "space-around",
-        },
-      },
-      {
-        label: [
-          "flex-direction: row-reverse",
-          "flex-wrap: wrap",
-          "justify-content: space-around",
-          "align-content: center",
-        ],
-        value: "master-wrong1",
-        css: {
-          display: "flex",
-          flexDirection: "row-reverse",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-          alignContent: "center",
-        },
-      },
-      {
-        label: [
-          "flex-direction: row",
-          "flex-wrap: wrap",
-          "justify-content: center",
-          "align-content: space-around",
-        ],
-        value: "master-wrong2",
-        css: {
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignContent: "space-around",
-        },
-      },
-      {
-        label: [
-          "flex-direction: row-reverse",
-          "flex-wrap: nowrap",
-          "justify-content: center",
-          "align-content: space-around",
-        ],
-        value: "master-wrong3",
-        css: {
-          display: "flex",
-          flexDirection: "row-reverse",
-          flexWrap: "nowrap",
-          justifyContent: "center",
-          alignContent: "space-around",
-        },
+        label: ["justify-content: space-between;", "align-items: center;"],
+        css: { justifyContent: "space-between", alignItems: "center" },
       },
     ],
     correctAnswer: 0,
     correctCSS: {
       display: "flex",
-      flexDirection: "row-reverse",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      alignContent: "space-around",
+      justifyContent: "flex-end",
+      alignItems: "center",
     },
   },
   {
-    id: 9,
-    title: "Column Alignment Challenge",
-    description: "Align items in a column layout using align-content",
-    itemCount: 5,
+    id: 4,
+    title: "Vertical Form Layout",
+    description:
+      "Stack the items vertically and add some space to create a simple form layout.",
+    itemCount: 3,
     options: [
       {
-        label: ["flex-direction: column", "align-content: flex-start"],
-        value: "column-start",
-        css: {
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "flex-start",
-        },
+        label: ["flex-direction: row;"],
+        css: { flexDirection: "row" },
       },
       {
-        label: ["flex-direction: column", "align-content: center"],
-        value: "column-center",
-        css: {
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-        },
+        label: ["flex-direction: column;", "gap: '10px';"],
+        css: { flexDirection: "column", gap: "10px" },
       },
       {
-        label: ["flex-direction: column", "align-content: space-between"],
-        value: "column-between",
-        css: {
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "space-between",
-        },
-      },
-      {
-        label: ["flex-direction: column", "align-content: space-around"],
-        value: "column-around",
-        css: {
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "space-around",
-        },
+        label: ["flex-direction: column-reverse;", "gap: '10px';"],
+        css: { flexDirection: "column-reverse", gap: "10px" },
       },
     ],
     correctAnswer: 1,
     correctCSS: {
       display: "flex",
       flexDirection: "column",
-      alignContent: "center",
+      gap: "10px",
     },
   },
   {
-    id: 10,
-    title: "Space Distribution",
-    description: "Distribute space evenly between items using space-evenly",
-    itemCount: 6,
+    id: 5,
+    title: "Sticky Footer Card",
+    description:
+      "Push the footer to the bottom of the card, regardless of content height.",
+    itemCount: 3,
     options: [
       {
-        label: ["justify-content: space-between"],
-        value: "space-between",
-        css: {
-          display: "flex",
-          justifyContent: "space-between",
-        },
+        label: ["flex-direction: column;", "justify-content: flex-start;"],
+        css: { flexDirection: "column", justifyContent: "flex-start" },
       },
       {
-        label: ["justify-content: space-around"],
-        value: "space-around",
-        css: {
-          display: "flex",
-          justifyContent: "space-around",
-        },
+        label: ["flex-direction: column;", "justify-content: center;"],
+        css: { flexDirection: "column", justifyContent: "center" },
       },
       {
-        label: ["justify-content: space-evenly"],
-        value: "space-evenly",
-        css: {
-          display: "flex",
-          justifyContent: "space-evenly",
-        },
-      },
-      {
-        label: ["justify-content: center"],
-        value: "center",
-        css: {
-          display: "flex",
-          justifyContent: "center",
-        },
+        label: ["flex-direction: column;", "justify-content: space-between;"],
+        css: { flexDirection: "column", justifyContent: "space-between" },
       },
     ],
     correctAnswer: 2,
     correctCSS: {
       display: "flex",
-      justifyContent: "space-evenly",
+      flexDirection: "column",
+      justifyContent: "space-between",
     },
   },
   {
-    id: 11,
-    title: "Advanced Wrap",
-    description: "Create a multi-line layout with specific alignment",
-    itemCount: 8,
+    id: 6,
+    title: "Wrapping Photo Gallery",
+    description:
+      "The items are overflowing! Make them wrap onto the next line to fit.",
+    itemCount: 9,
     options: [
       {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: space-between",
-          "align-content: flex-start",
-        ],
-        value: "wrap-between-start",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignContent: "flex-start",
-        },
+        label: ["flex-wrap: nowrap;"],
+        css: { flexWrap: "nowrap" },
       },
       {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: space-around",
-          "align-content: center",
-        ],
-        value: "wrap-around-center",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-          alignContent: "center",
-        },
+        label: ["flex-wrap: wrap;"],
+        css: { flexWrap: "wrap" },
       },
       {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: center",
-          "align-content: space-between",
-        ],
-        value: "wrap-center-between",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignContent: "space-between",
-        },
+        label: ["flex-wrap: wrap-reverse;"],
+        css: { flexWrap: "wrap-reverse" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+  },
+  {
+    id: 7,
+    title: "Centered Tag Group",
+    description:
+      "Center a group of items, like tags or category buttons, in the middle.",
+    itemCount: 4,
+    options: [
+      {
+        label: ["justify-content: center;", "align-items: center;"],
+        css: { justifyContent: "center", alignItems: "center" },
       },
       {
-        label: [
-          "flex-wrap: wrap",
-          "justify-content: space-evenly",
-          "align-content: flex-end",
-        ],
-        value: "wrap-evenly-end",
-        css: {
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          alignContent: "flex-end",
-        },
+        label: ["justify-content: space-between;", "align-items: center;"],
+        css: { justifyContent: "space-between", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: flex-start;", "align-items: center;"],
+        css: { justifyContent: "flex-start", alignItems: "center" },
+      },
+    ],
+    correctAnswer: 0,
+    correctCSS: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
+  {
+    id: 8,
+    title: "Vertically Centered Column",
+    description:
+      "Stack the items in a column and center the entire group vertically.",
+    itemCount: 3,
+    options: [
+      {
+        label: ["flex-direction: column;", "justify-content: center;"],
+        css: { flexDirection: "column", justifyContent: "center" },
+      },
+      {
+        label: ["flex-direction: column;", "align-items: center;"],
+        css: { flexDirection: "column", alignItems: "center" },
+      },
+      {
+        label: ["flex-direction: column;", "justify-content: flex-end;"],
+        css: { flexDirection: "column", justifyContent: "flex-end" },
+      },
+    ],
+    correctAnswer: 0,
+    correctCSS: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    },
+  },
+  {
+    id: 9,
+    title: "Reverse Item Order",
+    description: "Display the items in the reverse order, from right to left.",
+    itemCount: 3,
+    options: [
+      {
+        label: ["flex-direction: row;", "align-items: center;"],
+        css: { flexDirection: "row", alignItems: "center" },
+      },
+      {
+        label: ["flex-direction: row-reverse;", "align-items: center;"],
+        css: { flexDirection: "row-reverse", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: flex-end;", "align-items: flex-end;"],
+        css: { justifyContent: "flex-end", alignItems: "flex-end" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      flexDirection: "row-reverse",
+      alignItems: "center",
+    },
+  },
+  {
+    id: 10,
+    title: "Centered Wrapped Gallery",
+    description:
+      "Allow items to wrap to new lines, and center the items on each line.",
+    itemCount: 7,
+    options: [
+      {
+        label: ["flex-wrap: wrap;", "justify-content: flex-start;"],
+        css: { flexWrap: "wrap", justifyContent: "flex-start" },
+      },
+      {
+        label: ["flex-wrap: wrap;", "justify-content: space-between;"],
+        css: { flexWrap: "wrap", justifyContent: "space-between" },
+      },
+      {
+        label: ["flex-wrap: wrap;", "justify-content: center;"],
+        css: { flexWrap: "wrap", justifyContent: "center" },
       },
     ],
     correctAnswer: 2,
     correctCSS: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "space-around",
-      alignContent: "center",
+      justifyContent: "center",
     },
   },
 ];

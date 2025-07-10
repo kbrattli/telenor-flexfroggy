@@ -1,6 +1,8 @@
+// components/game/GameArea.tsx
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { initialCSS } from "@/lib/types";
 import { motion } from "framer-motion";
 import { CSSProperties } from "react";
 
@@ -15,7 +17,11 @@ export default function GameArea({
   correctCSS,
   itemCount,
 }: GameAreaProps) {
-    
+  const targetStyle = {
+    ...initialCSS,
+    ...correctCSS,
+  };
+
   const renderBoxes = (count: number, isTarget = false) => {
     return Array.from({ length: count }, (_, index) => {
       const animationProps = {
@@ -68,13 +74,16 @@ export default function GameArea({
           {/* Target layout */}
           <div
             className="pointer-events-none absolute inset-0 p-2"
-            style={correctCSS as CSSProperties}
+            style={targetStyle as CSSProperties}
           >
             {renderBoxes(itemCount, true)}
           </div>
 
           {/* Player layout */}
-          <div className="absolute inset-0 p-2" style={appliedCSS as CSSProperties}>
+          <div
+            className="absolute inset-0 p-2"
+            style={appliedCSS as CSSProperties}
+          >
             {renderBoxes(itemCount, false)}
           </div>
 
