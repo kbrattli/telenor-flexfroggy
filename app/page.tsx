@@ -1,28 +1,28 @@
+// components/game/FlexboxGame.tsx
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle, Play, RotateCcw, XCircle } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Level, initialCSS } from "@/lib/types";
 import { levels as allLevels } from "@/lib/levels";
 import { shuffleLevels } from "@/lib/shuffleLevels";
+import { Level, initialCSS } from "@/lib/types";
+import { AnimatePresence, motion } from "framer-motion";
+import { CheckCircle, XCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 
-import GameStartScreen from "@/components/game/GameStartScreen";
-import GameEndScreen from "@/components/game/GameEndScreen";
 import GameArea from "@/components/game/GameArea";
+import GameEndScreen from "@/components/game/GameEndScreen";
+import GameStartScreen from "@/components/game/GameStartScreen";
 
 export default function FlexboxGame() {
-
   const GAME_DURATION = 60; // seconds
-  const TARGET_SCORE = 3;
+  const TARGET_SCORE = 5; // Increased for more challenge with 10 levels
 
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [gameResult, setGameResult] = useState<"win" | "lose" | null>(null);
-  
+
   const [shuffledLevels, setShuffledLevels] = useState<Level[]>([]);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [score, setScore] = useState(0);
@@ -31,7 +31,6 @@ export default function FlexboxGame() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [timeUp, setTimeUp] = useState(false);
   const [appliedCSS, setAppliedCSS] =
     useState<Record<string, string>>(initialCSS);
 
@@ -49,8 +48,8 @@ export default function FlexboxGame() {
       setTotalTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          setTimeUp(true);
           setGameCompleted(true);
+          setGameResult("lose"); // Lost if time runs out
           return 0;
         }
         return prev - 1;
@@ -60,34 +59,33 @@ export default function FlexboxGame() {
     return () => clearInterval(timer);
   }, [gameStarted, gameCompleted]);
 
-    const startGame = () => {
+  const startGame = () => {
     setGameStarted(true);
     resetLevelState();
   };
 
   const restartGame = () => {
+    const shuffled = shuffleLevels([...allLevels]);
+    setShuffledLevels(shuffled);
     setCurrentLevel(0);
     setScore(0);
     setTotalTimeLeft(GAME_DURATION);
     setGameStarted(false);
     setGameCompleted(false);
-    setTimeUp(false);
     setGameResult(null);
     resetLevelState();
-    const shuffled = shuffleLevels([...allLevels]);
-    setShuffledLevels(shuffled);
   };
 
   const handleOptionSelect = (optionIndex: number) => {
     if (showFeedback) return;
 
     setSelectedOption(optionIndex);
-    const isCorrect = optionIndex === level.correctAnswer;
-    setIsCorrect(isCorrect);
+    const correct = optionIndex === level.correctAnswer;
+    setIsCorrect(correct);
     setShowFeedback(true);
-    setAppliedCSS(level.options[optionIndex].css);
+    setAppliedCSS({ ...initialCSS, ...level.options[optionIndex].css });
 
-    if (isCorrect) {
+    if (correct) {
       const nextScore = score + 1;
       setScore(nextScore);
 
@@ -98,9 +96,8 @@ export default function FlexboxGame() {
         }, 1000);
         return;
       }
-    }
-
-    if (!isCorrect) {
+    } else {
+      // Briefly show the correct answer if wrong
       setTimeout(() => {
         setAppliedCSS(level.correctCSS);
       }, 1500);
@@ -113,6 +110,8 @@ export default function FlexboxGame() {
       resetLevelState();
     } else {
       setGameCompleted(true);
+      // If they finish all levels, they win regardless of score
+      setGameResult("win");
     }
   };
 
@@ -128,7 +127,13 @@ export default function FlexboxGame() {
   }
 
   if (gameCompleted) {
-    return <GameEndScreen gameResult={gameResult} score={score} onRestart={restartGame}/>
+    return (
+      <GameEndScreen
+        gameResult={gameResult}
+        score={score}
+        onRestart={restartGame}
+      />
+    );
   }
 
   return (
@@ -138,7 +143,7 @@ export default function FlexboxGame() {
         <div className="mb-6">
           <div className="mb-4 flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-800">
-              Level {level.id}: {level.title}
+              Level {currentLevel + 1}: {level.title}
             </h1>
             <div className="flex items-center gap-4">
               <div className="text-lg font-semibold text-gray-700">
@@ -157,8 +162,12 @@ export default function FlexboxGame() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* Game Area */ }
-          <GameArea appliedCSS={appliedCSS} correctCSS={level.correctCSS} itemCount={level.itemCount || 1} />
+          {/* Game Area */}
+          <GameArea
+            appliedCSS={appliedCSS}
+            correctCSS={level.correctCSS}
+            itemCount={level.itemCount || 1}
+          />
 
           {/* Options */}
           <Card>
@@ -171,23 +180,15 @@ export default function FlexboxGame() {
                   <Button
                     key={index}
                     variant={
-                      showFeedback
+                      showFeedback && index === selectedOption
                         ? index === level.correctAnswer
                           ? "default"
-                          : selectedOption === index
-                          ? "destructive"
-                          : "outline"
-                        : selectedOption === index
-                        ? "default"
+                          : "destructive"
                         : "outline"
                     }
                     className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 ${
                       showFeedback && index === level.correctAnswer
                         ? "border-green-600 bg-green-500 text-white hover:bg-green-600"
-                        : showFeedback &&
-                          selectedOption === index &&
-                          index !== level.correctAnswer
-                        ? "border-red-600 bg-red-500 text-white hover:bg-red-600"
                         : ""
                     }`}
                     onClick={() => handleOptionSelect(index)}
@@ -218,19 +219,15 @@ export default function FlexboxGame() {
                         className="mb-4 flex items-center justify-center gap-2 text-green-600"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ type: "spring", delay: 0.1 }}
                       >
                         <CheckCircle className="h-6 w-6" />
-                        <span className="text-lg font-semibold">
-                          {currentLevel >= 6 ? "Excellent!" : "Correct!"}
-                        </span>
+                        <span className="text-lg font-semibold">Correct!</span>
                       </motion.div>
                     ) : (
                       <motion.div
                         className="mb-4 flex items-center justify-center gap-2 text-red-600"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        transition={{ type: "spring", delay: 0.1 }}
                       >
                         <XCircle className="h-6 w-6" />
                         <span className="text-lg font-semibold">
