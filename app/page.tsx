@@ -1,23 +1,23 @@
 // components/game/FlexboxGame.tsx
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { levels as allLevels } from "@/lib/levels";
-import { shuffleLevels } from "@/lib/shuffleLevels";
-import { Level, initialCSS } from "@/lib/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { Level, initialCSS } from "@/lib/types";
+import { levels as allLevels } from "@/lib/levels";
+import { shuffleLevels } from "@/lib/shuffleLevels";
+
 import GameArea from "@/components/game/GameArea";
+import OptionSelector from "@/components/game/OptionSelector";
 import GameEndScreen from "@/components/game/GameEndScreen";
 import GameStartScreen from "@/components/game/GameStartScreen";
 
 export default function FlexboxGame() {
-  const GAME_DURATION = 60; // seconds
-  const TARGET_SCORE = 5; // Increased for more challenge with 10 levels
+  const GAME_DURATION = 60;
+  const TARGET_SCORE = 5;
 
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
@@ -31,8 +31,7 @@ export default function FlexboxGame() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [appliedCSS, setAppliedCSS] =
-    useState<Record<string, string>>(initialCSS);
+  const [appliedCSS, setAppliedCSS] = useState<Record<string, string>>(initialCSS);
 
   useEffect(() => {
     const shuffled = shuffleLevels([...allLevels]);
@@ -41,6 +40,7 @@ export default function FlexboxGame() {
 
   const level = shuffledLevels[currentLevel];
 
+  // Countdown timer
   useEffect(() => {
     if (!gameStarted || gameCompleted) return;
 
@@ -49,7 +49,7 @@ export default function FlexboxGame() {
         if (prev <= 1) {
           clearInterval(timer);
           setGameCompleted(true);
-          setGameResult("lose"); // Lost if time runs out
+          setGameResult("lose");
           return 0;
         }
         return prev - 1;
@@ -58,6 +58,17 @@ export default function FlexboxGame() {
 
     return () => clearInterval(timer);
   }, [gameStarted, gameCompleted]);
+
+  // Auto advance after feedback
+  useEffect(() => {
+    if (showFeedback) {
+      const timer = setTimeout(() => {
+        handleNextLevel();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showFeedback]);
 
   const startGame = () => {
     setGameStarted(true);
@@ -97,7 +108,6 @@ export default function FlexboxGame() {
         return;
       }
     } else {
-      // Briefly show the correct answer if wrong
       setTimeout(() => {
         setAppliedCSS(level.correctCSS);
       }, 1500);
@@ -110,7 +120,6 @@ export default function FlexboxGame() {
       resetLevelState();
     } else {
       setGameCompleted(true);
-      // If they finish all levels, they win regardless of score
       setGameResult("win");
     }
   };
@@ -162,94 +171,22 @@ export default function FlexboxGame() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* Game Area */}
           <GameArea
             appliedCSS={appliedCSS}
             correctCSS={level.correctCSS}
             itemCount={level.itemCount || 1}
           />
 
-          {/* Options */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="mb-4 text-lg font-semibold">
-                Choose the correct CSS:
-              </h3>
-              <div className="space-y-3">
-                {level.options.map((option, index) => (
-                  <Button
-                    key={index}
-                    variant={
-                      showFeedback && index === selectedOption
-                        ? index === level.correctAnswer
-                          ? "default"
-                          : "destructive"
-                        : "outline"
-                    }
-                    className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 ${
-                      showFeedback && index === level.correctAnswer
-                        ? "border-green-600 bg-green-500 text-white hover:bg-green-600"
-                        : ""
-                    }`}
-                    onClick={() => handleOptionSelect(index)}
-                    disabled={showFeedback}
-                  >
-                    <div className="flex flex-col items-start gap-1">
-                      {option.label.map((line, lineIndex) => (
-                        <code key={lineIndex} className="font-mono text-sm">
-                          {line}
-                        </code>
-                      ))}
-                    </div>
-                  </Button>
-                ))}
-              </div>
-
-              {/* Feedback */}
-              <AnimatePresence>
-                {showFeedback && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="mt-6 text-center"
-                  >
-                    {isCorrect ? (
-                      <motion.div
-                        className="mb-4 flex items-center justify-center gap-2 text-green-600"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                      >
-                        <CheckCircle className="h-6 w-6" />
-                        <span className="text-lg font-semibold">Correct!</span>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        className="mb-4 flex items-center justify-center gap-2 text-red-600"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                      >
-                        <XCircle className="h-6 w-6" />
-                        <span className="text-lg font-semibold">
-                          Not quite! See the correct layout above.
-                        </span>
-                      </motion.div>
-                    )}
-
-                    <Button
-                      onClick={handleNextLevel}
-                      size="lg"
-                      className="mt-2"
-                    >
-                      {currentLevel < shuffledLevels.length - 1
-                        ? "Next Level"
-                        : "Finish Game"}
-                    </Button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </CardContent>
-          </Card>
+          <OptionSelector
+            level={level}
+            selectedOption={selectedOption}
+            showFeedback={showFeedback}
+            isCorrect={isCorrect}
+            currentLevel={currentLevel}
+            totalLevels={shuffledLevels.length}
+            onSelect={handleOptionSelect}
+            onNext={handleNextLevel}
+          />
         </div>
       </div>
     </div>
