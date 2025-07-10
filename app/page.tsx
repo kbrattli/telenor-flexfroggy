@@ -12,6 +12,7 @@ import { shuffleLevels } from "@/lib/shuffleLevels";
 
 import GameStartScreen from "@/components/game/GameStartScreen";
 import GameEndScreen from "@/components/game/GameEndScreen";
+import GameArea from "@/components/game/GameArea";
 
 export default function FlexboxGame() {
 
@@ -122,46 +123,6 @@ export default function FlexboxGame() {
     setAppliedCSS(initialCSS);
   };
 
-
-  const renderBoxes = (count: number, isTarget: boolean = false) => {
-    return Array.from({ length: count }, (_, index) => {
-      const animationProps = {
-        layout: true,
-        initial: { scale: 0, rotate: 45 },
-        animate: { scale: 1, rotate: 0 },
-        transition: {
-          type: "spring",
-          stiffness: 300,
-          damping: 25,
-          delay: index * 0.05,
-        },
-      };
-
-      if (isTarget) {
-        return (
-          <motion.div
-            key={`target-${index}`}
-            className="h-12 w-12 rounded border-2 border-red-600 bg-red-500 opacity-60 shadow-lg"
-            style={{ margin: "5px" }}
-            {...animationProps}
-          />
-        );
-      }
-
-      // Player box: an invisible container for layout, with a smaller visible box inside.
-      return (
-        <motion.div
-          key={`player-${index}`}
-          className="flex h-12 w-12 items-center justify-center"
-          style={{ margin: "5px" }}
-          {...animationProps}
-        >
-          <div className="h-10 w-10 rounded border-2 border-blue-600 bg-blue-500 shadow-lg" />
-        </motion.div>
-      );
-    });
-  };
-
   if (!gameStarted) {
     return <GameStartScreen onStart={startGame} />;
   }
@@ -196,44 +157,8 @@ export default function FlexboxGame() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* Game Area */}
-          <Card>
-            <CardContent className="p-6">
-              <h3 className="mb-4 text-lg font-semibold">Game Area</h3>
-
-              <div
-                className="relative overflow-hidden rounded-lg border-2 border-gray-300 bg-gray-50"
-                style={{
-                  width: "400px",
-                  height:
-                    level.itemCount && level.itemCount > 6 ? "350px" : "280px",
-                }}
-              >
-                {/* Target container */}
-                <div
-                  className="pointer-events-none absolute inset-0 p-2"
-                  style={level.correctCSS}
-                >
-                  {renderBoxes(level.itemCount || 1, true)}
-                </div>
-
-                {/* Player container */}
-                <div className="absolute inset-0 p-2" style={appliedCSS}>
-                  {renderBoxes(level.itemCount || 1, false)}
-                </div>
-
-                {/* Grid lines for reference */}
-                <div className="pointer-events-none absolute inset-0 opacity-5">
-                  <div className="absolute left-1/4 top-0 h-full w-px bg-gray-400" />
-                  <div className="absolute left-1/2 top-0 h-full w-px bg-gray-400" />
-                  <div className="absolute left-3/4 top-0 h-full w-px bg-gray-400" />
-                  <div className="absolute left-0 top-1/4 h-px w-full bg-gray-400" />
-                  <div className="absolute left-0 top-1/2 h-px w-full bg-gray-400" />
-                  <div className="absolute left-0 top-3/4 h-px w-full bg-gray-400" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Game Area */ }
+          <GameArea appliedCSS={appliedCSS} correctCSS={level.correctCSS} itemCount={level.itemCount || 1} />
 
           {/* Options */}
           <Card>
