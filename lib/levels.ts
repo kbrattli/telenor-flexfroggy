@@ -270,4 +270,297 @@ export const levels: Level[] = [
       justifyContent: "center",
     },
   },
+  {
+    id: 11,
+    title: "Dashboard Widget Grid",
+    description:
+      "Create a dashboard layout with evenly spaced widgets across the container.",
+    itemCount: 4,
+    options: [
+      {
+        label: ["justify-content: space-around;", "align-items: center;"],
+        css: { justifyContent: "space-around", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: space-between;", "align-items: center;"],
+        css: { justifyContent: "space-between", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: center;", "align-items: center;"],
+        css: { justifyContent: "center", alignItems: "center" },
+      },
+    ],
+    correctAnswer: 0,
+    correctCSS: {
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+  },
+  {
+    id: 12,
+    title: "Alert Message Bar",
+    description:
+      "Align alert elements to the left with consistent spacing between them.",
+    itemCount: 3,
+    options: [
+      {
+        label: ["justify-content: flex-start;", "gap: '15px';"],
+        css: { justifyContent: "flex-start", gap: "15px" },
+      },
+      {
+        label: ["justify-content: center;", "gap: '15px';"],
+        css: { justifyContent: "center", gap: "15px" },
+      },
+      {
+        label: ["justify-content: space-between;"],
+        css: { justifyContent: "space-between" },
+      },
+    ],
+    correctAnswer: 0,
+    correctCSS: {
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      gap: "15px",
+    },
+  },
+  {
+    id: 13,
+    title: "Mobile Card Stack",
+    description:
+      "Stack cards vertically and center them horizontally, perfect for mobile layouts.",
+    itemCount: 4,
+    options: [
+      {
+        label: ["flex-direction: column;", "align-items: flex-start;"],
+        css: { flexDirection: "column", alignItems: "flex-start" },
+      },
+      {
+        label: ["flex-direction: column;", "align-items: center;"],
+        css: { flexDirection: "column", alignItems: "center" },
+      },
+      {
+        label: ["flex-direction: column;", "align-items: flex-end;"],
+        css: { flexDirection: "column", alignItems: "flex-end" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+  },
+  {
+    id: 14,
+    title: "Image with Caption",
+    description:
+      "Stack an image with its caption, pushing the caption to the bottom.",
+    itemCount: 2,
+    options: [
+      {
+        label: ["flex-direction: column;", "justify-content: flex-start;"],
+        css: { flexDirection: "column", justifyContent: "flex-start" },
+      },
+      {
+        label: ["flex-direction: column;", "justify-content: space-between;"],
+        css: { flexDirection: "column", justifyContent: "space-between" },
+      },
+      {
+        label: ["flex-direction: column;", "justify-content: center;"],
+        css: { flexDirection: "column", justifyContent: "center" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+    },
+  },
+  {
+    id: 15,
+    title: "Loading Indicator",
+    description:
+      "Create a loading screen with dots stacked vertically in the center.",
+    itemCount: 3,
+    options: [
+      {
+        label: [
+          "flex-direction: column;",
+          "justify-content: center;",
+          "align-items: center;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+      },
+      {
+        label: [
+          "flex-direction: column;",
+          "justify-content: flex-start;",
+          "align-items: center;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        },
+      },
+      {
+        label: ["justify-content: center;", "align-items: center;"],
+        css: { justifyContent: "center", alignItems: "center" },
+      },
+    ],
+    correctAnswer: 0,
+    correctCSS: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
+  {
+    id: 16,
+    title: "Breadcrumb Navigation",
+    description:
+      "Create a breadcrumb trail with consistent spacing between navigation items.",
+    itemCount: 4,
+    options: [
+      {
+        label: ["justify-content: flex-start;", "gap: '8px';"],
+        css: { justifyContent: "flex-start", gap: "8px" },
+      },
+      {
+        label: ["justify-content: space-between;"],
+        css: { justifyContent: "space-between" },
+      },
+      {
+        label: ["justify-content: center;", "gap: '8px';"],
+        css: { justifyContent: "center", gap: "8px" },
+      },
+    ],
+    correctAnswer: 0,
+    correctCSS: {
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      gap: "8px",
+    },
+  },
+  {
+    id: 17,
+    title: "Social Media Icons",
+    description:
+      "Distribute social media icons evenly across the footer with equal spacing.",
+    itemCount: 5,
+    options: [
+      {
+        label: ["justify-content: space-between;", "align-items: center;"],
+        css: { justifyContent: "space-between", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: space-evenly;", "align-items: center;"],
+        css: { justifyContent: "space-evenly", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: space-around;", "align-items: center;"],
+        css: { justifyContent: "space-around", alignItems: "center" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      justifyContent: "space-evenly",
+      alignItems: "center",
+    },
+  },
+  {
+    id: 18,
+    title: "Split Content Layout",
+    description:
+      "Create a sidebar layout with header at top, content in middle, and footer at bottom.",
+    itemCount: 3,
+    options: [
+      {
+        label: ["flex-direction: column;", "justify-content: center;"],
+        css: { flexDirection: "column", justifyContent: "center" },
+      },
+      {
+        label: ["flex-direction: column;", "justify-content: space-between;"],
+        css: { flexDirection: "column", justifyContent: "space-between" },
+      },
+      {
+        label: ["flex-direction: column;", "justify-content: space-around;"],
+        css: { flexDirection: "column", justifyContent: "space-around" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+    },
+  },
+  {
+    id: 19,
+    title: "Tag Cloud Layout",
+    description:
+      "Allow tags to wrap to new lines and distribute them evenly across each line.",
+    itemCount: 6,
+    options: [
+      {
+        label: ["flex-wrap: wrap;", "justify-content: flex-start;"],
+        css: { flexWrap: "wrap", justifyContent: "flex-start" },
+      },
+      {
+        label: ["flex-wrap: wrap;", "justify-content: space-around;"],
+        css: { flexWrap: "wrap", justifyContent: "space-around" },
+      },
+      {
+        label: ["flex-wrap: wrap;", "justify-content: center;"],
+        css: { flexWrap: "wrap", justifyContent: "center" },
+      },
+    ],
+    correctAnswer: 1,
+    correctCSS: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+    },
+  },
+  {
+    id: 20,
+    title: "Footer Menu",
+    description:
+      "Align footer menu items to the right with consistent spacing between them.",
+    itemCount: 3,
+    options: [
+      {
+        label: [
+          "justify-content: flex-end;",
+          "gap: '12px'; align-items: center;",
+        ],
+        css: { justifyContent: "flex-end", gap: "12px", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: flex-start;", "gap: '16px';"],
+        css: { justifyContent: "flex-start", gap: "16px" },
+      },
+      {
+        label: ["justify-content: space-between;"],
+        css: { justifyContent: "space-between" },
+      },
+    ],
+    correctAnswer: 0,
+    correctCSS: {
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      gap: "12px",
+    },
+  },
 ];
