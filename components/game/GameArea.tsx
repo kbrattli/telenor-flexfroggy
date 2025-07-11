@@ -38,24 +38,36 @@ export default function GameArea({
 
       if (isTarget) {
         return (
-          <motion.div
-            key={`target-${index}`}
-            className="h-12 w-12 rounded border-2 border-red-600 bg-red-500 opacity-60 shadow-lg"
-            style={{ margin: "5px" }}
-            {...animationProps}
-          />
+            <motion.div
+                key={`target-${index}`}
+
+                style={{ margin: "5px" }}
+                {...animationProps}
+            >
+              <img
+                  src="https://cdn-icons-png.flaticon.com/128/7893/7893653.png" // Replace with your gladiator icon path if different
+                  alt="target gladiator icon"
+                  className="h-8 w-8"
+                  style={{ filter: "drop-shadow(0 0 2px #b91c1c)" }}
+              />
+            </motion.div>
         );
       }
 
       return (
-        <motion.div
-          key={`player-${index}`}
-          className="flex h-12 w-12 items-center justify-center"
-          style={{ margin: "5px" }}
-          {...animationProps}
-        >
-          <div className="h-10 w-10 rounded border-2 border-blue-600 bg-blue-500 shadow-lg" />
-        </motion.div>
+          <motion.div
+              key={`player-${index}`}
+
+              style={{ margin: "5px" }}
+              {...animationProps}
+          >
+            <img
+                src="https://cdn-icons-png.flaticon.com/128/3443/3443124.png" // Same icon used for players
+                alt="player gladiator icon"
+                className="h-8 w-8"
+                style={{ filter: "drop-shadow(0 0 2px #2563eb)" }}
+            />
+          </motion.div>
       );
     });
   };
