@@ -45,7 +45,7 @@ export default function GameArea({
                 {...animationProps}
             >
               <img
-                  src="https://cdn-icons-png.flaticon.com/128/7893/7893653.png" // Replace with your gladiator icon path if different
+                  src="https://cdn-icons-png.flaticon.com/128/7893/7893653.png"
                   alt="target gladiator icon"
                   className="h-8 w-8"
                   style={{ filter: "drop-shadow(0 0 2px #b91c1c)" }}
