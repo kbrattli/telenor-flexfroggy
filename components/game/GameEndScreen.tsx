@@ -15,19 +15,30 @@ export default function GameEndScreen({
   score,
   onRestart,
 }: GameEndScreenProps) {
-  const title =
-    gameResult === "win" ? "🏆 Imperial Victory!" : "⏳ The Arena Closes!";
-  const message =
-    score >= 3
-      ? "Magnificent! You have earned the title of Telenorium Champion!"
-      : "Honorable effort, gladiator! Train harder to claim ultimate glory.";
+  const isVictorious = score >= 5;
+
+  const title = isVictorious
+    ? "🏆 GLADIATOR VICTORIOUS!"
+    : "⚔️ FALLEN IN BATTLE!";
+
+  const message = isVictorious
+    ? "Hail, mighty warrior! You have conquered the arena and earned the crowd's roar! The gods smile upon your valor and skill!"
+    : "You have fought bravely, but the arena has claimed another soul. Rise again, gladiator, for only through defeat do we learn victory!";
 
   return (
     <div className="flex min-h-screen items-center justify-center p-6 text-yellow-900 font-serif bg-amber-50">
       <Card className="w-full max-w-md border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/300">
         <CardContent className="p-8 text-center text-yellow-900 font-serif">
-          <CheckCircle className="mx-auto mb-4 h-16 w-16 text-yellow-700 drop-shadow-md" />
-          <h1 className="mb-4 text-3xl font-extrabold text-red-900 tracking-wide drop-shadow-sm">
+          <CheckCircle
+            className={`mx-auto mb-4 h-16 w-16 drop-shadow-md ${
+              isVictorious ? "text-yellow-700" : "text-red-700"
+            }`}
+          />
+          <h1
+            className={`mb-4 text-3xl font-extrabold tracking-wide drop-shadow-sm ${
+              isVictorious ? "text-yellow-700" : "text-red-900"
+            }`}
+          >
             {title}
           </h1>
           <p className="mb-2 text-xl text-yellow-800 drop-shadow-sm">
@@ -41,10 +52,14 @@ export default function GameEndScreen({
           <Button
             onClick={onRestart}
             size="lg"
-            className="w-full bg-red-800 hover:bg-red-900 text-yellow-100 font-bold tracking-wide rounded shadow-md"
+            className={`w-full font-bold tracking-wide rounded shadow-md ${
+              isVictorious
+                ? "bg-yellow-700 hover:bg-yellow-800 text-yellow-100"
+                : "bg-red-800 hover:bg-red-900 text-yellow-100"
+            }`}
           >
             <RotateCcw className="mr-2 h-5 w-5" />
-            Return to Arena
+            {isVictorious ? "Fight Again, Champion!" : "Return to Arena"}
           </Button>
         </CardContent>
       </Card>
