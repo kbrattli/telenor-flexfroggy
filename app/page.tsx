@@ -2,8 +2,7 @@
 "use client";
 
 import { Progress } from "@/components/ui/progress";
-import { AnimatePresence, motion } from "framer-motion";
-import {CheckCircle, Play, XCircle} from "lucide-react";
+import { Play } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Level, initialCSS } from "@/lib/types";
@@ -18,7 +17,7 @@ import {Button} from "@/components/ui/button";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
-  const TARGET_SCORE = 10;
+  const TARGET_SCORE = 5;
 
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
