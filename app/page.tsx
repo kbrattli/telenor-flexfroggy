@@ -146,6 +146,28 @@ export default function FlexboxGame() {
     );
   }
 
+  const romanMap: Record<number, string> = {
+    1: "I",
+    2: "II",
+    3: "III",
+    4: "IV",
+    5: "V",
+    6: "VI",
+    7: "VII",
+    8: "VIII",
+    9: "IX",
+    10: "X",
+    11: "XI",
+    12: "XII",
+    13: "XIII",
+    14: "XIV",
+    15: "XV",
+  };
+
+  type Props = {
+    score: number;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="mx-auto max-w-5xl">
@@ -154,7 +176,7 @@ export default function FlexboxGame() {
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="text-4xl font-semibold text-gray-700">
-                Score: {score}
+                Score: {romanMap[score]}
               </div>
             </div>
             <div className="flex items-center gap-4">
