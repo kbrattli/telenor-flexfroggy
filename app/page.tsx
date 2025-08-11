@@ -5,15 +5,15 @@ import { Progress } from "@/components/ui/progress";
 import { Play } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { Level, initialCSS } from "@/lib/types";
 import { levels as allLevels } from "@/lib/levels";
 import { shuffleLevels } from "@/lib/shuffleLevels";
+import { Level, initialCSS } from "@/lib/types";
 
 import GameArea from "@/components/game/GameArea";
-import OptionSelector from "@/components/game/OptionSelector";
 import GameEndScreen from "@/components/game/GameEndScreen";
 import GameStartScreen from "@/components/game/GameStartScreen";
-import {Button} from "@/components/ui/button";
+import OptionSelector from "@/components/game/OptionSelector";
+import { Button } from "@/components/ui/button";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
@@ -31,13 +31,13 @@ export default function FlexboxGame() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [appliedCSS, setAppliedCSS] = useState<Record<string, string>>(initialCSS);
+  const [appliedCSS, setAppliedCSS] =
+    useState<Record<string, string>>(initialCSS);
 
   useEffect(() => {
     const shuffled = shuffleLevels([...allLevels]);
     setShuffledLevels(shuffled);
   }, []);
-
 
   const level = shuffledLevels[currentLevel];
 
@@ -170,38 +170,38 @@ export default function FlexboxGame() {
   };
 
   return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-        <div className="mx-auto max-w-5xl">
-          {/* Header */}
-          <div className="mb-6">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div
-                    className="text-4xl font-semibold text-gray-700"
-                    style={{ fontFamily: "'Cinzel', serif" }}
-                >
-                  Score: {romanMap[score]}
-                </div>
+    <div className="min-h-screen bg-amber-50 p-4">
+      <div className="mx-auto max-w-5xl">
+        {/* Header */}
+        <div className="mb-6">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div
+                className="text-4xl font-bold text-red-900 font-serif tracking-wide drop-shadow-sm"
+                style={{ fontFamily: "'Cinzel', serif" }}
+              >
+                ⚔️ Score: {romanMap[score]}
               </div>
-              <div className="flex items-center gap-4">
-                <div
-                    className="text-4xl font-semibold text-gray-700"
-                    style={{ fontFamily: "'Cinzel', serif" }}
-                >
-                  {totalTimeLeft}
+            </div>
+            <div className="flex items-center gap-4">
+              <div
+                className="text-4xl font-bold text-red-900 font-serif tracking-wide drop-shadow-sm"
+                style={{ fontFamily: "'Cinzel', serif" }}
+              >
+                ⏳ {totalTimeLeft}
               </div>
               <Progress
-                  value={(totalTimeLeft / GAME_DURATION) * 100}
-                  className="w-96 h-4"
+                value={(totalTimeLeft / GAME_DURATION) * 100}
+                className="w-96 h-4 border-2 border-yellow-700"
               />
             </div>
             <Button
-                size="lg"
-                className="hei"
-                onClick={restartGame}
+              size="lg"
+              className="bg-red-800 hover:bg-red-900 text-yellow-100 font-bold font-serif tracking-wide border-2 border-yellow-800 shadow-md"
+              onClick={restartGame}
             >
-              <Play className="hei" />
-              Back to start
+              <Play className="mr-2 h-5 w-5" />
+              🏛️ Back to Arena
             </Button>
           </div>
         </div>

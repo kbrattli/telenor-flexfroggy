@@ -47,7 +47,7 @@ export default function GameArea({
               src="https://cdn-icons-png.flaticon.com/128/3362/3362689.png"
               alt="target colosseum icon"
               className="h-12 w-12"
-              style={{ filter: "drop-shadow(0 0 2px #b91c1c)" }}
+              style={{ filter: "drop-shadow(0 0 3px #7f1d1d) brightness(1.1)" }}
             />
           </motion.div>
         );
@@ -64,7 +64,7 @@ export default function GameArea({
             src="https://cdn-icons-png.flaticon.com/128/3863/3863611.png"
             alt="player gladiator icon"
             className="h-8 w-8"
-            style={{ filter: "drop-shadow(0 0 2px #2563eb)" }}
+            style={{ filter: "drop-shadow(0 0 3px #92400e) brightness(1.1)" }}
           />
         </motion.div>
       );
@@ -74,12 +74,14 @@ export default function GameArea({
   const containerHeight = itemCount > 6 ? "350px" : "280px";
 
   return (
-    <Card>
+    <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30">
       <CardContent className="p-6">
-        <h3 className="mb-4 text-lg font-semibold">Game Area</h3>
+        <h3 className="mb-4 text-lg font-bold text-red-900 font-serif tracking-wide drop-shadow-sm">
+          ⚔️ Arena Battlefield
+        </h3>
 
         <div
-          className="relative overflow-hidden rounded-lg border-2 border-gray-300 bg-gray-50"
+          className="relative overflow-hidden rounded-lg border-3 border-yellow-700 bg-amber-50/95 shadow-inner"
           style={{ width: "400px", height: containerHeight }}
         >
           {/* Target layout */}
@@ -99,22 +101,22 @@ export default function GameArea({
           </div>
 
           {/* Grid lines */}
-          <div className="pointer-events-none absolute inset-0 opacity-5">
-            <div className="absolute left-1/4 top-0 h-full w-px bg-gray-400" />
-            <div className="absolute left-1/2 top-0 h-full w-px bg-gray-400" />
-            <div className="absolute left-3/4 top-0 h-full w-px bg-gray-400" />
-            <div className="absolute left-0 top-1/4 h-px w-full bg-gray-400" />
-            <div className="absolute left-0 top-1/2 h-px w-full bg-gray-400" />
-            <div className="absolute left-0 top-3/4 h-px w-full bg-gray-400" />
+          <div className="pointer-events-none absolute inset-0 opacity-20">
+            <div className="absolute left-1/4 top-0 h-full w-px bg-yellow-700" />
+            <div className="absolute left-1/2 top-0 h-full w-px bg-yellow-700" />
+            <div className="absolute left-3/4 top-0 h-full w-px bg-yellow-700" />
+            <div className="absolute left-0 top-1/4 h-px w-full bg-yellow-700" />
+            <div className="absolute left-0 top-1/2 h-px w-full bg-yellow-700" />
+            <div className="absolute left-0 top-3/4 h-px w-full bg-yellow-700" />
           </div>
         </div>
 
         {/* Icon attributions (required by Flaticon) */}
-        <p className="mt-3 text-xs text-muted-foreground">
+        <p className="mt-3 text-xs text-yellow-800/70 font-serif italic">
           <a
             href="https://www.flaticon.com/free-icons/colosseum"
             title="Colosseum icons"
-            className="underline hover:no-underline"
+            className="underline hover:no-underline hover:text-yellow-700"
             target="_blank"
             rel="noreferrer"
           >
@@ -124,7 +126,7 @@ export default function GameArea({
           <a
             href="https://www.flaticon.com/free-icons/rome"
             title="rome icons"
-            className="underline hover:no-underline"
+            className="underline hover:no-underline hover:text-yellow-700"
             target="_blank"
             rel="noreferrer"
           >
