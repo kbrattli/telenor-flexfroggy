@@ -99,7 +99,8 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                 className="mb-6 text-yellow-800 text-xl leading-relaxed drop-shadow-sm italic"
                                 text={`The rules are simple.\n\n` +
                                     `You will recieve challenges crafted in the\n language of Flexbox where you select the correct option.\n\n` +
-                                    `Achieve a minimum of 5 challenges to\n collect your price!`}
+                                    `Achieve a minimum of 5 challenges to\n collect your price! \n\n` +
+                                    `You have a total of 60 sec to complete these challenges`}
                                 delay={0.4}
                                 speed={0.05}
                             />
