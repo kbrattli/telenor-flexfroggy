@@ -198,6 +198,7 @@ export default function FlexboxGame() {
             <Button
                 size="lg"
                 className="hei"
+                onClick={restartGame}
             >
               <Play className="hei" />
               Back to start
