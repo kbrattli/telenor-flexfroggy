@@ -38,36 +38,35 @@ export default function GameArea({
 
       if (isTarget) {
         return (
-            <motion.div
-                key={`target-${index}`}
-
-                style={{ margin: "5px" }}
-                {...animationProps}
-            >
-              <img
-                  src="https://cdn-icons-png.flaticon.com/128/7893/7893653.png"
-                  alt="target gladiator icon"
-                  className="h-8 w-8"
-                  style={{ filter: "drop-shadow(0 0 2px #b91c1c)" }}
-              />
-            </motion.div>
+          <motion.div
+            key={`target-${index}`}
+            style={{ margin: "5px" }}
+            {...animationProps}
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/3362/3362689.png"
+              alt="target colosseum icon"
+              className="h-12 w-12"
+              style={{ filter: "drop-shadow(0 0 2px #b91c1c)" }}
+            />
+          </motion.div>
         );
       }
 
       return (
-          <motion.div
-              key={`player-${index}`}
-
-              style={{ margin: "5px" }}
-              {...animationProps}
-          >
-            <img
-                src="https://cdn-icons-png.flaticon.com/128/3443/3443124.png" // Same icon used for players
-                alt="player gladiator icon"
-                className="h-8 w-8"
-                style={{ filter: "drop-shadow(0 0 2px #2563eb)" }}
-            />
-          </motion.div>
+        <motion.div
+          key={`player-${index}`}
+          style={{ margin: "5px" }}
+          className="h-12 w-12 flex items-center justify-center"
+          {...animationProps}
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/3863/3863611.png"
+            alt="player gladiator icon"
+            className="h-8 w-8"
+            style={{ filter: "drop-shadow(0 0 2px #2563eb)" }}
+          />
+        </motion.div>
       );
     });
   };
@@ -109,6 +108,29 @@ export default function GameArea({
             <div className="absolute left-0 top-3/4 h-px w-full bg-gray-400" />
           </div>
         </div>
+
+        {/* Icon attributions (required by Flaticon) */}
+        <p className="mt-3 text-xs text-muted-foreground">
+          <a
+            href="https://www.flaticon.com/free-icons/colosseum"
+            title="Colosseum icons"
+            className="underline hover:no-underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Colosseum icons created by wanicon - Flaticon
+          </a>
+          {" · "}
+          <a
+            href="https://www.flaticon.com/free-icons/rome"
+            title="rome icons"
+            className="underline hover:no-underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Rome icons created by surang - Flaticon
+          </a>
+        </p>
       </CardContent>
     </Card>
   );
