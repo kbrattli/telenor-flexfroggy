@@ -89,7 +89,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                     >
                         <CardContent className="p-8 text-center text-yellow-900 font-serif">
                             <h1 className="mb-4 text-3xl font-extrabold text-red-900 tracking-wide drop-shadow-sm">
-                                🏛️ Telenorium Gladiator Challenge
+                                🏛️ The rules
                             </h1>
                             <AnimatedHandwriting
                                 className="mb-6 text-yellow-800 text-xl leading-relaxed drop-shadow-sm italic"
