@@ -52,7 +52,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                         style={{ backgroundImage: `url(${scrollImg})` }}
                     >
                         <CardContent className="p-8 text-center text-yellow-900 font-serif">
-                            <h1 className="mb-4 text-3xl font-extrabold text-red-900 tracking-wide drop-shadow-sm">
+                            <h1 className="mb-4 text-3xl font-extrabold text-red-900 tracking-wide drop-shadow-sm" style={{ fontFamily: "'Cinzel', serif" }}>
                                 🏛️ Telenorium Gladiator Challenge
                             </h1>
                             <AnimatedHandwriting
@@ -64,7 +64,8 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                             <Button
                                 onClick={() => setStep(1)}
                                 size="lg"
-                                className="w-full bg-red-800 hover:bg-red-900 text-yellow-100 font-bold tracking-wide rounded shadow-md"
+                                className="w-full bg-red-800 hover:bg-red-900 text-yellow-100 font-bold tracking-wide rounded shadow-md text-2xl"
+                                style={{ fontFamily: "'Cinzel', serif" }}
                             >
                                 <Play className="mr-2 h-5 w-5" />
                                 Enter the Arena
@@ -88,9 +89,12 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                         style={{ backgroundImage: `url(${scrollImg})` }}
                     >
                         <CardContent className="p-8 text-center text-yellow-900 font-serif">
-                            <h1 className="mb-4 text-3xl font-extrabold text-red-900 tracking-wide drop-shadow-sm">
-                                🏛️ The rules
-                            </h1>
+                                <h1
+                                    className="mb-4 text-3xl font-extrabold text-red-900 tracking-wide drop-shadow-sm"
+                                    style={{ fontFamily: "'Cinzel', serif" }}
+                                    >
+                                    ⚔️ The Rules ⚔️
+                                </h1>
                             <AnimatedHandwriting
                                 className="mb-6 text-yellow-800 text-xl leading-relaxed drop-shadow-sm italic"
                                 text={`The rules are simple.\n\n` +
@@ -102,10 +106,11 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                             <Button
                                 onClick={() => setStep(2)}
                                 size="lg"
-                                className="w-full bg-red-800 hover:bg-red-900 text-yellow-100 font-bold tracking-wide rounded shadow-md"
+                                className="w-full bg-red-800 hover:bg-red-900 text-yellow-100 font-bold tracking-wide rounded shadow-md text-2xl"
+                                style={{ fontFamily: "'Cinzel', serif" }}
                             >
                                 <Play className="mr-2 h-5 w-5" />
-                                Let the battle begin
+                                Let the battle begin!
                             </Button>
                         </CardContent>
                     </Card>
