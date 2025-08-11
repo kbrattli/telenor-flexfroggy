@@ -170,19 +170,25 @@ export default function FlexboxGame() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <div className="mx-auto max-w-5xl">
-        {/* Header */}
-        <div className="mb-6">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-4xl font-semibold text-gray-700">
-                Score: {romanMap[score]}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+        <div className="mx-auto max-w-5xl">
+          {/* Header */}
+          <div className="mb-6">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div
+                    className="text-4xl font-semibold text-gray-700"
+                    style={{ fontFamily: "'Cinzel', serif" }}
+                >
+                  Score: {romanMap[score]}
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="text-4xl font-semibold text-gray-700">
-                {totalTimeLeft}s
+              <div className="flex items-center gap-4">
+                <div
+                    className="text-4xl font-semibold text-gray-700"
+                    style={{ fontFamily: "'Cinzel', serif" }}
+                >
+                  {totalTimeLeft}
               </div>
               <Progress
                   value={(totalTimeLeft / GAME_DURATION) * 100}
