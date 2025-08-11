@@ -185,14 +185,18 @@ export default function FlexboxGame() {
             </div>
             <div className="flex items-center gap-4">
               <div
-                className="text-4xl font-bold text-red-900 font-serif tracking-wide drop-shadow-sm"
+                className={`text-4xl font-bold font-serif tracking-wide drop-shadow-sm ${
+                  totalTimeLeft <= 10 ? "text-red-600 animate-pulse" : "text-red-900"
+                }`}
                 style={{ fontFamily: "'Cinzel', serif" }}
               >
                 ⏳ {totalTimeLeft}
               </div>
               <Progress
                 value={(totalTimeLeft / GAME_DURATION) * 100}
-                className="w-96 h-4 border-2 border-yellow-700"
+                className={`w-96 h-4 border-2 border-yellow-700 ${
+                  totalTimeLeft <= 10 ? "bg-red-200 [&>div]:bg-red-600" : ""
+                }`}
               />
             </div>
             <Button
