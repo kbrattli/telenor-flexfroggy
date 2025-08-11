@@ -147,6 +147,7 @@ export default function FlexboxGame() {
   }
 
   const romanMap: Record<number, string> = {
+    0: "-",
     1: "I",
     2: "II",
     3: "III",
