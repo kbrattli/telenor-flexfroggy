@@ -22,8 +22,8 @@ export default function OptionSelector({ level,
   selectedOption,
   showFeedback,
   isCorrect,
-  currentLevel,
-  totalLevels,
+  // currentLevel,
+  // totalLevels,
   onSelect,
   onNext, }: OptionSelectorProps) {
 

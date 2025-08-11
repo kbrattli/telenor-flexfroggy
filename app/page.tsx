@@ -3,7 +3,7 @@
 
 import { Progress } from "@/components/ui/progress";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle, XCircle } from "lucide-react";
+import {CheckCircle, Play, XCircle} from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Level, initialCSS } from "@/lib/types";
@@ -14,10 +14,11 @@ import GameArea from "@/components/game/GameArea";
 import OptionSelector from "@/components/game/OptionSelector";
 import GameEndScreen from "@/components/game/GameEndScreen";
 import GameStartScreen from "@/components/game/GameStartScreen";
+import {Button} from "@/components/ui/button";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
-  const TARGET_SCORE = 5;
+  const TARGET_SCORE = 10;
 
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
@@ -37,6 +38,7 @@ export default function FlexboxGame() {
     const shuffled = shuffleLevels([...allLevels]);
     setShuffledLevels(shuffled);
   }, []);
+
 
   const level = shuffledLevels[currentLevel];
 
@@ -151,23 +153,28 @@ export default function FlexboxGame() {
         {/* Header */}
         <div className="mb-6">
           <div className="mb-4 flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-800">
-              Level {currentLevel + 1}: {level.title}
-            </h1>
             <div className="flex items-center gap-4">
-              <div className="text-lg font-semibold text-gray-700">
+              <div className="text-4xl font-semibold text-gray-700">
                 Score: {score}
               </div>
-              <div className="text-lg font-semibold text-gray-700">
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="text-4xl font-semibold text-gray-700">
                 {totalTimeLeft}s
               </div>
               <Progress
-                value={(totalTimeLeft / GAME_DURATION) * 100}
-                className="w-24"
+                  value={(totalTimeLeft / GAME_DURATION) * 100}
+                  className="w-96 h-4"
               />
             </div>
+            <Button
+                size="lg"
+                className="hei"
+            >
+              <Play className="hei" />
+              Back to start
+            </Button>
           </div>
-          <p className="text-gray-600">{level.description}</p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
