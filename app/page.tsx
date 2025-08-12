@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
-  const TARGET_SCORE = 5;
+  const TARGET_SCORE = 20;
 
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);

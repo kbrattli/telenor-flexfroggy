@@ -27,7 +27,7 @@ const cardVariants = {
 };
 
 export default function GameStartScreen({ onStart }: GameStartProps) {
-    const [step, setStep] = useState<0 | 1 | 2 | 3 >(0);
+    const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
     return (
         <div
             className="flex min-h-screen items-center justify-center bg-cover bg-center p-6 text-yellow-900 font-serif"
