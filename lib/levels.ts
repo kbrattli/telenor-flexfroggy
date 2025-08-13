@@ -305,8 +305,8 @@ export const levels: Level[] = [
     itemCount: 3,
     options: [
       {
-        label: ["justify-content: flex-start;", "gap: '15px';"],
-        css: { justifyContent: "flex-start", gap: "15px" },
+        label: ["justify-content: flex-start;", "gap: '15px';", "align-items: center;"],
+        css: { justifyContent: "flex-start", gap: "15px", alignItems: "center" },
       },
       {
         label: ["justify-content: center;", "gap: '15px';"],
@@ -431,7 +431,7 @@ export const levels: Level[] = [
     itemCount: 4,
     options: [
       {
-        label: ["justify-content: flex-start;", "gap: '8px';"],
+        label: ["justify-content: flex-start;", "gap: '8px';", "alignItems: 'center'"],
         css: { justifyContent: "flex-start", gap: "8px" },
       },
       {
