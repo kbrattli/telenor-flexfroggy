@@ -69,8 +69,6 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                 <AnimatedHandwriting
                                     className="mb-6 text-yellow-800 text-xl leading-relaxed drop-shadow-sm italic"
                                     text={`Welcome, challenger, to the sacred arena of\n Telenorium!\n\nAre you ready for battle?\n`}
-                                    delay={0.4}
-                                    speed={0.05}
                                 />
                                 <Button
                                     onClick={() => setStep(1)}
@@ -121,8 +119,6 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                     `You will recieve challenges crafted in the\n language of Flexbox where you select the\n correct option.\n\n` +
                                     `Achieve a minimum of 5 challenges to\n collect your price! \n\n` +
                                     `You have a total of 60 seconds to\n complete these challenges`}
-                                delay={0.4}
-                                speed={0.05}
                             />
                             <Button
                                 onClick={() => setStep(2)}

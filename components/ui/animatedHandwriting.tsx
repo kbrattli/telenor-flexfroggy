@@ -17,7 +17,7 @@ type AnimatedHandwritingProps = {
 export default function AnimatedHandwriting({
                                               text,
                                               delay = 0.3,
-                                              speed = 0.045,
+                                              speed = 0.02,
                                               className,
                                               onDone,
                                             }: AnimatedHandwritingProps) {
