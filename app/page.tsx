@@ -12,12 +12,22 @@ import { Level, initialCSS } from "@/lib/types";
 import GameArea from "@/components/game/GameArea";
 import GameEndScreen from "@/components/game/GameEndScreen";
 import GameStartScreen from "@/components/game/GameStartScreen";
-import OptionSelector from "@/components/game/OptionSelector";
-import { Button } from "@/components/ui/button";
+import {webSocket, WsMessage} from "@/lib/websocket";
+import useWebSocket from "react-use-websocket";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
   const TARGET_SCORE = 20;
+
+    const ws = useWebSocket(
+        'ws://localhost:9090',
+        {
+            share: false,
+            shouldReconnect: () => true,
+        },
+    )
+
+  const{sendFailMessage, sendNextMessage, sendCountdownMessage, sendSetMessage, lastMessage}=webSocket(ws);
 
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
@@ -31,13 +41,9 @@ export default function FlexboxGame() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [appliedCSS, setAppliedCSS] =
-    useState<Record<string, string>>(initialCSS);
-
-  useEffect(() => {
-    const shuffled = shuffleLevels([...allLevels]);
-    setShuffledLevels(shuffled);
-  }, []);
+  const [appliedCSS, setAppliedCSS] = useState<Record<string, string>>(initialCSS);
+    const [message, setMessage] = useState<WsMessage>()
+    const [started, setStarted] = useState(false);
 
   const level = shuffledLevels[currentLevel];
 
@@ -71,15 +77,58 @@ export default function FlexboxGame() {
     }
   }, [showFeedback]);
 
+    useEffect(() => {
+        if(lastMessage?.data !== null) {
+            if (lastMessage?.data instanceof Blob) {
+                const reader = new FileReader();
+                reader.onloadend = (readerEvent: ProgressEvent<FileReader>) => {
+                    if (readerEvent?.target?.result) {
+                        setMessage(JSON.parse(readerEvent.target.result.toString()) as WsMessage);
+                    }
+                };
+                reader.readAsText(lastMessage.data);
+            } else {
+                // Handle text messages if applicable
+                console.log("Received text data:", lastMessage);
+            }
+        }
+    }, [lastMessage]);
+
+    useEffect(() => {
+        console.log(message)
+        parseWsMessage()
+    }, [message]);
+
+    const parseWsMessage = () => {
+        switch (message?.action) {
+            case "start": {
+                setStarted(true);
+                setAndShuffleLevels();
+                break;
+            }
+            case "answer": {
+                console.log("Received answer:", message.content);
+
+                handleOptionSelect(parseInt(message.content ?? "0"))
+                break;
+            }
+        }
+    }
+
+    const setAndShuffleLevels = () => {
+        const shuffled = shuffleLevels([...allLevels]);
+        setShuffledLevels(shuffled);
+        sendSetMessage(shuffled.map(level => level.id));
+    }
+
   const startGame = () => {
     setGameStarted(true);
     resetLevelState();
   };
 
   const restartGame = () => {
-    const shuffled = shuffleLevels([...allLevels]);
-    setShuffledLevels(shuffled);
-    setCurrentLevel(0);
+      setAndShuffleLevels()
+      setCurrentLevel(0);
     setScore(0);
     setTotalTimeLeft(GAME_DURATION);
     setGameStarted(false);
@@ -133,7 +182,7 @@ export default function FlexboxGame() {
   };
 
   if (!gameStarted) {
-    return <GameStartScreen onStart={startGame} />;
+    return <GameStartScreen onStart={startGame} started={started} onCountDown={sendCountdownMessage}/>;
   }
 
   if (gameCompleted) {
@@ -199,33 +248,14 @@ export default function FlexboxGame() {
                 }`}
               />
             </div>
-            <Button
-              size="lg"
-              className="bg-red-800 hover:bg-red-900 text-yellow-100 font-bold font-serif tracking-wide border-2 border-yellow-800 shadow-md"
-              onClick={restartGame}
-            >
-              <Play className="mr-2 h-5 w-5" />
-              🏛️ Back to Arena
-            </Button>
           </div>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-1">
           <GameArea
             appliedCSS={appliedCSS}
             correctCSS={level.correctCSS}
             itemCount={level.itemCount || 1}
-          />
-
-          <OptionSelector
-            level={level}
-            selectedOption={selectedOption}
-            showFeedback={showFeedback}
-            isCorrect={isCorrect}
-            currentLevel={currentLevel}
-            totalLevels={shuffledLevels.length}
-            onSelect={handleOptionSelect}
-            onNext={handleNextLevel}
           />
         </div>
       </div>

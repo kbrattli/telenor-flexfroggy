@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Play } from "lucide-react";
@@ -11,6 +11,8 @@ import Countdown from "./countdown";
 
 interface GameStartProps {
     onStart: () => void;
+    started: boolean
+    onCountDown: () => void;
 }
 
 const cardVariants = {
@@ -27,8 +29,27 @@ const cardVariants = {
     },
 };
 
-export default function GameStartScreen({ onStart }: GameStartProps) {
+export default function GameStartScreen({ onStart, started, onCountDown}: GameStartProps) {
     const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
+
+    useEffect(() => {
+        if (started) setStep(1)
+    }, [started]);
+
+    const [count, setCount] = useState<number>(10);
+
+    useEffect(() => {
+        if (count > 0) {
+            const t = setTimeout(() => setCount((c) => c - 1), 1000);
+            return () => clearTimeout(t);
+        }
+        if (count === 0) {
+            // keep "Charge!" on screen for 1 second
+           setStep(2)
+            onCountDown()
+        }
+    }, [count]);
+
     return (
         <div
             // className="flex min-h-screen items-center justify-center bg-cover bg-center p-0 font-serif"
@@ -70,15 +91,6 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                     className="mb-6 text-yellow-800 text-xl leading-relaxed drop-shadow-sm italic"
                                     text={`Welcome, challenger, to the sacred arena of\n Telenorium!\n\nAre you ready for battle?\n`}
                                 />
-                                <Button
-                                    onClick={() => setStep(1)}
-                                    size="lg"
-                                    className="w-full bg-red-800 hover:bg-red-900 text-yellow-100 font-bold tracking-wide rounded shadow-md text-2xl"
-                                    style={{ fontFamily: "'Cinzel', serif" }}
-                                >
-                                    <Play className="mr-2 h-5 w-2" />
-                                    Enter the Arena
-                                </Button>
                             </CardContent>
                         </div>
                     </div>
@@ -120,15 +132,6 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                     `Achieve a minimum of 5 challenges to\n collect your price! \n\n` +
                                     `You have a total of 60 seconds to\n complete these challenges`}
                             />
-                            <Button
-                                onClick={() => setStep(2)}
-                                size="lg"
-                                className="w-full bg-red-800 hover:bg-red-900 text-yellow-100 font-bold tracking-wide rounded shadow-md text-2xl"
-                                style={{ fontFamily: "'Cinzel', serif" }}
-                            >
-                                <Play className="mr-2 h-5 w-5" />
-                                Let the battle begin!
-                            </Button>
                         </CardContent>
                     </div>
                 </div>
