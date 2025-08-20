@@ -49,7 +49,7 @@ export default function OptionSelector({
   return (
     <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30">
       <CardContent className="p-6">
-        <h3 className="mb-4 text-lg font-bold text-red-900 font-serif tracking-wide drop-shadow-sm">
+        <h3 className="mb-4 text-lg font-bold font-serif tracking-wide drop-shadow-sm" style={{ color: '#fbc83d' }}>
           ⚡ Divine CSS Incantations:
         </h3>
         <div className="space-y-3">
@@ -67,21 +67,20 @@ export default function OptionSelector({
                     ? isCorrectOption
                       ? "default"
                       : isIncorrectSelected
-                      ? "destructive"
-                      : "outline"
+                        ? "destructive"
+                        : "outline"
                     : isSelected
-                    ? "default"
-                    : "outline"
+                      ? "default"
+                      : "outline"
                 }
-                className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 font-serif ${
-                  showFeedback && isCorrectOption
+                className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 font-serif ${showFeedback && isCorrectOption
                     ? "border-yellow-600 bg-yellow-700 text-yellow-50 hover:bg-yellow-800 shadow-md"
                     : isIncorrectSelected
-                    ? "border-red-700 bg-red-800 text-yellow-50 hover:bg-red-900 shadow-md"
-                    : isSelected
-                    ? "border-yellow-700 bg-yellow-800 text-yellow-50 hover:bg-yellow-900"
-                    : "border-yellow-600 bg-amber-50/90 text-yellow-900 hover:bg-yellow-100 hover:border-yellow-700"
-                }`}
+                      ? "border-red-700 bg-red-800 text-yellow-50 hover:bg-red-900 shadow-md"
+                      : isSelected
+                        ? "border-yellow-700 bg-yellow-800 text-yellow-50 hover:bg-yellow-900"
+                        : "border-yellow-600 bg-amber-50/90 text-yellow-900 hover:bg-yellow-100 hover:border-yellow-700"
+                  }`}
                 onClick={() => onSelect(index)}
                 disabled={showFeedback}
               >

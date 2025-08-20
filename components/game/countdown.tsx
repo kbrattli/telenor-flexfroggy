@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const romanNumerals = ["Charge!", "I", "II", "III"];
+const romanNumerals = ["FOR ROME!", "I", "II", "III"];
 
 type CountdownProps = { onComplete?: () => void };
 
@@ -29,7 +29,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "#320800",
     zIndex: 9999,
     overflow: "hidden",
   };
@@ -38,10 +38,10 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
     fontFamily: "'Cinzel', serif",
     fontSize: "12rem",
     fontWeight: 700,
-    color: "white",
+    color: "#fbc83d", // text-yellow-100 equivalent
     userSelect: "none",
     lineHeight: 1,
-    textShadow: "0 0 18px rgba(255,255,255,0.3)", // subtle glow
+    textShadow: "0 0 18px rgba(254,252,232,0.3)", // subtle glow with yellow tint
   };
 
   // text animation (enter/pop, settle, exit)
@@ -86,8 +86,8 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
                 width: 320,
                 height: 320,
                 borderRadius: "50%",
-                border: "2px solid rgba(255,255,255,0.35)",
-                boxShadow: "0 0 120px 40px rgba(255,255,255,0.06)",
+                border: "2px solid rgba(254,252,232,0.35)", // yellow tint for border
+                boxShadow: "0 0 120px 40px rgba(254,252,232,0.06)", // yellow tint for shadow
               }}
           />
         </AnimatePresence>
