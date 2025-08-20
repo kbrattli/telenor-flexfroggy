@@ -40,6 +40,14 @@ export default function GameEndScreen({
     setError("");
     setSubmitted(true);
     // Here you would send the phone number to your backend/database
+    const existingNumbers = JSON.parse(localStorage.getItem("winners") || "[]");
+    existingNumbers.push(phone);
+    localStorage.setItem("winners", JSON.stringify(existingNumbers));
+    console.log("Phone number saved:", phone);
+
+    // List of winners (commented out by default)
+    const winners = JSON.parse(localStorage.getItem("winners") || "[]");
+    console.log("All saved winners phone numbers:", winners);
   };
 
   return (
