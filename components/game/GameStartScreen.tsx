@@ -117,7 +117,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                         ⚔️ The Rules ⚔️
                                     </h1>
                                     <AnimatedHandwriting
-                                        className="mb-6 text-xl leading-relaxed drop-shadow-sm italic text-[#fbc83d]"
+                                        className="mb-6 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]"
                                         text={`The rules are simple.\n\n` +
                                             `You will recieve challenges crafted in the\n language of Flexbox where you select the\n correct option.\n\n` +
                                             `Achieve a minimum of 5 challenges to\n collect your price! \n\n` +
