@@ -47,8 +47,8 @@ export default function OptionSelector({
   }, [level.options.length, showFeedback, onSelect]);
 
   return (
-    <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30">
-      <CardContent className="p-6">
+    <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30 h-full">
+      <CardContent className="p-8">
         <h3 className="mb-4 text-lg font-bold font-serif tracking-wide drop-shadow-sm" style={{ color: '#fbc83d' }}>
           ⚡ Divine CSS Incantations:
         </h3>

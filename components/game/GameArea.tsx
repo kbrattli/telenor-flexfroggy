@@ -71,10 +71,10 @@ export default function GameArea({
     });
   };
 
-  const containerHeight = itemCount > 6 ? "350px" : "280px";
+  const containerHeight = itemCount > 6 ? "500px" : "420px";
 
   return (
-    <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30">
+    <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30 h-full">
       <CardContent className="p-6">
         <h3 className="mb-4 text-lg font-bold text-red-900 font-serif tracking-wide drop-shadow-sm">
           ⚔️ Arena Battlefield
@@ -82,7 +82,7 @@ export default function GameArea({
 
         <div
           className="relative overflow-hidden rounded-lg border-3 border-yellow-700 bg-amber-50/95 shadow-inner"
-          style={{ width: "400px", height: containerHeight }}
+          style={{ width: "100%", height: containerHeight, maxWidth: "100%" }}
         >
           {/* Target layout */}
           <div

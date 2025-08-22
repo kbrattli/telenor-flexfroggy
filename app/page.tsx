@@ -171,7 +171,7 @@ export default function FlexboxGame() {
 
   return (
     <div className="min-h-screen bg-amber-50 p-4">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-7xl w-full pt-10">
         {/* Header */}
         <div className="mb-6">
           <div className="mb-4 flex items-center justify-between">
@@ -210,7 +210,7 @@ export default function FlexboxGame() {
           </div>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2 auto-rows-fr">
           <GameArea
             appliedCSS={appliedCSS}
             correctCSS={level.correctCSS}
