@@ -78,13 +78,8 @@ export default function GameEndScreen({
             className="absolute inset-0 bg-center bg-no-repeat bg-contain pointer-events-none"
             style={{ backgroundImage: `url(${scrollImg.src})` }}
         />
-        <div className="
-          absolute
-          left-[24%] right-[24%]   /* narrower text */
-          top-[23%] bottom-[20%]   /* avoid curled edges */
-          flex flex-col items-center justify-center text-center gap-6
-        ">
-          <CardContent className="text-center text-yellow-900 font-serif">
+        <div className="absolute inset-0 grid place-items-center p-[10%]">
+          <CardContent className="text-center text-yellow-900 font-serif max-w-md">
             {/* <CheckCircle
               className={`mx-auto mb-4 h-16 w-16 drop-shadow-md ${
                 isVictorious ? "text-yellow-700" : "text-red-700"
