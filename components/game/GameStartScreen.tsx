@@ -55,13 +55,8 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                 className="absolute inset-0 bg-center bg-no-repeat bg-contain pointer-events-none"
                                 style={{ backgroundImage: `url(${scrollImg.src})` }}
                             />
-                            <div className="
-                            absolute
-                            left-[24%] right-[24%]   /* narrower text */
-                            top-[33%] bottom-[20%]   /* avoid curled edges */
-                            flex flex-col items-center justify-start text-center gap-6
-                          ">
-                                <CardContent className="text-center text-yellow-900 font-serif">
+                            <div className="absolute inset-0 grid place-items-center p-[10%]">
+                                <CardContent className="text-center text-yellow-900 font-serif max-w-md">
                                     <h1 className="mb-4 text-3xl font-extrabold tracking-wide drop-shadow-sm" style={{ fontFamily: "'Cinzel', serif", color: '#6d2304' }}>
                                         🏛️ Telenorium Gladiator Challenge
                                     </h1>
@@ -103,13 +98,8 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                 className="absolute inset-0 bg-center bg-no-repeat bg-contain pointer-events-none"
                                 style={{ backgroundImage: `url(${scrollImg.src})` }}
                             />
-                            <div className="
-                        absolute
-                         left-[24%] right-[24%]   /* narrower text */
-                         top-[24%] bottom-[20%]   /* avoid curled edges */
-                         flex flex-col items-center justify-start text-center gap-6
-                      ">
-                                <CardContent className="relative p-8 text-center text-yellow-900 font-serif">
+                            <div className="absolute inset-0 grid place-items-center p-[10%]">
+                                <CardContent className="text-center text-yellow-900 font-serif max-w-md">
                                     <h1
                                         className="mb-4 text-3xl font-extrabold tracking-wide drop-shadow-sm"
                                         style={{ fontFamily: "'Cinzel', serif", color: '#6d2304' }}
