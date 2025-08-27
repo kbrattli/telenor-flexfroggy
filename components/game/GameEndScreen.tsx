@@ -70,7 +70,7 @@ export default function GameEndScreen({
     >
 
           {/* Confetti only if player won */}
-      {isVictorious && <Confetti width={width} height={height} colors={["#fbc83d", "#6d2304", "#ec9926", "#ffffff #"]} />}
+      {isVictorious && <Confetti width={width} height={height} colors={["#fbc83d", "#6d2304", "#ec9926", "#dc230fff"]} />}
 
       <div className="relative w-full max-w-4xl max-h-[100svh] aspect-[3/4]">
         {/* Scroll image */}
