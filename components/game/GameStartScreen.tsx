@@ -105,9 +105,9 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                             />
                             <div className="
                         absolute
-                        left-[24%] right-[24%]   /* narrower text */
-                        top-[15%] bottom-[20%]   /* avoid curled edges */
-                        flex flex-col items-center justify-start text-center gap-6
+                         left-[24%] right-[24%]   /* narrower text */
+                         top-[24%] bottom-[20%]   /* avoid curled edges */
+                         flex flex-col items-center justify-start text-center gap-6
                       ">
                                 <CardContent className="relative p-8 text-center text-yellow-900 font-serif">
                                     <h1
