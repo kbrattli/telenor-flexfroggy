@@ -75,7 +75,7 @@ export default function GameEndScreen({
           absolute
           left-[24%] right-[24%]   /* narrower text */
           top-[23%] bottom-[20%]   /* avoid curled edges */
-          flex flex-col items-center justify-start text-center gap-6
+          flex flex-col items-center justify-center text-center gap-6
         ">
           <CardContent className="text-center text-yellow-900 font-serif">
             {/* <CheckCircle
