@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, RotateCcw } from "lucide-react";
 import scrollImg from "@/public/img/scroll.jpg";
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 interface GameEndScreenProps {
   gameResult: "win" | "lose" | null;
@@ -18,6 +20,7 @@ export default function GameEndScreen({
   onRestart,
 }: GameEndScreenProps) {
   const isVictorious = score >= 5;
+  const { width, height } = useWindowSize();
 
   const title = isVictorious
     ? "🏆 GLADIATOR VICTORIOUS!"
@@ -65,6 +68,10 @@ export default function GameEndScreen({
         className="flex h-svh items-center justify-center font-serif overflow-hidden"
         style={{ backgroundColor: '#320800' }}
     >
+
+          {/* Confetti only if player won */}
+      {isVictorious && <Confetti width={width} height={height} />}
+
       <div className="relative w-full max-w-4xl max-h-[100svh] aspect-[3/4]">
         {/* Scroll image */}
         <div
