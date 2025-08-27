@@ -170,11 +170,11 @@ export default function FlexboxGame() {
   };
 
   return (
-    <div className="min-h-screen bg-amber-50 p-4">
-      <div className="mx-auto max-w-7xl w-full pt-10">
+    <div className="min-h-screen p-6" style={{ backgroundColor: '#320800' }}>
+      <div className="mx-auto max-w-8xl w-full pt-10 bg-amber-50 rounded-2xl shadow-lg px-8 lg:px-16 py-12">
         {/* Header */}
-        <div className="mb-6">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="mb-10">
+          <div className="mb-6 flex flex-col gap-6 lg:flex-row lg:items-center justify-between">
             <div className="flex items-center gap-4">
               <div
                 className="text-4xl font-bold text-red-900 font-serif tracking-wide drop-shadow-sm"

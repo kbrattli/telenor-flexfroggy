@@ -34,14 +34,23 @@ export default function GameEndScreen({
 
   const handlePhoneSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!/^\d{8,15}$/.test(phone)) {
       setError("Please enter a valid phone number.");
       return;
     }
+
+    // Here you would send the phone number to your backend/database
+    const existingNumbers: string[] = JSON.parse(localStorage.getItem("winners") || "[]");
+
+    if (existingNumbers.includes(phone)) {
+      setError("This phone number has already been used.");
+      return;
+    }
+
     setError("");
     setSubmitted(true);
-    // Here you would send the phone number to your backend/database
-    const existingNumbers = JSON.parse(localStorage.getItem("winners") || "[]");
+
     existingNumbers.push(phone);
     localStorage.setItem("winners", JSON.stringify(existingNumbers));
     console.log("Phone number saved:", phone);
@@ -69,24 +78,24 @@ export default function GameEndScreen({
           flex flex-col items-center justify-start text-center gap-6
         ">
           <CardContent className="text-center text-yellow-900 font-serif">
-            <CheckCircle
+            {/* <CheckCircle
               className={`mx-auto mb-4 h-16 w-16 drop-shadow-md ${
                 isVictorious ? "text-yellow-700" : "text-red-700"
               }`}
-            />
+            /> */}
             <h1
-              className={`mb-3 text-3xl font-extrabold tracking-wide drop-shadow-sm ${
+              className={`mb-4 text-3xl font-extrabold tracking-wide drop-shadow-sm ${
                 isVictorious ? "text-yellow-700" : "text-red-900"
               }`}
             >
               {title}
             </h1>
-            <p className="mb-3 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]">
+            <p className="mb-4 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]">
               You conquered{" "}
               <span className="font-bold text-red-800">{score}</span> divine
               trials.
             </p>
-            <p className="mb-3 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]">
+            <p className="mb-4 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]">
               {message}
             </p>
             {isVictorious && !submitted && (
@@ -111,7 +120,7 @@ export default function GameEndScreen({
                 </Button>
               </form>
             )}
-            {isVictorious && submitted && (
+            {isVictorious && submitted && !error && (
               <div className="mb-6 text-green-700 font-bold">Thank you! Your number has been saved.</div>
             )}
             <Button
