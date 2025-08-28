@@ -107,7 +107,7 @@ export default function GameEndScreen({
               <form onSubmit={handlePhoneSubmit} className="mb-4 flex flex-col items-center gap-3">
                 <p className="text-yellow-800 text-md leading-relaxed drop-shadow-sm italic"
                   style={{ fontFamily: "inherit" }}
-                  >Enter your phone number to receive your prize:</p>
+                  >Enter your phone number to claim your prize. We do not send, share, or use it for anything else.</p>
                 <input
                   type="tel"
                   value={phone}
@@ -126,7 +126,7 @@ export default function GameEndScreen({
               </form>
             )}
             {isVictorious && submitted && !error && (
-              <div className="mb-6 text-green-700 font-bold">Thank you! Your number has been saved.</div>
+              <div className="mb-6 text-green-700 font-bold">Thank you! Your number has been registered.</div>
             )}
             <Button
               onClick={onRestart}
