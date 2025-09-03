@@ -109,6 +109,9 @@ export default function FlexboxGame() {
         return;
       }
     } else {
+        const nextScore = score - 1;
+        setScore(nextScore < 0 ? 0 : nextScore);
+
       setTimeout(() => {
         setAppliedCSS(level.correctCSS);
       }, 1500);
