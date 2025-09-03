@@ -110,7 +110,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                         className="mb-6 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]"
                                         text={`The rules are simple.\n\n` +
                                             `You will recieve challenges based on\n CSS Flexbox where you select the\n correct option.\n\n` +
-                                            `Achieve a minimum of 8 challenges to\n collect your price! \n\n` +
+                                            `Achieve a minimum of 10 challenges to\n collect your price! \n\n` +
                                             `You have a total of 60 seconds to\n complete these challenges`}
                                     />
                                     <Button
