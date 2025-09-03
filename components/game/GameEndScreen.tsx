@@ -19,7 +19,7 @@ export default function GameEndScreen({
   score,
   onRestart,
 }: GameEndScreenProps) {
-  const isVictorious = score >= 6;
+  const isVictorious = score >= 8;
   const { width, height } = useWindowSize();
 
   const title = isVictorious
