@@ -103,31 +103,7 @@ export default function GameEndScreen({
             <p className="mb-4 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]">
               {message}
             </p>
-            {isVictorious && !submitted && (
-              <form onSubmit={handlePhoneSubmit} className="mb-4 flex flex-col items-center gap-3">
-                <p className="text-yellow-800 text-md leading-relaxed drop-shadow-sm italic"
-                  style={{ fontFamily: "inherit" }}
-                  >Enter your phone number to claim your prize. We do not send, share, or use it for anything else.</p>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={e => setPhone(e.target.value)}
-                  className="border rounded px-4 py-2 text-lg w-full"
-                  placeholder="Declare thy number"
-                  maxLength={15}
-                />
-                {error && <div className="text-red-600">{error}</div>}
-                <Button
-                  type="submit"
-                  className="bg-green-700 hover:bg-green-800 text-yellow-100 font-bold w-full"
-                >
-                  Declare
-                </Button>
-              </form>
-            )}
-            {isVictorious && submitted && !error && (
-              <div className="mb-6 text-green-700 font-bold">Thank you! Your number has been registered.</div>
-            )}
+            
             <Button
               onClick={onRestart}
               size="lg"
