@@ -30,7 +30,7 @@ export default function GameArea({
         initial: { scale: 0, rotate: 45 },
         animate: { scale: 1, rotate: 0 },
         transition: {
-          type: "spring",
+          type: "spring" as const,
           stiffness: 300,
           damping: 25,
           delay: index * 0.05,
@@ -45,8 +45,8 @@ export default function GameArea({
             {...animationProps}
           >
             <img
-              src="https://cdn-icons-png.flaticon.com/128/3362/3362689.png"
-              alt="target colosseum icon"
+              src="https://cdn-icons-png.flaticon.com/512/2550/2550430.png"
+              alt="target house icon"
               className="h-12 w-12"
               style={{ filter: "drop-shadow(0 0 2px rgba(45, 40, 205, 0.3))" }}
             />
@@ -62,8 +62,8 @@ export default function GameArea({
           {...animationProps}
         >
           <img
-            src="https://cdn-icons-png.flaticon.com/128/3863/3863611.png"
-            alt="player gladiator icon"
+            src="https://cdn-icons-png.flaticon.com/512/7228/7228079.png"
+            alt="player balloon icon"
             className="h-8 w-8"
             style={{ filter: "drop-shadow(0 0 2px rgba(0, 200, 255, 0.3))" }}
           />
@@ -107,23 +107,23 @@ export default function GameArea({
         {/* Icon attributions (required by Flaticon) */}
         <p className="mt-3 text-xs text-telenor-mid-blue/70 italic">
           <a
-            href="https://www.flaticon.com/free-icons/colosseum"
-            title="Colosseum icons"
+            href="https://www.flaticon.com/free-icons/house"
+            title="house icons"
             className="underline hover:no-underline hover:text-telenor-mid-blue"
             target="_blank"
             rel="noreferrer"
           >
-            Colosseum icons created by wanicon - Flaticon
+            House icons created by Freepik - Flaticon
           </a>
           {" · "}
           <a
-            href="https://www.flaticon.com/free-icons/rome"
-            title="rome icons"
+            href="https://www.flaticon.com/free-icons/birthday"
+            title="birthday icons"
             className="underline hover:no-underline hover:text-telenor-mid-blue"
             target="_blank"
             rel="noreferrer"
           >
-            Rome icons created by surang - Flaticon
+            Birthday icons created by Iconic Panda - Flaticon
           </a>
         </p>
       </CardContent>
