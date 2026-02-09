@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, RotateCcw } from "lucide-react";
-import scrollImg from "@/public/img/scroll.jpg";
+import { CardContent } from "@/components/ui/card";
+import { RotateCcw, Trophy, Swords } from "lucide-react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
@@ -22,9 +21,10 @@ export default function GameEndScreen({
   const isVictorious = score >= 6;
   const { width, height } = useWindowSize();
 
-  const title = isVictorious
-    ? "🏆 GLADIATOR VICTORIOUS!"
-    : "⚔️ FALLEN IN BATTLE!";
+  const TitleIcon = isVictorious ? Trophy : Swords;
+  const titleText = isVictorious
+    ? "GLADIATOR VICTORIOUS!"
+    : "FALLEN IN BATTLE!";
 
   const message = isVictorious
     ? "Hail, mighty warrior! You have conquered the arena and earned the crowd's roar!"
@@ -65,54 +65,38 @@ export default function GameEndScreen({
 
   return (
     <div
-        className="flex h-svh items-center justify-center font-serif overflow-hidden"
-        style={{ backgroundColor: '#320800' }}
+        className="flex h-svh items-center justify-center overflow-hidden bg-telenor-dark-blue"
     >
 
           {/* Confetti only if player won */}
-      {isVictorious && 
-        <Confetti width={width} height={height} 
-          colors={["#fbc83d", "#6d2304", "#ec9926", "#dc230fff"]} 
+      {isVictorious &&
+        <Confetti width={width} height={height}
+          colors={["#00C8FF", "#2D28CD", "#B4FFFF", "#FF5A28"]}
           numberOfPieces={600} />}
 
-      <div className="relative w-full max-w-4xl max-h-[100svh] aspect-[3/4]">
-        {/* Scroll image */}
-        <div
-            className="absolute inset-0 bg-center bg-no-repeat bg-contain pointer-events-none"
-            style={{ backgroundImage: `url(${scrollImg.src})` }}
-        />
-        <div className="absolute inset-0 grid place-items-center p-[10%]">
-          <CardContent className="text-center text-yellow-900 font-serif max-w-md">
-            {/* <CheckCircle
-              className={`mx-auto mb-4 h-16 w-16 drop-shadow-md ${
-                isVictorious ? "text-yellow-700" : "text-red-700"
-              }`}
-            /> */}
+      <div className="relative w-full max-w-xl px-4">
+        <div className="bg-white border border-white/20 rounded-2xl p-8 shadow-2xl">
+          <CardContent className="text-center max-w-md mx-auto">
             <h1
-              className={`mb-4 text-3xl font-extrabold tracking-wide drop-shadow-sm ${
-                isVictorious ? "text-yellow-700" : "text-red-900"
+              className={`mb-4 text-3xl font-bold flex items-center justify-center gap-2 ${
+                isVictorious ? "text-telenor-dark-blue" : "text-telenor-hot-pink"
               }`}
             >
-              {title}
+              <TitleIcon className="h-8 w-8" />
+              {titleText}
             </h1>
-            <p className="mb-4 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]">
+            <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
               You conquered{" "}
-              <span className="font-bold text-red-800">{score}</span> divine
-              trials.
+              <span className="font-bold text-telenor-mid-blue">{score}</span> trials.
             </p>
-            <p className="mb-4 text-xl leading-relaxed drop-shadow-sm italic text-[#6d2304]">
+            <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
               {message}
             </p>
-            
+
             <Button
               onClick={onRestart}
               size="lg"
-              className="w-full font-bold tracking-wide rounded shadow-md text-2xl hover:opacity-90"
-              style={{
-                fontFamily: "'Cinzel', serif",
-                backgroundColor: '#6d2304',
-                color: '#fbc83d'
-              }}
+              className="w-full font-semibold rounded-lg text-lg hover:bg-telenor-mid-blue/90 transition-colors bg-telenor-mid-blue text-white"
             >
               <RotateCcw className="mr-2 h-5 w-5" />
               {isVictorious ? "Fight Again, Champion!" : "Return to Arena"}

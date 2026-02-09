@@ -4,6 +4,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { initialCSS } from "@/lib/types";
 import { motion } from "framer-motion";
+import { Swords } from "lucide-react";
 import { CSSProperties } from "react";
 
 interface GameAreaProps {
@@ -47,7 +48,7 @@ export default function GameArea({
               src="https://cdn-icons-png.flaticon.com/128/3362/3362689.png"
               alt="target colosseum icon"
               className="h-12 w-12"
-              style={{ filter: "drop-shadow(0 0 3px #7f1d1d) brightness(1.1)" }}
+              style={{ filter: "drop-shadow(0 0 2px rgba(45, 40, 205, 0.3))" }}
             />
           </motion.div>
         );
@@ -64,7 +65,7 @@ export default function GameArea({
             src="https://cdn-icons-png.flaticon.com/128/3863/3863611.png"
             alt="player gladiator icon"
             className="h-8 w-8"
-            style={{ filter: "drop-shadow(0 0 3px #92400e) brightness(1.1)" }}
+            style={{ filter: "drop-shadow(0 0 2px rgba(0, 200, 255, 0.3))" }}
           />
         </motion.div>
       );
@@ -74,14 +75,15 @@ export default function GameArea({
   const containerHeight = itemCount > 6 ? "500px" : "420px";
 
   return (
-    <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30 h-full">
+    <Card className="border border-slate-200 rounded-xl shadow-sm h-full">
       <CardContent className="p-6">
-        <h3 className="mb-4 text-lg font-bold text-red-900 font-serif tracking-wide drop-shadow-sm">
-          ⚔️ Arena Battlefield
+        <h3 className="mb-4 text-lg font-bold text-telenor-dark-blue flex items-center gap-2">
+          <Swords className="h-5 w-5" />
+          Arena Battlefield
         </h3>
 
         <div
-          className="relative overflow-hidden rounded-lg border-3 border-yellow-700 bg-amber-50/95 shadow-inner"
+          className="relative overflow-hidden rounded-lg border border-slate-200 bg-slate-50"
           style={{ width: "100%", height: containerHeight, maxWidth: "100%" }}
         >
           {/* Target layout */}
@@ -100,23 +102,14 @@ export default function GameArea({
             {renderBoxes(itemCount, false)}
           </div>
 
-          {/* Grid lines */}
-          <div className="pointer-events-none absolute inset-0 opacity-20">
-            <div className="absolute left-1/4 top-0 h-full w-px bg-yellow-700" />
-            <div className="absolute left-1/2 top-0 h-full w-px bg-yellow-700" />
-            <div className="absolute left-3/4 top-0 h-full w-px bg-yellow-700" />
-            <div className="absolute left-0 top-1/4 h-px w-full bg-yellow-700" />
-            <div className="absolute left-0 top-1/2 h-px w-full bg-yellow-700" />
-            <div className="absolute left-0 top-3/4 h-px w-full bg-yellow-700" />
-          </div>
         </div>
 
         {/* Icon attributions (required by Flaticon) */}
-        <p className="mt-3 text-xs text-yellow-800/70 font-serif italic">
+        <p className="mt-3 text-xs text-telenor-mid-blue/70 italic">
           <a
             href="https://www.flaticon.com/free-icons/colosseum"
             title="Colosseum icons"
-            className="underline hover:no-underline hover:text-yellow-700"
+            className="underline hover:no-underline hover:text-telenor-mid-blue"
             target="_blank"
             rel="noreferrer"
           >
@@ -126,7 +119,7 @@ export default function GameArea({
           <a
             href="https://www.flaticon.com/free-icons/rome"
             title="rome icons"
-            className="underline hover:no-underline hover:text-yellow-700"
+            className="underline hover:no-underline hover:text-telenor-mid-blue"
             target="_blank"
             rel="noreferrer"
           >

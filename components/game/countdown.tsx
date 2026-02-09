@@ -29,19 +29,18 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#320800",
+    backgroundColor: "#000F3C",
     zIndex: 9999,
     overflow: "hidden",
   };
 
   const numeralStyle: React.CSSProperties = {
-    fontFamily: "'Cinzel', serif",
     fontSize: "12rem",
     fontWeight: 700,
-    color: "#fbc83d", // text-yellow-100 equivalent
+    color: "#00C8FF",
     userSelect: "none",
     lineHeight: 1,
-    textShadow: "0 0 18px rgba(254,252,232,0.3)", // subtle glow with yellow tint
+    textShadow: "0 0 18px rgba(0,200,255,0.2)",
   };
 
   // text animation (enter/pop, settle, exit)
@@ -86,8 +85,8 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
                 width: 320,
                 height: 320,
                 borderRadius: "50%",
-                border: "2px solid rgba(254,252,232,0.35)", // yellow tint for border
-                boxShadow: "0 0 120px 40px rgba(254,252,232,0.06)", // yellow tint for shadow
+                border: "2px solid rgba(0,200,255,0.35)",
+                boxShadow: "0 0 120px 40px rgba(0,200,255,0.06)",
               }}
           />
         </AnimatePresence>

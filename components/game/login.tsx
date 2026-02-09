@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const CORRECT_PASSWORD = 'Julius5G';
 
@@ -19,115 +21,53 @@ const Login = () => {
     };
 
     if (loggedIn) {
-        // redirect to start game page
         return (
-            <div style={{
-                background: 'url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80) center/cover',
-                minHeight: '100vh',
-                color: '#fff',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: 'serif',
-                textShadow: '2px 2px 8px #000'
-            }}>
-                <h1>Ave, Citizen!</h1>
-                <p>Welcome to the Roman Empire. You are logged in.</p>
-                <span role="img" aria-label="laurel">🏛️</span>
+            <div className="min-h-screen bg-telenor-dark-blue text-white flex flex-col items-center justify-center">
+                <h1 className="text-3xl font-bold mb-2">Ave, Citizen!</h1>
+                <p className="text-lg text-white/70">Welcome to the Roman Empire. You are logged in.</p>
             </div>
         );
     }
 
     return (
-        <div style={{
-            background: 'linear-gradient(135deg, #b9935a 0%, #6b4226 100%)',
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontFamily: 'serif'
-        }}>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-telenor-dark-blue to-telenor-mid-blue">
             <form
                 onSubmit={handleSubmit}
-                style={{
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    border: '2px solid #b9935a',
-                    borderRadius: '16px',
-                    padding: '2rem 3rem',
-                    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    minWidth: '320px'
-                }}
+                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 shadow-2xl flex flex-col items-center min-w-[320px]"
             >
-                <h2 style={{ color: '#fff', marginBottom: '1.5rem', letterSpacing: '2px' }}>
+                <h2 className="text-white mb-6 text-xl font-semibold tracking-wide">
                     Welcome to Telenorium
                 </h2>
-                <label style={{ color: '#fff', marginBottom: '1rem', fontWeight: 'bold', width: '100%' }}>
-                    <div style={{ position: 'relative', width: '100%' }}>
+                <label className="text-white mb-4 font-bold w-full">
+                    <div className="relative w-full">
                         <input
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Password"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
-                            style={{
-                                width: '100%',
-                                padding: '0.5rem 2.5rem 0.5rem 0.5rem',
-                                borderRadius: '8px',
-                                border: '1px solid #b9935a',
-                                background: '#fffbe6',
-                                fontFamily: 'serif',
-                                position: 'relative'
-                            }}
+                            className="w-full px-3 py-2 pr-10 rounded-lg border border-white/30 bg-white/90 text-telenor-dark-blue placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-telenor-mid-blue focus:border-transparent"
                         />
-                        <span
+                        <button
+                            type="button"
                             onClick={() => setShowPassword(v => !v)}
-                            style={{
-                                position: 'absolute',
-                                right: '1rem',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                cursor: 'pointer',
-                                color: '#b9935a',
-                                fontSize: '1.2rem',
-                                zIndex: 2
-                            }}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-telenor-mid-blue hover:text-telenor-dark-blue transition-colors"
                             aria-label={showPassword ? 'Hide password' : 'Show password'}
-                            tabIndex={0}
-                            role="button"
                         >
-                        {showPassword ? '🙈' : '👁️'}
-                    </span>
+                            {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                        </button>
                     </div>
                 </label>
-                <button
+                <Button
                     type="submit"
-                    style={{
-                        background: '#b9935a',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '8px',
-                        padding: '0.5rem 1.5rem',
-                        fontWeight: 'bold',
-                        fontSize: '1rem',
-                        cursor: 'pointer',
-                        marginTop: '1rem',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
-                    }}
+                    className="w-full mt-2 bg-telenor-blue text-telenor-dark-blue font-semibold hover:bg-telenor-blue/90 transition-colors"
                 >
                     Enter Telenorium
-                </button>
+                </Button>
                 {error && (
-                    <div style={{ color: '#ffdddd', background: '#6b4226', borderRadius: '8px', padding: '0.5rem 1rem', marginTop: '1rem' }}>
+                    <div className="mt-4 text-telenor-hot-pink bg-telenor-hot-pink/10 rounded-lg px-4 py-2 text-sm">
                         {error}
                     </div>
                 )}
-                <div style={{ marginTop: '2rem', color: '#fff', fontSize: '2rem' }}>
-                    <span role="img" aria-label="roman helmet">🪖</span>
-                    <span role="img" aria-label="laurel">🏛️</span>
-                </div>
             </form>
         </div>
     );

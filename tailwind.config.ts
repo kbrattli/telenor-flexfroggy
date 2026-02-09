@@ -11,6 +11,19 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+  			telenor: {
+  				'dark-blue': 'hsl(var(--telenor-dark-blue))',
+  				'mid-blue': 'hsl(var(--telenor-mid-blue))',
+  				'blue': 'hsl(var(--telenor-blue))',
+  				'light-blue': 'hsl(var(--telenor-light-blue))',
+  				'off-white': 'hsl(var(--telenor-off-white))',
+  				'orange': 'hsl(var(--telenor-orange))',
+  				'lemon': 'hsl(var(--telenor-lemon))',
+  				'hot-pink': 'hsl(var(--telenor-hot-pink))',
+  				'mint': 'hsl(var(--telenor-mint))',
+  				'stone': 'hsl(var(--telenor-stone))',
+  				'peach': 'hsl(var(--telenor-peach))',
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

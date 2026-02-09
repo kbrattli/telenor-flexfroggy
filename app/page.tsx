@@ -2,7 +2,7 @@
 "use client";
 
 import { Progress } from "@/components/ui/progress";
-import { Play } from "lucide-react";
+import { Play, Swords, Timer } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { levels as allLevels } from "@/lib/levels";
@@ -170,42 +170,40 @@ export default function FlexboxGame() {
   };
 
   return (
-    <div className="min-h-screen p-6 flex items-center" style={{ backgroundColor: '#320800' }}>
-      <div className="mx-auto max-w-8xl min-h-min w-fit pt-10 bg-amber-50 rounded-2xl shadow-lg px-8 lg:px-16 py-12">
+    <div className="min-h-screen p-6 flex items-center bg-slate-50">
+      <div className="mx-auto max-w-8xl min-h-min w-fit pt-10 px-8 lg:px-16 py-12">
         {/* Header */}
         <div className="mb-10">
           <div className="mb-6 flex flex-col gap-6 lg:flex-row lg:items-center justify-between">
             <div className="flex items-center gap-4">
-              <div
-                className="text-4xl font-bold text-red-900 font-serif tracking-wide drop-shadow-sm"
-                style={{ fontFamily: "'Cinzel', serif" }}
-              >
-                ⚔️ Score: {romanMap[score]}
+              <div className="text-3xl font-bold text-telenor-dark-blue flex items-center gap-2">
+                <Swords className="h-7 w-7" />
+                Score: {romanMap[score]}
               </div>
             </div>
             <div className="flex items-center gap-4">
               <div
-                className={`text-4xl font-bold font-serif tracking-wide drop-shadow-sm ${
-                  totalTimeLeft <= 10 ? "text-red-600 animate-pulse" : "text-red-900"
+                className={`text-3xl font-bold tabular-nums flex items-center gap-2 ${
+                  totalTimeLeft <= 10 ? "text-telenor-hot-pink animate-pulse" : "text-telenor-dark-blue"
                 }`}
-                style={{ fontFamily: "'Cinzel', serif" }}
               >
-                ⏳ {totalTimeLeft}
+                <Timer className="h-7 w-7" />
+                {totalTimeLeft}
               </div>
               <Progress
                 value={(totalTimeLeft / GAME_DURATION) * 100}
-                className={`w-96 h-4 border-2 border-yellow-700 ${
-                  totalTimeLeft <= 10 ? "bg-red-200 [&>div]:bg-red-600" : ""
+                className={`w-96 h-3 ${
+                  totalTimeLeft <= 10 ? "bg-telenor-peach [&>div]:bg-telenor-hot-pink" : ""
                 }`}
               />
             </div>
             <Button
               size="lg"
-              className="bg-red-800 hover:bg-red-900 text-yellow-100 font-bold font-serif tracking-wide border-2 border-yellow-800 shadow-md"
+              className="bg-telenor-dark-blue hover:bg-telenor-dark-blue/90 text-white font-bold transition-colors"
               onClick={restartGame}
             >
               <Play className="mr-2 h-5 w-5" />
-              🏛️ Back to Arena
+              Back to Arena
             </Button>
           </div>
         </div>

@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Telenorium Gladiator Challenge',
+  description: 'Learn CSS Flexbox in a Roman gladiator arena — by Telenor',
 }
 
 export default function RootLayout({

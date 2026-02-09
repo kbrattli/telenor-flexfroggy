@@ -47,10 +47,10 @@ export default function OptionSelector({
   }, [level.options.length, showFeedback, onSelect]);
 
   return (
-    <Card className="border-4 border-yellow-800 rounded-xl shadow-lg shadow-yellow-700/30 h-full">
+    <Card className="border border-slate-200 rounded-xl shadow-sm h-full">
       <CardContent className="p-8">
-        <h3 className="mb-4 text-lg font-bold font-serif tracking-wide drop-shadow-sm" style={{ color: '#fbc83d' }}>
-          ⚡ Divine CSS Incantations:
+        <h3 className="mb-4 text-lg font-bold text-telenor-dark-blue">
+          Choose the correct CSS
         </h3>
         <div className="space-y-3">
           {level.options.map((option, index) => {
@@ -73,13 +73,13 @@ export default function OptionSelector({
                       ? "default"
                       : "outline"
                 }
-                className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 font-serif ${showFeedback && isCorrectOption
-                    ? "border-yellow-600 bg-yellow-700 text-yellow-50 hover:bg-yellow-800 shadow-md"
+                className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 ${showFeedback && isCorrectOption
+                    ? "border-green-600 bg-green-50 text-green-900"
                     : isIncorrectSelected
-                      ? "border-red-700 bg-red-800 text-yellow-50 hover:bg-red-900 shadow-md"
+                      ? "border-telenor-hot-pink bg-telenor-hot-pink/5 text-telenor-hot-pink"
                       : isSelected
-                        ? "border-yellow-700 bg-yellow-800 text-yellow-50 hover:bg-yellow-900"
-                        : "border-yellow-600 bg-amber-50/90 text-yellow-900 hover:bg-yellow-100 hover:border-yellow-700"
+                        ? "border-telenor-mid-blue bg-telenor-mid-blue/5 text-telenor-dark-blue"
+                        : "border-slate-200 bg-white text-telenor-dark-blue hover:border-telenor-mid-blue/50 hover:bg-slate-50"
                   }`}
                 onClick={() => onSelect(index)}
                 disabled={showFeedback}
@@ -88,7 +88,7 @@ export default function OptionSelector({
                   {option.label.map((line, lineIndex) => (
                     <code
                       key={lineIndex}
-                      className="font-mono text-sm drop-shadow-sm"
+                      className="font-mono text-sm"
                     >
                       {line}
                     </code>
@@ -110,26 +110,26 @@ export default function OptionSelector({
             >
               {isCorrect ? (
                 <motion.div
-                  className="mb-4 flex items-center justify-center gap-2 text-yellow-700 font-serif font-bold"
+                  className="mb-4 flex items-center justify-center gap-2 text-telenor-orange font-bold"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", delay: 0.1 }}
                 >
                   <CheckCircle className="h-6 w-6" />
-                  <span className="text-lg drop-shadow-sm">
-                    ⚡ Divine Victory!
+                  <span className="text-lg">
+                    Correct!
                   </span>
                 </motion.div>
               ) : (
                 <motion.div
-                  className="mb-4 flex items-center justify-center gap-2 text-red-800 font-serif font-bold"
+                  className="mb-4 flex items-center justify-center gap-2 text-telenor-hot-pink font-bold"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", delay: 0.1 }}
                 >
                   <XCircle className="h-6 w-6" />
-                  <span className="text-lg drop-shadow-sm">
-                    🏛️ The gods show mercy! Study the sacred layout above.
+                  <span className="text-lg">
+                    Incorrect — see the correct layout above.
                   </span>
                 </motion.div>
               )}
