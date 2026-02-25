@@ -3,7 +3,7 @@
 
 import { Progress } from "@/components/ui/progress";
 import { Play, Swords, Timer } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { levels as allLevels } from "@/lib/levels";
 import { shuffleLevels } from "@/lib/shuffleLevels";
@@ -18,6 +18,9 @@ import { Button } from "@/components/ui/button";
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
   const TARGET_SCORE = 20;
+  const CORRECT_FEEDBACK_MS = 1500;
+  const INCORRECT_FEEDBACK_MS = 1000;
+  const INCORRECT_REVEAL_MS = 1500;
 
   const [gameStarted, setGameStarted] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
@@ -33,6 +36,29 @@ export default function FlexboxGame() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [appliedCSS, setAppliedCSS] =
     useState<Record<string, string>>(initialCSS);
+  const autoAdvanceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  const incorrectRevealTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  const winTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const skipAutoAdvanceRef = useRef(false);
+
+  const clearTimeoutRef = (
+    timeoutRef: { current: ReturnType<typeof setTimeout> | null },
+  ) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
+  const clearPendingTimeouts = () => {
+    clearTimeoutRef(autoAdvanceTimeoutRef);
+    clearTimeoutRef(incorrectRevealTimeoutRef);
+    clearTimeoutRef(winTimeoutRef);
+  };
 
   useEffect(() => {
     const shuffled = shuffleLevels([...allLevels]);
@@ -62,14 +88,20 @@ export default function FlexboxGame() {
 
   // Auto advance after feedback
   useEffect(() => {
-    if (showFeedback) {
-      const timer = setTimeout(() => {
-        handleNextLevel();
-      }, 1000);
+    if (!showFeedback || skipAutoAdvanceRef.current) return;
 
-      return () => clearTimeout(timer);
-    }
-  }, [showFeedback]);
+    autoAdvanceTimeoutRef.current = setTimeout(() => {
+      handleNextLevel();
+    }, isCorrect ? CORRECT_FEEDBACK_MS : INCORRECT_FEEDBACK_MS);
+
+    return () => clearTimeoutRef(autoAdvanceTimeoutRef);
+  }, [showFeedback, isCorrect]);
+
+  useEffect(() => {
+    return () => {
+      clearPendingTimeouts();
+    };
+  }, []);
 
   const startGame = () => {
     setGameStarted(true);
@@ -91,6 +123,8 @@ export default function FlexboxGame() {
   const handleOptionSelect = (optionIndex: number) => {
     if (showFeedback) return;
 
+    clearPendingTimeouts();
+    skipAutoAdvanceRef.current = false;
     setSelectedOption(optionIndex);
     const correct = optionIndex === level.correctAnswer;
     setIsCorrect(correct);
@@ -102,16 +136,17 @@ export default function FlexboxGame() {
       setScore(nextScore);
 
       if (nextScore >= TARGET_SCORE) {
-        setTimeout(() => {
+        skipAutoAdvanceRef.current = true;
+        winTimeoutRef.current = setTimeout(() => {
           setGameCompleted(true);
           setGameResult("win");
-        }, 1000);
+        }, CORRECT_FEEDBACK_MS);
         return;
       }
     } else {
-      setTimeout(() => {
+      incorrectRevealTimeoutRef.current = setTimeout(() => {
         setAppliedCSS(level.correctCSS);
-      }, 1500);
+      }, INCORRECT_REVEAL_MS);
     }
   };
 
@@ -126,6 +161,8 @@ export default function FlexboxGame() {
   };
 
   const resetLevelState = () => {
+    clearPendingTimeouts();
+    skipAutoAdvanceRef.current = false;
     setSelectedOption(null);
     setShowFeedback(false);
     setIsCorrect(false);
@@ -163,10 +200,6 @@ export default function FlexboxGame() {
     13: "XIII",
     14: "XIV",
     15: "XV",
-  };
-
-  type Props = {
-    score: number;
   };
 
   return (
@@ -213,6 +246,8 @@ export default function FlexboxGame() {
             appliedCSS={appliedCSS}
             correctCSS={level.correctCSS}
             itemCount={level.itemCount || 1}
+            showFeedback={showFeedback}
+            isCorrect={isCorrect}
           />
 
           <OptionSelector

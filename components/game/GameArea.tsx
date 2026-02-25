@@ -1,6 +1,9 @@
 // components/game/GameArea.tsx
 "use client";
 
+import cakeImage from "@/assets/cake-icons/cake.png";
+import cakeCompleteImage from "@/assets/cake-icons/cake_complete.gif";
+import candleImage from "@/assets/cake-icons/candle.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { initialCSS } from "@/lib/types";
 import { motion } from "framer-motion";
@@ -11,19 +14,28 @@ interface GameAreaProps {
   appliedCSS: Record<string, string>;
   correctCSS: Record<string, string>;
   itemCount: number;
+  showFeedback: boolean;
+  isCorrect: boolean;
 }
 
 export default function GameArea({
   appliedCSS,
   correctCSS,
   itemCount,
+  showFeedback,
+  isCorrect,
 }: GameAreaProps) {
   const targetStyle = {
     ...initialCSS,
     ...correctCSS,
   };
 
-  const renderBoxes = (count: number, isTarget = false) => {
+  const showCompleteState = showFeedback && isCorrect;
+
+  const renderBoxes = (
+    count: number,
+    variant: "target" | "player" | "complete",
+  ) => {
     return Array.from({ length: count }, (_, index) => {
       const animationProps = {
         layout: true,
@@ -37,7 +49,7 @@ export default function GameArea({
         },
       };
 
-      if (isTarget) {
+      if (variant === "target") {
         return (
           <motion.div
             key={`target-${index}`}
@@ -45,10 +57,26 @@ export default function GameArea({
             {...animationProps}
           >
             <img
-              src="https://cdn-icons-png.flaticon.com/512/2550/2550430.png"
-              alt="target house icon"
-              className="h-12 w-12"
+              src={cakeImage.src}
+              alt="target cake icon"
+              className="h-12 w-12 object-contain"
               style={{ filter: "drop-shadow(0 0 2px rgba(45, 40, 205, 0.3))" }}
+            />
+          </motion.div>
+        );
+      }
+
+      if (variant === "complete") {
+        return (
+          <motion.div
+            key={`complete-${index}`}
+            style={{ margin: "5px" }}
+            {...animationProps}
+          >
+            <img
+              src={cakeCompleteImage.src}
+              alt="completed cake animation"
+              className="h-12 w-12 object-contain"
             />
           </motion.div>
         );
@@ -62,9 +90,9 @@ export default function GameArea({
           {...animationProps}
         >
           <img
-            src="https://cdn-icons-png.flaticon.com/512/7228/7228079.png"
-            alt="player balloon icon"
-            className="h-8 w-8"
+            src={candleImage.src}
+            alt="player candle icon"
+            className="h-10 w-10 object-contain"
             style={{ filter: "drop-shadow(0 0 2px rgba(0, 200, 255, 0.3))" }}
           />
         </motion.div>
@@ -88,44 +116,28 @@ export default function GameArea({
         >
           {/* Target layout */}
           <div
-            className="pointer-events-none absolute inset-0 p-2"
+            className={`pointer-events-none absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-0" : "opacity-100"}`}
             style={targetStyle as CSSProperties}
           >
-            {renderBoxes(itemCount, true)}
+            {renderBoxes(itemCount, "target")}
           </div>
 
           {/* Player layout */}
           <div
-            className="absolute inset-0 p-2"
+            className={`absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-0" : "opacity-100"}`}
             style={appliedCSS as CSSProperties}
           >
-            {renderBoxes(itemCount, false)}
+            {renderBoxes(itemCount, "player")}
           </div>
 
+          {/* Correct state: completed cake + candle animation */}
+          <div
+            className={`pointer-events-none absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-100" : "opacity-0"}`}
+            style={targetStyle as CSSProperties}
+          >
+            {renderBoxes(itemCount, "complete")}
+          </div>
         </div>
-
-        {/* Icon attributions (required by Flaticon) */}
-        <p className="mt-3 text-xs text-telenor-mid-blue/70 italic">
-          <a
-            href="https://www.flaticon.com/free-icons/house"
-            title="house icons"
-            className="underline hover:no-underline hover:text-telenor-mid-blue"
-            target="_blank"
-            rel="noreferrer"
-          >
-            House icons created by Freepik - Flaticon
-          </a>
-          {" · "}
-          <a
-            href="https://www.flaticon.com/free-icons/birthday"
-            title="birthday icons"
-            className="underline hover:no-underline hover:text-telenor-mid-blue"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Birthday icons created by Iconic Panda - Flaticon
-          </a>
-        </p>
       </CardContent>
     </Card>
   );
