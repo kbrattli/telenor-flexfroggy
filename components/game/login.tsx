@@ -16,7 +16,7 @@ const Login = () => {
             setLoggedIn(true);
             setError('');
         } else {
-            setError('Incorrect password. The gates of Telenorium remain closed.');
+            setError('Incorrect password. Access to Telenor remains locked.');
         }
     };
 
@@ -36,7 +36,7 @@ const Login = () => {
                 className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 shadow-2xl flex flex-col items-center min-w-[320px]"
             >
                 <h2 className="text-white mb-6 text-xl font-semibold tracking-wide">
-                    Welcome to Telenorium
+                    Welcome to Telenor
                 </h2>
                 <label className="text-white mb-4 font-bold w-full">
                     <div className="relative w-full">
@@ -61,7 +61,7 @@ const Login = () => {
                     type="submit"
                     className="w-full mt-2 bg-telenor-blue text-telenor-dark-blue font-semibold hover:bg-telenor-blue/90 transition-colors"
                 >
-                    Enter Telenorium
+                    Enter Telenor
                 </Button>
                 {error && (
                     <div className="mt-4 text-telenor-hot-pink bg-telenor-hot-pink/10 rounded-lg px-4 py-2 text-sm">

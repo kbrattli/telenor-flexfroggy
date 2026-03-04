@@ -2,7 +2,7 @@
 "use client";
 
 import { Progress } from "@/components/ui/progress";
-import { Play, Swords, Timer } from "lucide-react";
+import { Play, Timer, Trophy } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { levels as allLevels } from "@/lib/levels";
@@ -14,6 +14,7 @@ import GameEndScreen from "@/components/game/GameEndScreen";
 import GameStartScreen from "@/components/game/GameStartScreen";
 import OptionSelector from "@/components/game/OptionSelector";
 import { Button } from "@/components/ui/button";
+import backgroundImage from "@/assets/cake-icons/background.gif";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
@@ -203,21 +204,29 @@ export default function FlexboxGame() {
   };
 
   return (
-    <div className="min-h-screen p-6 flex items-center bg-slate-50">
+    <div
+      className="min-h-svh p-6 flex items-center"
+      style={{
+        backgroundImage: `url(${backgroundImage.src})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="mx-auto max-w-8xl min-h-min w-fit pt-10 px-8 lg:px-16 py-12">
         {/* Header */}
         <div className="mb-10">
           <div className="mb-6 flex flex-col gap-6 lg:flex-row lg:items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="text-3xl font-bold text-telenor-dark-blue flex items-center gap-2">
-                <Swords className="h-7 w-7" />
+              <div className="text-3xl font-bold text-telenor-light-blue flex items-center gap-2">
+                <Trophy className="h-7 w-7" />
                 Score: {romanMap[score]}
               </div>
             </div>
             <div className="flex items-center gap-4">
               <div
                 className={`text-3xl font-bold tabular-nums flex items-center gap-2 ${
-                  totalTimeLeft <= 10 ? "text-telenor-hot-pink animate-pulse" : "text-telenor-dark-blue"
+                  totalTimeLeft <= 10 ? "text-telenor-hot-pink animate-pulse" : "text-telenor-light-blue"
                 }`}
               >
                 <Timer className="h-7 w-7" />
@@ -226,7 +235,9 @@ export default function FlexboxGame() {
               <Progress
                 value={(totalTimeLeft / GAME_DURATION) * 100}
                 className={`w-96 h-3 ${
-                  totalTimeLeft <= 10 ? "bg-telenor-peach [&>div]:bg-telenor-hot-pink" : ""
+                  totalTimeLeft <= 10
+                    ? "bg-telenor-peach [&>div]:bg-telenor-hot-pink"
+                    : "bg-white/40 [&>div]:bg-telenor-light-blue"
                 }`}
               />
             </div>

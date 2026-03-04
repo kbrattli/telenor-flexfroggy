@@ -5,6 +5,7 @@ import { Play } from "lucide-react";
 import AnimatedHandwriting from "@/components/ui/animatedHandwriting";
 import { AnimatePresence, motion } from "framer-motion";
 import Countdown from "./countdown";
+import startBackgroundImage from "@/assets/cake-icons/start_background.gif";
 
 
 interface GameStartProps {
@@ -29,7 +30,13 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
     const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
     return (
         <div
-            className="flex h-svh items-center justify-center overflow-hidden bg-telenor-dark-blue"
+            className="flex h-svh items-center justify-center overflow-hidden"
+            style={{
+                backgroundImage: `url(${startBackgroundImage.src})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+            }}
         >
             <AnimatePresence
                 mode="wait"
@@ -50,11 +57,11 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                             <div className="bg-white border border-white/20 rounded-2xl p-8 shadow-2xl">
                                 <CardContent className="text-center max-w-md mx-auto">
                                     <h1 className="mb-4 text-3xl font-bold text-telenor-dark-blue">
-                                        Telenorium Gladiator Challenge
+                                        Telenor Flexbox Challenge
                                     </h1>
                                     <AnimatedHandwriting
                                         className="mb-6 text-xl leading-relaxed text-telenor-dark-blue/70"
-                                        text={`Welcome, challenger, to the sacred arena of\n Telenorium!\n\nAre you ready for battle?\n`}
+                                        text={`Welcome to Telenor at Kode24-dagen!\n\nToday we celebrate 200 employees across Telenor.\n\nReady to test your CSS skills?\n`}
                                     />
                                     <Button
                                         onClick={() => setStep(2)}
@@ -62,7 +69,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                                         className="w-full font-semibold rounded-lg text-lg hover:bg-telenor-mid-blue/90 transition-colors bg-telenor-mid-blue text-white"
                                     >
                                         <Play className="mr-2 h-5 w-2" />
-                                        Enter the Arena
+                                        Start Challenge
                                     </Button>
                                 </CardContent>
                             </div>

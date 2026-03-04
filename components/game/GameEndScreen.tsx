@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
-import { RotateCcw, Trophy, Swords } from "lucide-react";
+import { RotateCcw, Trophy } from "lucide-react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
+import backgroundImage from "@/assets/cake-icons/background.gif";
 
 interface GameEndScreenProps {
   gameResult: "win" | "lose" | null;
@@ -21,14 +22,12 @@ export default function GameEndScreen({
   const isVictorious = score >= 6;
   const { width, height } = useWindowSize();
 
-  const TitleIcon = isVictorious ? Trophy : Swords;
-  const titleText = isVictorious
-    ? "GLADIATOR VICTORIOUS!"
-    : "FALLEN IN BATTLE!";
+  const TitleIcon = isVictorious ? Trophy : RotateCcw;
+  const titleText = isVictorious ? "CHALLENGE COMPLETED!" : "NICE TRY!";
 
   const message = isVictorious
-    ? "Hail, mighty warrior! You have conquered the arena and earned the crowd's roar!"
-    : "You have fought bravely, but the arena has claimed another soul. Rise again, gladiator, for only through defeat do we learn victory!";
+    ? "Great work! You completed the challenge and helped celebrate 200 employees at Telenor."
+    : "Good effort! Give it another go and see how many challenges you can solve.";
 
   // Phone input state
   const [phone, setPhone] = useState("");
@@ -65,7 +64,13 @@ export default function GameEndScreen({
 
   return (
     <div
-        className="flex h-svh items-center justify-center overflow-hidden bg-telenor-dark-blue"
+      className="flex h-svh items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: `url(${backgroundImage.src})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
     >
 
           {/* Confetti only if player won */}
@@ -86,7 +91,7 @@ export default function GameEndScreen({
               {titleText}
             </h1>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
-              You conquered{" "}
+              You completed{" "}
               <span className="font-bold text-telenor-mid-blue">{score}</span> trials.
             </p>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
@@ -99,7 +104,7 @@ export default function GameEndScreen({
               className="w-full font-semibold rounded-lg text-lg hover:bg-telenor-mid-blue/90 transition-colors bg-telenor-mid-blue text-white"
             >
               <RotateCcw className="mr-2 h-5 w-5" />
-              {isVictorious ? "Fight Again, Champion!" : "Return to Arena"}
+              {isVictorious ? "Play Again" : "Try Again"}
             </Button>
           </CardContent>
         </div>
