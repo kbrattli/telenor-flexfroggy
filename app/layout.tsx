@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Telenor Flexbox Challenge',
-  description: 'Learn CSS Flexbox with Telenor',
+  title: 'Telenor Flexbox-utfordring',
+  description: 'Lær CSS Flexbox med Telenor',
 }
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="nb">
       <body>{children}</body>
     </html>
   )

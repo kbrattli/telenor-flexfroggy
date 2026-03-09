@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const romanNumerals = ["Let's party", "1", "2", "3"];
+const romanNumerals = ["La oss feire!", "1", "2", "3"];
 
 type CountdownProps = { onComplete?: () => void };
 
@@ -15,7 +15,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
       return () => clearTimeout(t);
     }
     if (count === 0) {
-      // keep "Charge!" on screen for 1 second
+      // Behold slutteksten på skjermen i 1,5 sekunder
       const done = setTimeout(() => onComplete?.(), 1500);
       return () => clearTimeout(done);
     }
@@ -43,7 +43,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
     textShadow: "0 0 18px rgba(0,200,255,0.2)",
   };
 
-  // text animation (enter/pop, settle, exit)
+  // Tekstanimasjon
   const numeralVariants = {
     enter: { opacity: 0, y: 20, scale: 0.7, filter: "blur(6px)" },
     center: {
@@ -62,7 +62,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
     },
   } as const;
 
-  // background flash ring each tick
+  // Blinkende ring i bakgrunnen for hvert steg
   const flashVariants = {
     init: { opacity: 0.25, scale: 0.2 },
     show: {
@@ -76,7 +76,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
 
   return (
     <div style={containerStyle} role="timer" aria-live="polite">
-      {/* Flash ring on every change */}
+      {/* Blinkende ring ved hvert skifte */}
       <AnimatePresence mode="popLayout">
         <motion.div
           key={`flash-${count}`}
@@ -95,7 +95,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
         />
       </AnimatePresence>
 
-      {/* Numeral */}
+      {/* Talletekst */}
       <AnimatePresence mode="wait">
         <motion.div
           key={count}
@@ -105,7 +105,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
           exit="exit"
           style={{
             ...numeralStyle,
-            // make "Charge!" punchier
+            // Gjør slutteksten litt tydeligere
             letterSpacing: isFinal ? "0.05em" : undefined,
             transformOrigin: "center",
           }}
@@ -115,7 +115,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Optional white flash on final */}
+      {/* Valgfritt hvitt blink på slutten */}
       <AnimatePresence>
         {isFinal && (
           <motion.div

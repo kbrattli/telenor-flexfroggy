@@ -68,7 +68,7 @@ export default function FlexboxGame() {
 
   const level = shuffledLevels[currentLevel];
 
-  // Countdown timer
+  // Nedtelling
   useEffect(() => {
     if (!gameStarted || gameCompleted) return;
 
@@ -87,7 +87,7 @@ export default function FlexboxGame() {
     return () => clearInterval(timer);
   }, [gameStarted, gameCompleted]);
 
-  // Auto advance after feedback
+  // Gå automatisk videre etter tilbakemelding
   useEffect(() => {
     if (!showFeedback || skipAutoAdvanceRef.current) return;
 
@@ -214,13 +214,13 @@ export default function FlexboxGame() {
       }}
     >
       <div className="mx-auto max-w-8xl min-h-min w-fit pt-10 px-8 lg:px-16 py-12">
-        {/* Header */}
+        {/* Toppfelt */}
         <div className="mb-10">
           <div className="mb-6 flex flex-col gap-6 lg:flex-row lg:items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="text-3xl font-bold text-telenor-light-blue flex items-center gap-2">
                 <Trophy className="h-7 w-7" />
-                Score: {romanMap[score]}
+                Poeng: {romanMap[score]}
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -247,7 +247,7 @@ export default function FlexboxGame() {
               onClick={restartGame}
             >
               <Play className="mr-2 h-5 w-5" />
-              Back to Arena
+              Tilbake til start
             </Button>
           </div>
         </div>

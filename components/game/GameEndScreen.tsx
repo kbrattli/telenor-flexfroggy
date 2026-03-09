@@ -19,17 +19,17 @@ export default function GameEndScreen({
   score,
   onRestart,
 }: GameEndScreenProps) {
-  const isVictorious = score >= 6;
+  const isVictorious = gameResult === "win";
   const { width, height } = useWindowSize();
 
   const TitleIcon = isVictorious ? Trophy : RotateCcw;
-  const titleText = isVictorious ? "CHALLENGE COMPLETED!" : "NICE TRY!";
+  const titleText = isVictorious ? "UTFORDRING FULLFØRT!" : "GODT FORSØK!";
 
   const message = isVictorious
-    ? "Great work! You completed the challenge and helped celebrate 200 employees at Telenor."
-    : "Good effort! Give it another go and see how many challenges you can solve.";
+    ? "Bra jobbet! Du fullførte utfordringen og var med på å feire 200 ansatte i Telenor."
+    : "God innsats! Prøv igjen og se hvor mange utfordringer du klarer.";
 
-  // Phone input state
+  // Tilstand for telefonnummer
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -38,15 +38,15 @@ export default function GameEndScreen({
     e.preventDefault();
 
     if (!/^\d{8,15}$/.test(phone)) {
-      setError("Please enter a valid phone number.");
+      setError("Skriv inn et gyldig telefonnummer.");
       return;
     }
 
-    // Here you would send the phone number to your backend/database
+    // Her kan telefonnummeret sendes til backend eller database
     const existingNumbers: string[] = JSON.parse(localStorage.getItem("winners") || "[]");
 
     if (existingNumbers.includes(phone)) {
-      setError("This phone number has already been used.");
+      setError("Dette telefonnummeret er allerede brukt.");
       return;
     }
 
@@ -55,11 +55,11 @@ export default function GameEndScreen({
 
     existingNumbers.push(phone);
     localStorage.setItem("winners", JSON.stringify(existingNumbers));
-    console.log("Phone number saved:", phone);
+    console.log("Telefonnummer lagret:", phone);
 
-    // List of winners (commented out by default)
+    // Liste over vinnere
     const winners = JSON.parse(localStorage.getItem("winners") || "[]");
-    console.log("All saved winners phone numbers:", winners);
+    console.log("Alle lagrede vinnernumre:", winners);
   };
 
   return (
@@ -72,8 +72,7 @@ export default function GameEndScreen({
         backgroundSize: "cover",
       }}
     >
-
-          {/* Confetti only if player won */}
+      {/* Konfetti bare hvis spilleren vant */}
       {isVictorious &&
         <Confetti width={width} height={height}
           colors={["#00C8FF", "#2D28CD", "#B4FFFF", "#FF5A28"]}
@@ -91,8 +90,8 @@ export default function GameEndScreen({
               {titleText}
             </h1>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
-              You completed{" "}
-              <span className="font-bold text-telenor-mid-blue">{score}</span> trials.
+              Du fullførte{" "}
+              <span className="font-bold text-telenor-mid-blue">{score}</span> utfordringer.
             </p>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
               {message}
@@ -104,7 +103,7 @@ export default function GameEndScreen({
               className="w-full font-semibold rounded-lg text-lg hover:bg-telenor-mid-blue/90 transition-colors bg-telenor-mid-blue text-white"
             >
               <RotateCcw className="mr-2 h-5 w-5" />
-              {isVictorious ? "Play Again" : "Try Again"}
+              {isVictorious ? "Spill igjen" : "Prøv igjen"}
             </Button>
           </CardContent>
         </div>

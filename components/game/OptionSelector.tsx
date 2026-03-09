@@ -28,7 +28,7 @@ export default function OptionSelector({
   onSelect,
   onNext,
 }: OptionSelectorProps) {
-  // Options made with key 1 2 3 or 4.
+  // Velg alternativ med tastene 1, 2, 3 eller 4.
   useEffect(() => {
     const handlePressedKey = (e: KeyboardEvent) => {
       if (showFeedback) return;
@@ -50,7 +50,7 @@ export default function OptionSelector({
     <Card className="border border-slate-200 rounded-xl shadow-sm h-full">
       <CardContent className="p-8">
         <h3 className="mb-4 text-lg font-bold text-telenor-dark-blue">
-          Choose the correct CSS
+          Velg riktig CSS
         </h3>
         <div className="space-y-3">
           {level.options.map((option, index) => {
@@ -99,7 +99,7 @@ export default function OptionSelector({
           })}
         </div>
 
-        {/* Feedback display (no button) */}
+        {/* Tilbakemelding uten knapp */}
         <AnimatePresence>
           {showFeedback && (
             <motion.div
@@ -117,7 +117,7 @@ export default function OptionSelector({
                 >
                   <CheckCircle className="h-6 w-6" />
                   <span className="text-lg">
-                    Correct!
+                    Riktig!
                   </span>
                 </motion.div>
               ) : (
@@ -129,7 +129,7 @@ export default function OptionSelector({
                 >
                   <XCircle className="h-6 w-6" />
                   <span className="text-lg">
-                    Incorrect — see the correct layout above.
+                    Feil, se riktig layout over.
                   </span>
                 </motion.div>
               )}

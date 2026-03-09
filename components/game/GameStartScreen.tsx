@@ -64,11 +64,11 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                     priority
                   />
                   <h1 className="mb-4 text-3xl font-bold text-telenor-dark-blue">
-                    Telenor Flexbox Challenge
+                    Telenor Flexbox-utfordring
                   </h1>
                   <AnimatedHandwriting
                     className="mb-6 text-xl leading-relaxed text-telenor-dark-blue/70"
-                    text={`\nReady to test your CSS skills?\n`}
+                    text={`Telenor feierer 200 ansatte.\n\nKlar til å teste CSS-ferdighetene dine?\n`}
                   />
                   <Button
                     onClick={() => setStep(2)}
@@ -76,7 +76,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                     className="w-full font-semibold rounded-lg text-lg hover:bg-telenor-mid-blue/90 transition-colors bg-telenor-mid-blue text-white"
                   >
                     <Play className="mr-2 h-5 w-2" />
-                    Start Challenge
+                    Start utfordringen
                   </Button>
                 </CardContent>
               </div>

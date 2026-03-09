@@ -58,7 +58,7 @@ export default function GameArea({
           >
             <img
               src={cakeImage.src}
-              alt="target cake icon"
+              alt="Kake i måloppsettet"
               className="h-12 w-12 object-contain"
               style={{ filter: "drop-shadow(0 0 2px rgba(45, 40, 205, 0.3))" }}
             />
@@ -75,7 +75,7 @@ export default function GameArea({
           >
             <img
               src={cakeCompleteImage.src}
-              alt="completed cake animation"
+              alt="Fullført kakeanimasjon"
               className="h-12 w-12 object-contain"
             />
           </motion.div>
@@ -91,7 +91,7 @@ export default function GameArea({
         >
           <img
             src={candleImage.src}
-            alt="player candle icon"
+            alt="Spillerens lys"
             className="h-10 w-10 object-contain"
             style={{ filter: "drop-shadow(0 0 2px rgba(0, 200, 255, 0.3))" }}
           />
@@ -107,14 +107,14 @@ export default function GameArea({
       <CardContent className="p-6">
         <h3 className="mb-4 text-lg font-bold text-telenor-dark-blue flex items-center gap-2">
           <Swords className="h-5 w-5" />
-          Arena Battlefield
+          Arena
         </h3>
 
         <div
           className="relative overflow-hidden rounded-lg border border-slate-200 bg-slate-50"
           style={{ width: "100%", height: containerHeight, maxWidth: "100%" }}
         >
-          {/* Target layout */}
+          {/* Måloppsett */}
           <div
             className={`pointer-events-none absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-0" : "opacity-100"}`}
             style={targetStyle as CSSProperties}
@@ -122,7 +122,7 @@ export default function GameArea({
             {renderBoxes(itemCount, "target")}
           </div>
 
-          {/* Player layout */}
+          {/* Spilleroppsett */}
           <div
             className={`absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-0" : "opacity-100"}`}
             style={appliedCSS as CSSProperties}
@@ -130,7 +130,7 @@ export default function GameArea({
             {renderBoxes(itemCount, "player")}
           </div>
 
-          {/* Correct state: completed cake + candle animation */}
+          {/* Riktig tilstand: ferdig kake og lysanimasjon */}
           <div
             className={`pointer-events-none absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-100" : "opacity-0"}`}
             style={targetStyle as CSSProperties}
