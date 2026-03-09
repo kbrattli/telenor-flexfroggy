@@ -14,7 +14,7 @@ import GameEndScreen from "@/components/game/GameEndScreen";
 import GameStartScreen from "@/components/game/GameStartScreen";
 import OptionSelector from "@/components/game/OptionSelector";
 import { Button } from "@/components/ui/button";
-import backgroundImage from "@/assets/cake-icons/background.gif";
+import backgroundImage from "@/assets/cake-icons/bg.webp";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;

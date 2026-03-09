@@ -6,7 +6,7 @@ import { CardContent } from "@/components/ui/card";
 import { RotateCcw, Trophy } from "lucide-react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
-import backgroundImage from "@/assets/cake-icons/background.gif";
+import backgroundImage from "@/assets/cake-icons/bg.webp";
 
 interface GameEndScreenProps {
   gameResult: "win" | "lose" | null;
