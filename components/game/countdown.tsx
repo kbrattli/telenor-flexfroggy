@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const romanNumerals = ["La oss feire!", "1", "2", "3"];
+const romanNumerals = ["Gå!", "1", "2", "3"];
 
 type CountdownProps = { onComplete?: () => void };
 
