@@ -58,25 +58,26 @@ export default function OptionSelector({
             const isCorrectOption = index === level.correctAnswer;
             const isIncorrectSelected =
               showFeedback && isSelected && !isCorrectOption;
+            const optionTextClass = showFeedback && isCorrectOption
+              ? "text-green-950"
+              : isIncorrectSelected
+                ? "text-telenor-ink-pink"
+                : "text-current";
 
             return (
               <Button
                 key={index}
                 variant={
                   showFeedback
-                    ? isCorrectOption
-                      ? "default"
-                      : isIncorrectSelected
-                        ? "destructive"
-                        : "outline"
+                    ? "outline"
                     : isSelected
                       ? "default"
                       : "outline"
                 }
                 className={`h-auto w-full justify-start px-4 py-4 text-left transition-all duration-300 ${showFeedback && isCorrectOption
-                    ? "border-green-600 bg-green-50 text-green-900"
+                    ? "border-2 border-green-700 bg-green-50 text-green-900"
                     : isIncorrectSelected
-                      ? "border-telenor-hot-pink bg-telenor-hot-pink/5 text-telenor-hot-pink"
+                      ? "border-2 border-telenor-ink-pink bg-telenor-deep-pink/10 text-telenor-ink-pink"
                       : isSelected
                         ? "border-telenor-mid-blue bg-telenor-mid-blue/5 text-telenor-dark-blue"
                         : "border-slate-200 bg-white text-telenor-dark-blue hover:border-telenor-mid-blue/50 hover:bg-slate-50"
@@ -88,7 +89,7 @@ export default function OptionSelector({
                   {option.label.map((line, lineIndex) => (
                     <code
                       key={lineIndex}
-                      className="font-mono text-sm"
+                      className={`font-mono text-sm ${optionTextClass}`}
                     >
                       {line}
                     </code>
@@ -122,7 +123,7 @@ export default function OptionSelector({
                 </motion.div>
               ) : (
                 <motion.div
-                  className="mb-4 flex items-center justify-center gap-2 text-telenor-hot-pink font-bold"
+                  className="mb-4 flex items-center justify-center gap-2 text-telenor-deep-pink font-bold"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", delay: 0.1 }}

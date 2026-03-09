@@ -20,6 +20,8 @@ const config: Config = {
   				'orange': 'hsl(var(--telenor-orange))',
   				'lemon': 'hsl(var(--telenor-lemon))',
   				'hot-pink': 'hsl(var(--telenor-hot-pink))',
+  				'deep-pink': 'hsl(var(--telenor-deep-pink))',
+  				'ink-pink': 'hsl(var(--telenor-ink-pink))',
   				'mint': 'hsl(var(--telenor-mint))',
   				'stone': 'hsl(var(--telenor-stone))',
   				'peach': 'hsl(var(--telenor-peach))',
