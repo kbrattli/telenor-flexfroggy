@@ -7,7 +7,7 @@ import candleImage from "@/assets/cake-icons/candle.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { initialCSS } from "@/lib/types";
 import { motion } from "framer-motion";
-import { Swords } from "lucide-react";
+import { Cake } from "lucide-react";
 import { CSSProperties } from "react";
 
 interface GameAreaProps {
@@ -114,8 +114,8 @@ export default function GameArea({
     <Card className="border border-slate-200 rounded-xl shadow-sm h-full">
       <CardContent className="p-6">
         <h3 className="mb-4 text-lg font-bold text-telenor-dark-blue flex items-center gap-2">
-          <Swords className="h-5 w-5" />
-          Arena
+          <Cake className="h-5 w-5" />
+          Sett lys på muffinsen
         </h3>
 
         <div

@@ -18,7 +18,7 @@ import backgroundImage from "@/assets/cake-icons/bg.webp";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
-  const TARGET_SCORE = 20;
+  const TARGET_SCORE = 5;
   const CORRECT_FEEDBACK_MS = 1500;
   const INCORRECT_FEEDBACK_MS = 1000;
   const INCORRECT_REVEAL_MS = 1500;
@@ -60,6 +60,9 @@ export default function FlexboxGame() {
     clearTimeoutRef(incorrectRevealTimeoutRef);
     clearTimeoutRef(winTimeoutRef);
   };
+
+  const formatScore = (value: number) =>
+    Number.isInteger(value) ? value.toString() : value.toFixed(1);
 
   useEffect(() => {
     const shuffled = shuffleLevels([...allLevels]);
@@ -136,7 +139,7 @@ export default function FlexboxGame() {
     setAppliedCSS({ ...initialCSS, ...level.options[optionIndex].css });
 
     if (correct) {
-      const nextScore = score + 1;
+      const nextScore = Math.min(score + 1, TARGET_SCORE);
       setScore(nextScore);
 
       if (nextScore >= TARGET_SCORE) {
@@ -148,6 +151,7 @@ export default function FlexboxGame() {
         return;
       }
     } else {
+      setScore((prevScore) => Math.max(0, prevScore - 0.5));
       incorrectRevealTimeoutRef.current = setTimeout(() => {
         setAppliedCSS({ ...initialCSS, ...level.correctCSS });
       }, INCORRECT_REVEAL_MS);
@@ -157,11 +161,13 @@ export default function FlexboxGame() {
   const handleNextLevel = () => {
     if (currentLevel < shuffledLevels.length - 1) {
       setCurrentLevel(currentLevel + 1);
-      resetLevelState();
     } else {
-      setGameCompleted(true);
-      setGameResult("win");
+      const reshuffled = shuffleLevels([...allLevels]);
+      setShuffledLevels(reshuffled);
+      setCurrentLevel(0);
     }
+
+    resetLevelState();
   };
 
   const resetLevelState = () => {
@@ -182,29 +188,11 @@ export default function FlexboxGame() {
       <GameEndScreen
         gameResult={gameResult}
         score={score}
+        targetScore={TARGET_SCORE}
         onRestart={restartGame}
       />
     );
   }
-
-  const romanMap: Record<number, string> = {
-    0: "-",
-    1: "I",
-    2: "II",
-    3: "III",
-    4: "IV",
-    5: "V",
-    6: "VI",
-    7: "VII",
-    8: "VIII",
-    9: "IX",
-    10: "X",
-    11: "XI",
-    12: "XII",
-    13: "XIII",
-    14: "XIV",
-    15: "XV",
-  };
 
   return (
     <div
@@ -223,7 +211,7 @@ export default function FlexboxGame() {
             <div className="flex items-center gap-4">
               <div className="text-3xl font-bold text-telenor-light-blue flex items-center gap-2">
                 <Trophy className="h-7 w-7" />
-                Poeng: {romanMap[score]}
+                Poeng: {formatScore(score)} / {TARGET_SCORE}
               </div>
             </div>
             <div className="flex items-center gap-4">

@@ -12,23 +12,27 @@ import backgroundImage from "@/assets/cake-icons/bg.webp";
 interface GameEndScreenProps {
   gameResult: "win" | "lose" | null;
   score: number;
+  targetScore: number;
   onRestart: () => void;
 }
 
 export default function GameEndScreen({
   gameResult,
   score,
+  targetScore,
   onRestart,
 }: GameEndScreenProps) {
   const isVictorious = gameResult === "win";
   const { width, height } = useWindowSize();
+  const formatScore = (value: number) =>
+    Number.isInteger(value) ? value.toString() : value.toFixed(1);
 
   const TitleIcon = isVictorious ? Trophy : RotateCcw;
   const titleText = isVictorious ? "UTFORDRING FULLFØRT!" : "GODT FORSØK!";
 
   const message = isVictorious
-    ? "Bra jobbet! Du klarte utfordringen, CSS konge."
-    : "God innsats! Prøv igjen og se hvor mange utfordringer du klarer.";
+    ? "Bra jobbet, du kvalifiserer til pinjata."
+    : `God innsats! Du trenger ${targetScore} poeng for å komme videre.`;
 
   // Tilstand for telefonnummer
   const [phone, setPhone] = useState("");
@@ -99,45 +103,16 @@ export default function GameEndScreen({
               {titleText}
             </h1>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
-              Du fullførte{" "}
-              <span className="font-bold text-telenor-mid-blue">{score}</span>{" "}
-              utfordringer.
+              Du fikk{" "}
+              <span className="font-bold text-telenor-mid-blue">
+                {formatScore(score)}
+              </span>{" "}
+              av {targetScore} poeng.
             </p>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
               {message}
             </p>
-            {isVictorious && !submitted && (
-              <form
-                onSubmit={handlePhoneSubmit}
-                className="mb-6 flex flex-col items-center gap-3"
-              >
-                <p className="text-base leading-relaxed text-telenor-dark-blue/70">
-                  Skriv inn telefonnummeret ditt for å få være med i trekningen.
-                  Vi deler det ikke videre og bruker det ikke til noe annet.
-                </p>
-                <Input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="h-12 w-full border-telenor-mid-blue/30 text-center text-lg text-telenor-dark-blue placeholder:text-telenor-dark-blue/40"
-                  placeholder="Telefonnummer"
-                  maxLength={15}
-                  inputMode="numeric"
-                  autoComplete="tel"
-                />
-                {error && (
-                  <div className="text-sm font-medium text-telenor-hot-pink">
-                    {error}
-                  </div>
-                )}
-                <Button
-                  type="submit"
-                  className="w-full rounded-lg bg-telenor-dark-blue text-lg font-semibold text-white transition-colors hover:bg-telenor-dark-blue/90"
-                >
-                  Send inn
-                </Button>
-              </form>
-            )}
+
             {isVictorious && submitted && !error && (
               <div className="mb-6 text-base font-semibold text-telenor-dark-blue">
                 Takk. Telefonnummeret ditt er registrert.

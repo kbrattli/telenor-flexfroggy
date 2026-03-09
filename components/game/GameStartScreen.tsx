@@ -68,7 +68,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                   </h1>
                   <AnimatedHandwriting
                     className="mb-6 text-xl leading-relaxed text-telenor-dark-blue/70"
-                    text={`Telenor feierer 200 ansatte.\n\nKlar til å teste CSS-ferdighetene dine?\n`}
+                    text={`Bli med på festen!\n\nKlar til å teste CSS-ferdighetene dine?\nNå 5 poeng for å kvalifisere deg til pinjata.\n`}
                   />
                   <Button
                     onClick={() => setStep(2)}
