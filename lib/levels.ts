@@ -1,15 +1,6 @@
 // lib/levels.ts
 import { Level } from "./types";
 
-function shuffleArray<T>(array: T[]): T[] {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-}
-
 export const levels: Level[] = [
   {
     id: 1,
@@ -100,16 +91,16 @@ export const levels: Level[] = [
     itemCount: 3,
     options: [
       {
-        label: ["flex-direction: row;"],
-        css: { flexDirection: "row" },
+        label: ["flex-direction: row;", "gap: '10px';"],
+        css: { flexDirection: "row", gap: "10px" },
       },
       {
         label: ["flex-direction: column;", "gap: '10px';"],
         css: { flexDirection: "column", gap: "10px" },
       },
       {
-        label: ["flex-direction: column-reverse;", "gap: '10px';"],
-        css: { flexDirection: "column-reverse", gap: "10px" },
+        label: ["flex-direction: column;", "gap: '0px';"],
+        css: { flexDirection: "column", gap: "0px" },
       },
     ],
     correctAnswer: 1,
@@ -154,16 +145,16 @@ export const levels: Level[] = [
     itemCount: 9,
     options: [
       {
-        label: ["flex-wrap: nowrap;"],
-        css: { flexWrap: "nowrap" },
+        label: ["flex-wrap: nowrap;", "justify-content: flex-start;"],
+        css: { flexWrap: "nowrap", justifyContent: "flex-start" },
       },
       {
-        label: ["flex-wrap: wrap;"],
-        css: { flexWrap: "wrap" },
+        label: ["flex-wrap: wrap;", "justify-content: flex-start;"],
+        css: { flexWrap: "wrap", justifyContent: "flex-start" },
       },
       {
-        label: ["flex-wrap: wrap-reverse;"],
-        css: { flexWrap: "wrap-reverse" },
+        label: ["flex-wrap: wrap;", "justify-content: center;"],
+        css: { flexWrap: "wrap", justifyContent: "center" },
       },
     ],
     correctAnswer: 1,
@@ -207,16 +198,40 @@ export const levels: Level[] = [
     itemCount: 3,
     options: [
       {
-        label: ["flex-direction: column;", "justify-content: center;"],
-        css: { flexDirection: "column", justifyContent: "center" },
+        label: [
+          "flex-direction: column;",
+          "justify-content: center;",
+          "align-items: flex-start;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-start",
+        },
       },
       {
-        label: ["flex-direction: column;", "align-items: center;"],
-        css: { flexDirection: "column", alignItems: "center" },
+        label: [
+          "flex-direction: column;",
+          "justify-content: flex-start;",
+          "align-items: center;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        },
       },
       {
-        label: ["flex-direction: column;", "justify-content: flex-end;"],
-        css: { flexDirection: "column", justifyContent: "flex-end" },
+        label: [
+          "flex-direction: column;",
+          "justify-content: flex-end;",
+          "align-items: flex-start;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          alignItems: "flex-start",
+        },
       },
     ],
     correctAnswer: 0,
@@ -224,32 +239,6 @@ export const levels: Level[] = [
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-    },
-  },
-  {
-    id: 9,
-    title: "Reverse Item Order",
-    description: "Display the items in the reverse order, from right to left.",
-    itemCount: 3,
-    options: [
-      {
-        label: ["flex-direction: row;", "align-items: center;"],
-        css: { flexDirection: "row", alignItems: "center" },
-      },
-      {
-        label: ["flex-direction: row-reverse;", "align-items: center;"],
-        css: { flexDirection: "row-reverse", alignItems: "center" },
-      },
-      {
-        label: ["justify-content: flex-end;", "align-items: flex-end;"],
-        css: { justifyContent: "flex-end", alignItems: "flex-end" },
-      },
-    ],
-    correctAnswer: 1,
-    correctCSS: {
-      display: "flex",
-      flexDirection: "row-reverse",
-      alignItems: "center",
     },
   },
   {
@@ -318,12 +307,12 @@ export const levels: Level[] = [
         css: { justifyContent: "flex-start", gap: "15px", alignItems: "center" },
       },
       {
-        label: ["justify-content: center;", "gap: '15px';"],
-        css: { justifyContent: "center", gap: "15px" },
+        label: ["justify-content: center;", "gap: '15px';", "align-items: center;"],
+        css: { justifyContent: "center", gap: "15px", alignItems: "center" },
       },
       {
-        label: ["justify-content: space-between;"],
-        css: { justifyContent: "space-between" },
+        label: ["justify-content: space-between;", "gap: '15px';", "align-items: center;"],
+        css: { justifyContent: "space-between", gap: "15px", alignItems: "center" },
       },
     ],
     correctAnswer: 0,
@@ -420,8 +409,16 @@ export const levels: Level[] = [
         },
       },
       {
-        label: ["justify-content: center;", "align-items: center;"],
-        css: { justifyContent: "center", alignItems: "center" },
+        label: [
+          "flex-direction: column;",
+          "justify-content: center;",
+          "align-items: flex-start;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-start",
+        },
       },
     ],
     correctAnswer: 0,
@@ -444,12 +441,12 @@ export const levels: Level[] = [
         css: { justifyContent: "flex-start", gap: "8px", alignItems: "center" },
       },
       {
-        label: ["justify-content: space-between;"],
-        css: { justifyContent: "space-between" },
+        label: ["justify-content: space-between;", "gap: '8px';", "align-items: center;"],
+        css: { justifyContent: "space-between", gap: "8px", alignItems: "center" },
       },
       {
-        label: ["justify-content: center;", "gap: '8px';"],
-        css: { justifyContent: "center", gap: "8px" },
+        label: ["justify-content: center;", "gap: '8px';", "align-items: center;"],
+        css: { justifyContent: "center", gap: "8px", alignItems: "center" },
       },
     ],
     correctAnswer: 0,
@@ -515,33 +512,6 @@ export const levels: Level[] = [
     },
   },
   {
-    id: 19,
-    title: "Tag Cloud Layout",
-    description:
-      "Allow tags to wrap to new lines and distribute them evenly across each line.",
-    itemCount: 6,
-    options: [
-      {
-        label: ["flex-wrap: wrap;", "justify-content: flex-start;"],
-        css: { flexWrap: "wrap", justifyContent: "flex-start" },
-      },
-      {
-        label: ["flex-wrap: wrap;", "justify-content: space-around;"],
-        css: { flexWrap: "wrap", justifyContent: "space-around" },
-      },
-      {
-        label: ["flex-wrap: wrap;", "justify-content: center;"],
-        css: { flexWrap: "wrap", justifyContent: "center" },
-      },
-    ],
-    correctAnswer: 1,
-    correctCSS: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-around",
-    },
-  },
-  {
     id: 20,
     title: "Footer Menu",
     description:
@@ -551,17 +521,18 @@ export const levels: Level[] = [
       {
         label: [
           "justify-content: flex-end;",
-          "gap: '12px'; align-items: center;",
+          "gap: '12px';",
+          "align-items: center;",
         ],
         css: { justifyContent: "flex-end", gap: "12px", alignItems: "center" },
       },
       {
-        label: ["justify-content: flex-start;", "gap: '16px';"],
-        css: { justifyContent: "flex-start", gap: "16px" },
+        label: ["justify-content: flex-start;", "gap: '12px';", "align-items: center;"],
+        css: { justifyContent: "flex-start", gap: "12px", alignItems: "center" },
       },
       {
-        label: ["justify-content: space-between;"],
-        css: { justifyContent: "space-between" },
+        label: ["justify-content: space-between;", "gap: '12px';", "align-items: center;"],
+        css: { justifyContent: "space-between", gap: "12px", alignItems: "center" },
       },
     ],
     correctAnswer: 0,
@@ -572,7 +543,6 @@ export const levels: Level[] = [
       gap: "12px",
     },
   },
-    // Add these to your levels array in `lib/levels.ts`
     {
         id: 21,
         title: "Left-Aligned Button Row",
@@ -585,19 +555,6 @@ export const levels: Level[] = [
         ],
         correctAnswer: 2,
         correctCSS: { display: "flex", justifyContent: "flex-start", alignItems: "center" },
-    },
-    {
-        id: 22,
-        title: "Reverse Column Stack",
-        description: "Stack items vertically, but in reverse order (bottom to top).",
-        itemCount: 3,
-        options: [
-            { label: ["flex-direction: column;"], css: { flexDirection: "column" } },
-            { label: ["flex-direction: column-reverse;"], css: { flexDirection: "column-reverse" } },
-            { label: ["flex-direction: row-reverse;"], css: { flexDirection: "row-reverse" } },
-        ],
-        correctAnswer: 1,
-        correctCSS: { display: "flex", flexDirection: "column-reverse" },
     },
     {
         id: 23,
@@ -631,8 +588,8 @@ export const levels: Level[] = [
         description: "Stack items vertically, center horizontally, and add space between.",
         itemCount: 3,
         options: [
+            { label: ["flex-direction: column;", "align-items: flex-start;", "gap: '20px';"], css: { flexDirection: "column", alignItems: "flex-start", gap: "20px" } },
             { label: ["flex-direction: column;", "align-items: flex-end;", "gap: '20px';"], css: { flexDirection: "column", alignItems: "flex-end", gap: "20px" } },
-            { label: ["flex-direction: row;", "align-items: center;", "gap: '20px';"], css: { flexDirection: "row", alignItems: "center", gap: "20px" } },
             { label: ["flex-direction: column;", "align-items: center;", "gap: '20px';"], css: { flexDirection: "column", alignItems: "center", gap: "20px" } },
         ],
         correctAnswer: 2,
@@ -644,25 +601,12 @@ export const levels: Level[] = [
         description: "Align all items to the bottom of the container in a row.",
         itemCount: 4,
         options: [
-            { label: ["align-items: flex-start;"], css: { alignItems: "flex-start" } },
-            { label: ["align-items: flex-end;"], css: { alignItems: "flex-end" } },
-            { label: ["align-items: center;"], css: { alignItems: "center" } },
+            { label: ["justify-content: flex-start;", "align-items: flex-start;"], css: { justifyContent: "flex-start", alignItems: "flex-start" } },
+            { label: ["justify-content: flex-start;", "align-items: flex-end;"], css: { justifyContent: "flex-start", alignItems: "flex-end" } },
+            { label: ["justify-content: flex-start;", "align-items: center;"], css: { justifyContent: "flex-start", alignItems: "center" } },
         ],
         correctAnswer: 1,
         correctCSS: { display: "flex", alignItems: "flex-end" },
-    },
-    {
-        id: 27,
-        title: "Reverse Wrap Gallery",
-        description: "Allow items to wrap in reverse order onto new lines.",
-        itemCount: 8,
-        options: [
-            { label: ["flex-wrap: wrap-reverse;"], css: { flexWrap: "wrap-reverse" } },
-            { label: ["flex-wrap: wrap;"], css: { flexWrap: "wrap" } },
-            { label: ["flex-wrap: nowrap;"], css: { flexWrap: "nowrap" } },
-        ],
-        correctAnswer: 0,
-        correctCSS: { display: "flex", flexWrap: "wrap-reverse" },
     },
     {
         id: 28,
@@ -702,19 +646,6 @@ export const levels: Level[] = [
         ],
         correctAnswer: 1,
         correctCSS: { display: "flex", flexDirection: "column", justifyContent: "space-between" },
-    },
-    {
-        id: 31,
-        title: "Left-Aligned Wrap",
-        description: "Allow items to wrap and align them to the left on each line.",
-        itemCount: 7,
-        options: [
-            { label: ["flex-wrap: wrap;", "justify-content: center;"], css: { flexWrap: "wrap", justifyContent: "center" } },
-            { label: ["flex-wrap: wrap;", "justify-content: flex-end;"], css: { flexWrap: "wrap", justifyContent: "flex-end" } },
-            { label: ["flex-wrap: wrap;", "justify-content: flex-start;"], css: { flexWrap: "wrap", justifyContent: "flex-start" } },
-        ],
-        correctAnswer: 2,
-        correctCSS: { display: "flex", flexWrap: "wrap", justifyContent: "flex-start" },
     },
     {
         id: 32,

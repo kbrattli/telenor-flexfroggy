@@ -11,6 +11,7 @@ import { Swords } from "lucide-react";
 import { CSSProperties } from "react";
 
 interface GameAreaProps {
+  levelId: number;
   appliedCSS: Record<string, string>;
   correctCSS: Record<string, string>;
   itemCount: number;
@@ -19,6 +20,7 @@ interface GameAreaProps {
 }
 
 export default function GameArea({
+  levelId,
   appliedCSS,
   correctCSS,
   itemCount,
@@ -29,8 +31,14 @@ export default function GameArea({
     ...initialCSS,
     ...correctCSS,
   };
+  const playerStyle = {
+    ...initialCSS,
+    ...appliedCSS,
+  };
 
   const showCompleteState = showFeedback && isCorrect;
+  const isWrapLevel = correctCSS.flexWrap === "wrap";
+  const renderedItemCount = isWrapLevel ? Math.max(itemCount, 16) : itemCount;
 
   const renderBoxes = (
     count: number,
@@ -84,7 +92,7 @@ export default function GameArea({
 
       return (
         <motion.div
-          key={`player-${index}`}
+          key={`player-${levelId}-${index}`}
           style={{ margin: "5px" }}
           className="h-12 w-12 flex items-center justify-center"
           {...animationProps}
@@ -100,7 +108,7 @@ export default function GameArea({
     });
   };
 
-  const containerHeight = itemCount > 6 ? "500px" : "420px";
+  const containerHeight = renderedItemCount > 6 ? "500px" : "420px";
 
   return (
     <Card className="border border-slate-200 rounded-xl shadow-sm h-full">
@@ -119,15 +127,16 @@ export default function GameArea({
             className={`pointer-events-none absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-0" : "opacity-100"}`}
             style={targetStyle as CSSProperties}
           >
-            {renderBoxes(itemCount, "target")}
+            {renderBoxes(renderedItemCount, "target")}
           </div>
 
           {/* Spilleroppsett */}
           <div
+            key={`player-layer-${levelId}`}
             className={`absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-0" : "opacity-100"}`}
-            style={appliedCSS as CSSProperties}
+            style={playerStyle as CSSProperties}
           >
-            {renderBoxes(itemCount, "player")}
+            {renderBoxes(renderedItemCount, "player")}
           </div>
 
           {/* Riktig tilstand: ferdig kake og lysanimasjon */}
@@ -135,7 +144,7 @@ export default function GameArea({
             className={`pointer-events-none absolute inset-0 p-2 transition-opacity duration-200 ${showCompleteState ? "opacity-100" : "opacity-0"}`}
             style={targetStyle as CSSProperties}
           >
-            {renderBoxes(itemCount, "complete")}
+            {renderBoxes(renderedItemCount, "complete")}
           </div>
         </div>
       </CardContent>

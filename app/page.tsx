@@ -149,7 +149,7 @@ export default function FlexboxGame() {
       }
     } else {
       incorrectRevealTimeoutRef.current = setTimeout(() => {
-        setAppliedCSS(level.correctCSS);
+        setAppliedCSS({ ...initialCSS, ...level.correctCSS });
       }, INCORRECT_REVEAL_MS);
     }
   };
@@ -259,6 +259,7 @@ export default function FlexboxGame() {
 
         <div className="grid gap-8 lg:grid-cols-2 auto-rows-fr">
           <GameArea
+            levelId={level.id}
             appliedCSS={appliedCSS}
             correctCSS={level.correctCSS}
             itemCount={level.itemCount || 1}
