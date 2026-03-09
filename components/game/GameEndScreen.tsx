@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { RotateCcw, Trophy } from "lucide-react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
@@ -26,7 +27,7 @@ export default function GameEndScreen({
   const titleText = isVictorious ? "UTFORDRING FULLFØRT!" : "GODT FORSØK!";
 
   const message = isVictorious
-    ? "Bra jobbet! Du fullførte utfordringen og var med på å feire 200 ansatte i Telenor."
+    ? "Bra jobbet! Du klarte utfordringen, CSS konge."
     : "God innsats! Prøv igjen og se hvor mange utfordringer du klarer.";
 
   // Tilstand for telefonnummer
@@ -43,7 +44,9 @@ export default function GameEndScreen({
     }
 
     // Her kan telefonnummeret sendes til backend eller database
-    const existingNumbers: string[] = JSON.parse(localStorage.getItem("winners") || "[]");
+    const existingNumbers: string[] = JSON.parse(
+      localStorage.getItem("winners") || "[]",
+    );
 
     if (existingNumbers.includes(phone)) {
       setError("Dette telefonnummeret er allerede brukt.");
@@ -73,17 +76,23 @@ export default function GameEndScreen({
       }}
     >
       {/* Konfetti bare hvis spilleren vant */}
-      {isVictorious &&
-        <Confetti width={width} height={height}
+      {isVictorious && (
+        <Confetti
+          width={width}
+          height={height}
           colors={["#00C8FF", "#2D28CD", "#B4FFFF", "#FF5A28"]}
-          numberOfPieces={600} />}
+          numberOfPieces={600}
+        />
+      )}
 
       <div className="relative w-full max-w-xl px-4">
         <div className="bg-white border border-white/20 rounded-2xl p-8 shadow-2xl">
           <CardContent className="text-center max-w-md mx-auto">
             <h1
               className={`mb-4 text-3xl font-bold flex items-center justify-center gap-2 ${
-                isVictorious ? "text-telenor-dark-blue" : "text-telenor-hot-pink"
+                isVictorious
+                  ? "text-telenor-dark-blue"
+                  : "text-telenor-hot-pink"
               }`}
             >
               <TitleIcon className="h-8 w-8" />
@@ -91,11 +100,49 @@ export default function GameEndScreen({
             </h1>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
               Du fullførte{" "}
-              <span className="font-bold text-telenor-mid-blue">{score}</span> utfordringer.
+              <span className="font-bold text-telenor-mid-blue">{score}</span>{" "}
+              utfordringer.
             </p>
             <p className="mb-4 text-xl leading-relaxed text-telenor-dark-blue/70">
               {message}
             </p>
+            {isVictorious && !submitted && (
+              <form
+                onSubmit={handlePhoneSubmit}
+                className="mb-6 flex flex-col items-center gap-3"
+              >
+                <p className="text-base leading-relaxed text-telenor-dark-blue/70">
+                  Skriv inn telefonnummeret ditt for å få være med i trekningen.
+                  Vi deler det ikke videre og bruker det ikke til noe annet.
+                </p>
+                <Input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="h-12 w-full border-telenor-mid-blue/30 text-center text-lg text-telenor-dark-blue placeholder:text-telenor-dark-blue/40"
+                  placeholder="Telefonnummer"
+                  maxLength={15}
+                  inputMode="numeric"
+                  autoComplete="tel"
+                />
+                {error && (
+                  <div className="text-sm font-medium text-telenor-hot-pink">
+                    {error}
+                  </div>
+                )}
+                <Button
+                  type="submit"
+                  className="w-full rounded-lg bg-telenor-dark-blue text-lg font-semibold text-white transition-colors hover:bg-telenor-dark-blue/90"
+                >
+                  Send inn
+                </Button>
+              </form>
+            )}
+            {isVictorious && submitted && !error && (
+              <div className="mb-6 text-base font-semibold text-telenor-dark-blue">
+                Takk. Telefonnummeret ditt er registrert.
+              </div>
+            )}
 
             <Button
               onClick={onRestart}

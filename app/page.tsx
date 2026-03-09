@@ -40,15 +40,15 @@ export default function FlexboxGame() {
   const autoAdvanceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
-  const incorrectRevealTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
-  );
+  const incorrectRevealTimeoutRef = useRef<ReturnType<
+    typeof setTimeout
+  > | null>(null);
   const winTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const skipAutoAdvanceRef = useRef(false);
 
-  const clearTimeoutRef = (
-    timeoutRef: { current: ReturnType<typeof setTimeout> | null },
-  ) => {
+  const clearTimeoutRef = (timeoutRef: {
+    current: ReturnType<typeof setTimeout> | null;
+  }) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -91,9 +91,12 @@ export default function FlexboxGame() {
   useEffect(() => {
     if (!showFeedback || skipAutoAdvanceRef.current) return;
 
-    autoAdvanceTimeoutRef.current = setTimeout(() => {
-      handleNextLevel();
-    }, isCorrect ? CORRECT_FEEDBACK_MS : INCORRECT_FEEDBACK_MS);
+    autoAdvanceTimeoutRef.current = setTimeout(
+      () => {
+        handleNextLevel();
+      },
+      isCorrect ? CORRECT_FEEDBACK_MS : INCORRECT_FEEDBACK_MS,
+    );
 
     return () => clearTimeoutRef(autoAdvanceTimeoutRef);
   }, [showFeedback, isCorrect]);
@@ -226,7 +229,9 @@ export default function FlexboxGame() {
             <div className="flex items-center gap-4">
               <div
                 className={`text-3xl font-bold tabular-nums flex items-center gap-2 ${
-                  totalTimeLeft <= 10 ? "text-telenor-hot-pink animate-pulse" : "text-telenor-light-blue"
+                  totalTimeLeft <= 10
+                    ? "text-telenor-hot-pink animate-pulse"
+                    : "text-telenor-light-blue"
                 }`}
               >
                 <Timer className="h-7 w-7" />
