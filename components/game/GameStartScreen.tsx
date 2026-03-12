@@ -67,7 +67,7 @@ export default function GameStartScreen({
                     className="mx-auto mb-6 h-auto w-full max-w-xs"
                     priority
                   />
-                  <h1 className="mb-4 text-4xl font-bold text-telenor-dark-blue">
+                  <h1 className="mb-4 text-6xl font-bold text-telenor-dark-blue">
                     VINN 5000 KR
                   </h1>
                   <AnimatedHandwriting
