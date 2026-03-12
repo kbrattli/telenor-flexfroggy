@@ -18,7 +18,7 @@ import backgroundImage from "@/assets/cake-icons/bg.webp";
 
 export default function FlexboxGame() {
   const GAME_DURATION = 60;
-  const TARGET_SCORE = 9;
+  const TARGET_SCORE = 7;
   const CORRECT_FEEDBACK_MS = 1500;
   const INCORRECT_FEEDBACK_MS = 1000;
   const INCORRECT_REVEAL_MS = 1500;
