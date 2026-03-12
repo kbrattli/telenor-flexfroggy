@@ -91,12 +91,12 @@ export const levels: Level[] = [
     itemCount: 3,
     options: [
       {
-        label: ["flex-direction: row;", "gap: '25px';"],
-        css: { flexDirection: "row", gap: "25px" },
+        label: ["flex-direction: row;", "gap: '50px';"],
+        css: { flexDirection: "row", gap: "50px" },
       },
       {
-        label: ["flex-direction: column;", "gap: '25px';"],
-        css: { flexDirection: "column", gap: "25px" },
+        label: ["flex-direction: column;", "gap: '50px';"],
+        css: { flexDirection: "column", gap: "50px" },
       },
       {
         label: ["flex-direction: column;", "gap: '0px';"],
@@ -107,7 +107,7 @@ export const levels: Level[] = [
     correctCSS: {
       display: "flex",
       flexDirection: "column",
-      gap: "25px",
+      gap: "50px",
     },
   },
   {
