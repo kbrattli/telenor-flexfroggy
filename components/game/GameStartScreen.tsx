@@ -67,8 +67,8 @@ export default function GameStartScreen({
                     className="mx-auto mb-6 h-auto w-full max-w-xs"
                     priority
                   />
-                  <h1 className="mb-4 text-3xl font-bold text-telenor-dark-blue">
-                    Telenor Flexbox-utfordring
+                  <h1 className="mb-4 text-4xl font-bold text-telenor-dark-blue">
+                    VINN 5000 KR
                   </h1>
                   <AnimatedHandwriting
                     className="mb-6 text-xl leading-relaxed text-telenor-dark-blue/70"
