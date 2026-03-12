@@ -87,27 +87,27 @@ export const levels: Level[] = [
     id: 4,
     title: "Vertical Form Layout",
     description:
-      "Stack the items vertically and add some space to create a simple form layout.",
+      "Stack the items in a column and spread them from top to bottom.",
     itemCount: 3,
     options: [
       {
-        label: ["flex-direction: row;", "gap: '50px';"],
-        css: { flexDirection: "row", gap: "50px" },
+        label: ["flex-direction: column;", "justify-content: space-around;"],
+        css: { flexDirection: "column", justifyContent: "space-around" },
       },
       {
-        label: ["flex-direction: column;", "gap: '50px';"],
-        css: { flexDirection: "column", gap: "50px" },
+        label: ["flex-direction: column;", "justify-content: space-between;"],
+        css: { flexDirection: "column", justifyContent: "space-between" },
       },
       {
-        label: ["flex-direction: column;", "gap: '0px';"],
-        css: { flexDirection: "column", gap: "0px" },
+        label: ["flex-direction: column;", "justify-content: center;"],
+        css: { flexDirection: "column", justifyContent: "center" },
       },
     ],
     correctAnswer: 1,
     correctCSS: {
       display: "flex",
       flexDirection: "column",
-      gap: "50px",
+      justifyContent: "space-between",
     },
   },
   {
@@ -300,28 +300,27 @@ export const levels: Level[] = [
     id: 12,
     title: "Alert Message Bar",
     description:
-      "Align alert elements to the left with consistent spacing between them.",
+      "Keep the actions in one row, vertically centered, with the first on the far left and the last on the far right.",
     itemCount: 3,
     options: [
       {
-        label: ["justify-content: flex-start;", "gap: '15px';", "align-items: center;"],
-        css: { justifyContent: "flex-start", gap: "15px", alignItems: "center" },
+        label: ["justify-content: flex-start;", "align-items: center;"],
+        css: { justifyContent: "flex-start", alignItems: "center" },
       },
       {
-        label: ["justify-content: center;", "gap: '15px';", "align-items: center;"],
-        css: { justifyContent: "center", gap: "15px", alignItems: "center" },
+        label: ["justify-content: space-between;", "align-items: center;"],
+        css: { justifyContent: "space-between", alignItems: "center" },
       },
       {
-        label: ["justify-content: space-between;", "gap: '15px';", "align-items: center;"],
-        css: { justifyContent: "space-between", gap: "15px", alignItems: "center" },
+        label: ["justify-content: space-around;", "align-items: center;"],
+        css: { justifyContent: "space-around", alignItems: "center" },
       },
     ],
-    correctAnswer: 0,
+    correctAnswer: 1,
     correctCSS: {
       display: "flex",
-      justifyContent: "flex-start",
+      justifyContent: "space-between",
       alignItems: "center",
-      gap: "15px",
     },
   },
   {
@@ -457,53 +456,48 @@ export const levels: Level[] = [
   },
   {
     id: 16,
-    title: "Breadcrumb Navigation",
+    title: "Quick Actions Row",
     description:
-      "Create a breadcrumb trail with consistent spacing between navigation items.",
+      "Spread the actions across the row so each one has space on both sides.",
     itemCount: 4,
     options: [
       {
         label: [
-          "justify-content: flex-start;",
-          "gap: '8px';",
+          "justify-content: space-around;",
           "align-items: center;",
         ],
         css: {
-          justifyContent: "flex-start",
-          gap: "8px",
+          justifyContent: "space-around",
           alignItems: "center",
         },
       },
       {
         label: [
           "justify-content: space-between;",
-          "gap: '8px';",
           "align-items: center;",
         ],
         css: {
           justifyContent: "space-between",
-          gap: "8px",
           alignItems: "center",
         },
       },
       {
-        label: ["justify-content: center;", "gap: '8px';", "align-items: center;"],
-        css: { justifyContent: "center", gap: "8px", alignItems: "center" },
+        label: ["justify-content: center;", "align-items: center;"],
+        css: { justifyContent: "center", alignItems: "center" },
       },
     ],
     correctAnswer: 0,
     correctCSS: {
       display: "flex",
-      justifyContent: "flex-start",
+      justifyContent: "space-around",
       alignItems: "center",
-      gap: "8px",
     },
   },
   {
     id: 17,
     title: "Social Media Icons",
     description:
-      "Distribute social media icons evenly across the footer with equal spacing.",
+      "Spread the social icons across the footer so each one has a little room on both sides.",
     itemCount: 5,
     options: [
       {
@@ -511,18 +505,18 @@ export const levels: Level[] = [
         css: { justifyContent: "space-between", alignItems: "center" },
       },
       {
-        label: ["justify-content: space-evenly;", "align-items: center;"],
-        css: { justifyContent: "space-evenly", alignItems: "center" },
-      },
-      {
         label: ["justify-content: space-around;", "align-items: center;"],
         css: { justifyContent: "space-around", alignItems: "center" },
+      },
+      {
+        label: ["justify-content: center;", "align-items: center;"],
+        css: { justifyContent: "center", alignItems: "center" },
       },
     ],
     correctAnswer: 1,
     correctCSS: {
       display: "flex",
-      justifyContent: "space-evenly",
+      justifyContent: "space-around",
       alignItems: "center",
     },
   },
@@ -557,32 +551,30 @@ export const levels: Level[] = [
     id: 20,
     title: "Footer Menu",
     description:
-      "Align footer menu items to the right with consistent spacing between them.",
+      "Spread the footer links across the full width so the first and last sit near the edges.",
     itemCount: 3,
     options: [
       {
         label: [
           "justify-content: flex-end;",
-          "gap: '12px';",
           "align-items: center;",
         ],
-        css: { justifyContent: "flex-end", gap: "12px", alignItems: "center" },
+        css: { justifyContent: "flex-end", alignItems: "center" },
       },
       {
-        label: ["justify-content: flex-start;", "gap: '12px';", "align-items: center;"],
-        css: { justifyContent: "flex-start", gap: "12px", alignItems: "center" },
+        label: ["justify-content: space-between;", "align-items: center;"],
+        css: { justifyContent: "space-between", alignItems: "center" },
       },
       {
-        label: ["justify-content: space-between;", "gap: '12px';", "align-items: center;"],
-        css: { justifyContent: "space-between", gap: "12px", alignItems: "center" },
+        label: ["justify-content: space-around;", "align-items: center;"],
+        css: { justifyContent: "space-around", alignItems: "center" },
       },
     ],
-    correctAnswer: 0,
+    correctAnswer: 1,
     correctCSS: {
       display: "flex",
-      justifyContent: "flex-end",
+      justifyContent: "space-between",
       alignItems: "center",
-      gap: "12px",
     },
   },
     {
@@ -600,16 +592,16 @@ export const levels: Level[] = [
     },
     {
         id: 23,
-        title: "Evenly Spaced Vertical List",
-        description: "Distribute items evenly from top to bottom in a column.",
+        title: "Spaced Vertical List",
+        description: "Stack the items in a column and leave room above and below each one.",
         itemCount: 5,
         options: [
-            { label: ["flex-direction: column;", "justify-content: space-evenly;"], css: { flexDirection: "column", justifyContent: "space-evenly" } },
+            { label: ["flex-direction: column;", "justify-content: space-around;"], css: { flexDirection: "column", justifyContent: "space-around" } },
             { label: ["flex-direction: column;", "justify-content: space-between;"], css: { flexDirection: "column", justifyContent: "space-between" } },
-            { label: ["flex-direction: column;", "justify-content: flex-end;"], css: { flexDirection: "column", justifyContent: "flex-end" } },
+            { label: ["flex-direction: column;", "justify-content: center;"], css: { flexDirection: "column", justifyContent: "center" } },
         ],
         correctAnswer: 0,
-        correctCSS: { display: "flex", flexDirection: "column", justifyContent: "space-evenly" },
+        correctCSS: { display: "flex", flexDirection: "column", justifyContent: "space-around" },
     },
     {
         id: 24,
@@ -626,21 +618,21 @@ export const levels: Level[] = [
     },
     {
         id: 25,
-        title: "Right-Centered Column with Gap",
-        description: "Stack items in a column, keep the group vertically centered, align it to the right, and preserve the large gap.",
+        title: "Right-Centered Column",
+        description: "Stack items in a column, keep the group vertically centered, and align it to the right.",
         itemCount: 3,
         options: [
             {
-                label: ["flex-direction: column;", "justify-content: center;", "align-items: flex-start;", "gap: '20px';"],
-                css: { flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "20px" },
+                label: ["flex-direction: column;", "justify-content: center;", "align-items: flex-start;"],
+                css: { flexDirection: "column", justifyContent: "center", alignItems: "flex-start" },
             },
             {
-                label: ["flex-direction: column;", "justify-content: center;", "align-items: flex-end;", "gap: '20px';"],
-                css: { flexDirection: "column", justifyContent: "center", alignItems: "flex-end", gap: "20px" },
+                label: ["flex-direction: column;", "justify-content: center;", "align-items: flex-end;"],
+                css: { flexDirection: "column", justifyContent: "center", alignItems: "flex-end" },
             },
             {
-                label: ["flex-direction: column;", "justify-content: flex-end;", "align-items: flex-end;", "gap: '20px';"],
-                css: { flexDirection: "column", justifyContent: "flex-end", alignItems: "flex-end", gap: "20px" },
+                label: ["flex-direction: column;", "justify-content: flex-end;", "align-items: flex-end;"],
+                css: { flexDirection: "column", justifyContent: "flex-end", alignItems: "flex-end" },
             },
         ],
         correctAnswer: 1,
@@ -649,7 +641,6 @@ export const levels: Level[] = [
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "flex-end",
-            gap: "20px",
         },
     },
     {
@@ -755,29 +746,28 @@ export const levels: Level[] = [
     },
     {
         id: 33,
-        title: "Bottom-Centered Row with Large Gap",
-        description: "Center the row horizontally, keep it at the bottom, and preserve the large gap between items.",
+        title: "Spaced Sidebar Menu",
+        description: "Stack the items in a column and give each one room above and below.",
         itemCount: 3,
         options: [
             {
-                label: ["justify-content: center;", "gap: '40px';", "align-items: flex-end;"],
-                css: { justifyContent: "center", gap: "40px", alignItems: "flex-end" },
+                label: ["flex-direction: column;", "justify-content: center;"],
+                css: { flexDirection: "column", justifyContent: "center" },
             },
             {
-                label: ["justify-content: space-between;", "gap: '40px';", "align-items: flex-end;"],
-                css: { justifyContent: "space-between", gap: "40px", alignItems: "flex-end" },
+                label: ["flex-direction: column;", "justify-content: space-between;"],
+                css: { flexDirection: "column", justifyContent: "space-between" },
             },
             {
-                label: ["justify-content: center;", "gap: '40px';", "align-items: center;"],
-                css: { justifyContent: "center", gap: "40px", alignItems: "center" },
+                label: ["flex-direction: column;", "justify-content: space-around;"],
+                css: { flexDirection: "column", justifyContent: "space-around" },
             },
         ],
-        correctAnswer: 0,
+        correctAnswer: 2,
         correctCSS: {
             display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-end",
-            gap: "40px",
+            flexDirection: "column",
+            justifyContent: "space-around",
         },
     },
     {
