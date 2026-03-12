@@ -11,6 +11,7 @@ import telenor200Logo from "@/assets/cake-icons/telenor-200-logo.webp";
 
 interface GameStartProps {
   onStart: () => void;
+  targetScore: number;
 }
 
 const cardVariants = {
@@ -27,7 +28,10 @@ const cardVariants = {
   },
 };
 
-export default function GameStartScreen({ onStart }: GameStartProps) {
+export default function GameStartScreen({
+  onStart,
+  targetScore,
+}: GameStartProps) {
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   return (
     <div
@@ -68,7 +72,7 @@ export default function GameStartScreen({ onStart }: GameStartProps) {
                   </h1>
                   <AnimatedHandwriting
                     className="mb-6 text-xl leading-relaxed text-telenor-dark-blue/70"
-                    text={`Bli med på festen!\n\nKlar til å teste CSS-ferdighetene dine?\nNå 5 poeng for å kvalifisere deg til pinjata.\n`}
+                    text={`Bli med på festen!\n\nKlar til å teste CSS-ferdighetene dine?\nNå ${targetScore} poeng for å kvalifisere deg til pinjata.\n`}
                   />
                   <Button
                     onClick={() => setStep(2)}
