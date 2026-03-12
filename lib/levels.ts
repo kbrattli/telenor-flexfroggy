@@ -91,12 +91,12 @@ export const levels: Level[] = [
     itemCount: 3,
     options: [
       {
-        label: ["flex-direction: row;", "gap: '10px';"],
-        css: { flexDirection: "row", gap: "10px" },
+        label: ["flex-direction: row;", "gap: '25px';"],
+        css: { flexDirection: "row", gap: "25px" },
       },
       {
-        label: ["flex-direction: column;", "gap: '10px';"],
-        css: { flexDirection: "column", gap: "10px" },
+        label: ["flex-direction: column;", "gap: '25px';"],
+        css: { flexDirection: "column", gap: "25px" },
       },
       {
         label: ["flex-direction: column;", "gap: '0px';"],
@@ -107,7 +107,7 @@ export const levels: Level[] = [
     correctCSS: {
       display: "flex",
       flexDirection: "column",
-      gap: "10px",
+      gap: "25px",
     },
   },
   {
@@ -165,36 +165,36 @@ export const levels: Level[] = [
   },
   {
     id: 7,
-    title: "Centered Tag Group",
+    title: "Bottom-Centered Tag Group",
     description:
-      "Center a group of items, like tags or category buttons, in the middle.",
+      "Center the tags horizontally, but keep the whole row sitting at the bottom of the container.",
     itemCount: 4,
     options: [
       {
-        label: ["justify-content: center;", "align-items: center;"],
-        css: { justifyContent: "center", alignItems: "center" },
+        label: ["justify-content: center;", "align-items: flex-start;"],
+        css: { justifyContent: "center", alignItems: "flex-start" },
       },
       {
-        label: ["justify-content: space-between;", "align-items: center;"],
-        css: { justifyContent: "space-between", alignItems: "center" },
+        label: ["justify-content: center;", "align-items: flex-end;"],
+        css: { justifyContent: "center", alignItems: "flex-end" },
       },
       {
-        label: ["justify-content: flex-start;", "align-items: center;"],
-        css: { justifyContent: "flex-start", alignItems: "center" },
+        label: ["justify-content: flex-start;", "align-items: flex-end;"],
+        css: { justifyContent: "flex-start", alignItems: "flex-end" },
       },
     ],
-    correctAnswer: 0,
+    correctAnswer: 1,
     correctCSS: {
       display: "flex",
       justifyContent: "center",
-      alignItems: "center",
+      alignItems: "flex-end",
     },
   },
   {
     id: 8,
-    title: "Vertically Centered Column",
+    title: "Left-Aligned Center Column",
     description:
-      "Stack the items in a column and center the entire group vertically.",
+      "Stack the items in a column, keep the group vertically centered, and align it to the left.",
     itemCount: 3,
     options: [
       {
@@ -239,6 +239,7 @@ export const levels: Level[] = [
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      alignItems: "flex-start",
     },
   },
   {
@@ -325,28 +326,53 @@ export const levels: Level[] = [
   },
   {
     id: 13,
-    title: "Mobile Card Stack",
+    title: "Top-Centered Mobile Card Stack",
     description:
-      "Stack cards vertically and center them horizontally, perfect for mobile layouts.",
+      "Stack cards vertically, keep them at the top, and center the stack horizontally.",
     itemCount: 4,
     options: [
       {
-        label: ["flex-direction: column;", "align-items: flex-start;"],
-        css: { flexDirection: "column", alignItems: "flex-start" },
+        label: [
+          "flex-direction: column;",
+          "justify-content: flex-start;",
+          "align-items: center;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+        },
       },
       {
-        label: ["flex-direction: column;", "align-items: center;"],
-        css: { flexDirection: "column", alignItems: "center" },
+        label: [
+          "flex-direction: column;",
+          "justify-content: center;",
+          "align-items: center;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        },
       },
       {
-        label: ["flex-direction: column;", "align-items: flex-end;"],
-        css: { flexDirection: "column", alignItems: "flex-end" },
+        label: [
+          "flex-direction: column;",
+          "justify-content: flex-start;",
+          "align-items: flex-end;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "flex-end",
+        },
       },
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     correctCSS: {
       display: "flex",
       flexDirection: "column",
+      justifyContent: "flex-start",
       alignItems: "center",
     },
   },
@@ -379,14 +405,26 @@ export const levels: Level[] = [
   },
   {
     id: 15,
-    title: "Loading Indicator",
+    title: "Bottom-Centered Loading Stack",
     description:
-      "Create a loading screen with dots stacked vertically in the center.",
+      "Place the loading dots in a centered column that sits at the bottom of the container.",
     itemCount: 3,
     options: [
       {
         label: [
           "flex-direction: column;",
+          "justify-content: flex-end;",
+          "align-items: center;",
+        ],
+        css: {
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        },
+      },
+      {
+        label: [
+          "flex-direction: column;",
           "justify-content: center;",
           "align-items: center;",
         ],
@@ -399,24 +437,12 @@ export const levels: Level[] = [
       {
         label: [
           "flex-direction: column;",
-          "justify-content: flex-start;",
-          "align-items: center;",
-        ],
-        css: {
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-        },
-      },
-      {
-        label: [
-          "flex-direction: column;",
-          "justify-content: center;",
+          "justify-content: flex-end;",
           "align-items: flex-start;",
         ],
         css: {
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "flex-end",
           alignItems: "flex-start",
         },
       },
@@ -425,7 +451,7 @@ export const levels: Level[] = [
     correctCSS: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
+      justifyContent: "flex-end",
       alignItems: "center",
     },
   },
@@ -437,12 +463,28 @@ export const levels: Level[] = [
     itemCount: 4,
     options: [
       {
-        label: ["justify-content: flex-start;", "gap: '8px';", "align-items: center;"],
-        css: { justifyContent: "flex-start", gap: "8px", alignItems: "center" },
+        label: [
+          "justify-content: flex-start;",
+          "gap: '8px';",
+          "align-items: center;",
+        ],
+        css: {
+          justifyContent: "flex-start",
+          gap: "8px",
+          alignItems: "center",
+        },
       },
       {
-        label: ["justify-content: space-between;", "gap: '8px';", "align-items: center;"],
-        css: { justifyContent: "space-between", gap: "8px", alignItems: "center" },
+        label: [
+          "justify-content: space-between;",
+          "gap: '8px';",
+          "align-items: center;",
+        ],
+        css: {
+          justifyContent: "space-between",
+          gap: "8px",
+          alignItems: "center",
+        },
       },
       {
         label: ["justify-content: center;", "gap: '8px';", "align-items: center;"],
@@ -584,55 +626,92 @@ export const levels: Level[] = [
     },
     {
         id: 25,
-        title: "Centered Column with Gap",
-        description: "Stack items vertically, center horizontally, and add space between.",
+        title: "Right-Centered Column with Gap",
+        description: "Stack items in a column, keep the group vertically centered, align it to the right, and preserve the large gap.",
         itemCount: 3,
         options: [
-            { label: ["flex-direction: column;", "align-items: flex-start;", "gap: '20px';"], css: { flexDirection: "column", alignItems: "flex-start", gap: "20px" } },
-            { label: ["flex-direction: column;", "align-items: flex-end;", "gap: '20px';"], css: { flexDirection: "column", alignItems: "flex-end", gap: "20px" } },
-            { label: ["flex-direction: column;", "align-items: center;", "gap: '20px';"], css: { flexDirection: "column", alignItems: "center", gap: "20px" } },
+            {
+                label: ["flex-direction: column;", "justify-content: center;", "align-items: flex-start;", "gap: '20px';"],
+                css: { flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "20px" },
+            },
+            {
+                label: ["flex-direction: column;", "justify-content: center;", "align-items: flex-end;", "gap: '20px';"],
+                css: { flexDirection: "column", justifyContent: "center", alignItems: "flex-end", gap: "20px" },
+            },
+            {
+                label: ["flex-direction: column;", "justify-content: flex-end;", "align-items: flex-end;", "gap: '20px';"],
+                css: { flexDirection: "column", justifyContent: "flex-end", alignItems: "flex-end", gap: "20px" },
+            },
         ],
-        correctAnswer: 2,
-        correctCSS: { display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" },
+        correctAnswer: 1,
+        correctCSS: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            gap: "20px",
+        },
     },
     {
         id: 26,
-        title: "Bottom-Aligned Row",
-        description: "Align all items to the bottom of the container in a row.",
+        title: "Bottom-Centered Row",
+        description: "Keep the row centered horizontally, but align all items to the bottom of the container.",
         itemCount: 4,
         options: [
-            { label: ["justify-content: flex-start;", "align-items: flex-start;"], css: { justifyContent: "flex-start", alignItems: "flex-start" } },
             { label: ["justify-content: flex-start;", "align-items: flex-end;"], css: { justifyContent: "flex-start", alignItems: "flex-end" } },
-            { label: ["justify-content: flex-start;", "align-items: center;"], css: { justifyContent: "flex-start", alignItems: "center" } },
+            { label: ["justify-content: center;", "align-items: flex-end;"], css: { justifyContent: "center", alignItems: "flex-end" } },
+            { label: ["justify-content: center;", "align-items: center;"], css: { justifyContent: "center", alignItems: "center" } },
         ],
         correctAnswer: 1,
-        correctCSS: { display: "flex", alignItems: "flex-end" },
+        correctCSS: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-end",
+        },
     },
     {
         id: 28,
-        title: "Centered Single Row",
-        description: "Center a single row of items both horizontally and vertically.",
+        title: "Top-Centered Single Row",
+        description: "Center the row horizontally, but pin it to the top of the container.",
         itemCount: 5,
         options: [
-            { label: ["justify-content: flex-end;", "align-items: flex-end;"], css: { justifyContent: "flex-end", alignItems: "flex-end" } },
+            { label: ["justify-content: center;", "align-items: flex-start;"], css: { justifyContent: "center", alignItems: "flex-start" } },
             { label: ["justify-content: flex-start;", "align-items: flex-start;"], css: { justifyContent: "flex-start", alignItems: "flex-start" } },
-            { label: ["justify-content: center;", "align-items: center;"], css: { justifyContent: "center", alignItems: "center" } },
+            { label: ["justify-content: center;", "align-items: flex-end;"], css: { justifyContent: "center", alignItems: "flex-end" } },
         ],
-        correctAnswer: 2,
-        correctCSS: { display: "flex", justifyContent: "center", alignItems: "center" },
+        correctAnswer: 0,
+        correctCSS: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-start",
+        },
     },
     {
         id: 29,
-        title: "Top-Aligned Column",
-        description: "Stack items vertically, aligned to the top and left.",
+        title: "Bottom-Left Column",
+        description: "Stack items in a column and place the group in the bottom-left area.",
         itemCount: 4,
         options: [
-            { label: ["flex-direction: column;", "align-items: flex-end;"], css: { flexDirection: "column", alignItems: "flex-end" } },
-            { label: ["flex-direction: column;", "align-items: flex-start;"], css: { flexDirection: "column", alignItems: "flex-start" } },
-            { label: ["flex-direction: column;", "align-items: center;"], css: { flexDirection: "column", alignItems: "center" } },
+            {
+                label: ["flex-direction: column;", "justify-content: flex-end;", "align-items: flex-start;"],
+                css: { flexDirection: "column", justifyContent: "flex-end", alignItems: "flex-start" },
+            },
+            {
+                label: ["flex-direction: column;", "justify-content: flex-start;", "align-items: flex-start;"],
+                css: { flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start" },
+            },
+            {
+                label: ["flex-direction: column;", "justify-content: flex-end;", "align-items: center;"],
+                css: { flexDirection: "column", justifyContent: "flex-end", alignItems: "center" },
+            },
         ],
-        correctAnswer: 1,
-        correctCSS: { display: "flex", flexDirection: "column", alignItems: "flex-start" },
+        correctAnswer: 0,
+        correctCSS: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            alignItems: "flex-start",
+        },
     },
     {
         id: 30,
@@ -649,29 +728,57 @@ export const levels: Level[] = [
     },
     {
         id: 32,
-        title: "Right-Aligned Column",
-        description: "Stack items vertically, aligned to the right.",
+        title: "Top-Right Column",
+        description: "Stack items in a column and place the group in the top-right area.",
         itemCount: 4,
         options: [
-            { label: ["flex-direction: column;", "align-items: flex-start;"], css: { flexDirection: "column", alignItems: "flex-start" } },
-            { label: ["flex-direction: column;", "align-items: flex-end;"], css: { flexDirection: "column", alignItems: "flex-end" } },
-            { label: ["flex-direction: column;", "align-items: center;"], css: { flexDirection: "column", alignItems: "center" } },
+            {
+                label: ["flex-direction: column;", "justify-content: flex-start;", "align-items: flex-end;"],
+                css: { flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-end" },
+            },
+            {
+                label: ["flex-direction: column;", "justify-content: center;", "align-items: flex-end;"],
+                css: { flexDirection: "column", justifyContent: "center", alignItems: "flex-end" },
+            },
+            {
+                label: ["flex-direction: column;", "justify-content: flex-start;", "align-items: center;"],
+                css: { flexDirection: "column", justifyContent: "flex-start", alignItems: "center" },
+            },
         ],
-        correctAnswer: 1,
-        correctCSS: { display: "flex", flexDirection: "column", alignItems: "flex-end" },
+        correctAnswer: 0,
+        correctCSS: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            alignItems: "flex-end",
+        },
     },
     {
         id: 33,
-        title: "Center with Large Gap",
-        description: "Center items in a row with a large gap between them.",
+        title: "Bottom-Centered Row with Large Gap",
+        description: "Center the row horizontally, keep it at the bottom, and preserve the large gap between items.",
         itemCount: 3,
         options: [
-            { label: ["justify-content: center;", "gap: '40px';"], css: { justifyContent: "center", gap: "40px" } },
-            { label: ["justify-content: space-between;", "gap: '40px';"], css: { justifyContent: "space-between", gap: "40px" } },
-            { label: ["justify-content: flex-end;", "gap: '40px';"], css: { justifyContent: "flex-end", gap: "40px" } },
+            {
+                label: ["justify-content: center;", "gap: '40px';", "align-items: flex-end;"],
+                css: { justifyContent: "center", gap: "40px", alignItems: "flex-end" },
+            },
+            {
+                label: ["justify-content: space-between;", "gap: '40px';", "align-items: flex-end;"],
+                css: { justifyContent: "space-between", gap: "40px", alignItems: "flex-end" },
+            },
+            {
+                label: ["justify-content: center;", "gap: '40px';", "align-items: center;"],
+                css: { justifyContent: "center", gap: "40px", alignItems: "center" },
+            },
         ],
         correctAnswer: 0,
-        correctCSS: { display: "flex", justifyContent: "center", gap: "40px" },
+        correctCSS: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            gap: "40px",
+        },
     },
     {
         id: 34,
